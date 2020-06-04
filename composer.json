@@ -1,0 +1,53 @@
+{
+    "name": "netglue/primo",
+    "description": "Mezzio integration for Prismic. Let’s call it ”Primo“…",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "George Steel",
+            "email": "george@net-glue.co.uk"
+        }
+    ],
+    "keywords": ["prismic", "prismicio", "psr-11", "mezzio", "laminas"],
+    "homepage": "https://github.com/netglue/primo",
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Primo\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PrimoTest\\Unit\\": "test/Unit"
+        }
+    },
+    "require": {
+        "php": ">= 7.3",
+        "laminas/laminas-diactoros": "^2.3",
+        "laminas/laminas-stdlib": "^3.2",
+        "mezzio/mezzio": "^3.2",
+        "mezzio/mezzio-helpers": "^5.3",
+        "mezzio/mezzio-router": "^3.1",
+        "mezzio/mezzio-template": "^2.0",
+        "netglue/prismic-client": "^0.1",
+        "psr/container": "^1.0",
+        "psr/event-dispatcher": "^1.0"
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "^8.0",
+        "mezzio/mezzio-fastroute": "^3.0",
+        "phpspec/prophecy": "^1.10",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpunit/phpunit": "^9.1",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "extra": {
+        "laminas": {
+            "config-provider": "Primo\\Container\\ConfigProvider"
+        }
+    }
+}

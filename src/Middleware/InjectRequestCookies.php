@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Primo\Middleware;
 
-use Prismic\Api;
+use Prismic\ApiClient;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -11,10 +11,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class InjectRequestCookies implements MiddlewareInterface
 {
-    /** @var Api */
+    /** @var ApiClient */
     private $api;
 
-    public function __construct(Api $api)
+    public function __construct(ApiClient $api)
     {
         $this->api = $api;
     }

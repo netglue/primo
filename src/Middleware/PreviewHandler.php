@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Primo\Middleware;
 
 use Laminas\Diactoros\Response\RedirectResponse;
-use Prismic\Api;
+use Prismic\ApiClient;
 use Prismic\LinkResolver;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -15,7 +15,7 @@ use function urldecode;
 
 final class PreviewHandler implements MiddlewareInterface
 {
-    /** @var Api */
+    /** @var ApiClient */
     private $api;
 
     /** @var LinkResolver */
@@ -24,7 +24,7 @@ final class PreviewHandler implements MiddlewareInterface
     /** @var string */
     private $defaultUrl;
 
-    public function __construct(Api $api, LinkResolver $linkResolver, string $defaultUrl = '/')
+    public function __construct(ApiClient $api, LinkResolver $linkResolver, string $defaultUrl = '/')
     {
         $this->api = $api;
         $this->linkResolver = $linkResolver;

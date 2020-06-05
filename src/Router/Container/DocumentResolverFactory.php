@@ -5,7 +5,7 @@ namespace Primo\Router\Container;
 
 use Primo\Router\DocumentResolver;
 use Primo\Router\RouteParams;
-use Prismic\Api;
+use Prismic\ApiClient;
 use Psr\Container\ContainerInterface;
 
 final class DocumentResolverFactory
@@ -13,7 +13,7 @@ final class DocumentResolverFactory
     public function __invoke(ContainerInterface $container) : DocumentResolver
     {
         return new DocumentResolver(
-            $container->get(Api::class),
+            $container->get(ApiClient::class),
             $container->get(RouteParams::class)
         );
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Primo\Middleware\Container;
 
 use Primo\Middleware\PreviewHandler;
-use Prismic\Api;
+use Prismic\ApiClient;
 use Prismic\LinkResolver;
 use Psr\Container\ContainerInterface;
 
@@ -16,7 +16,7 @@ final class PreviewHandlerFactory
         $defaultUrl = $config['primo']['previews']['defaultUrl'] ?? '/';
 
         return new PreviewHandler(
-            $container->get(Api::class),
+            $container->get(ApiClient::class),
             $container->get(LinkResolver::class),
             $defaultUrl
         );

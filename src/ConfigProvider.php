@@ -52,7 +52,7 @@ final class ConfigProvider
                 Middleware\PreviewHandler::class => Middleware\Container\PreviewHandlerFactory::class,
                 Middleware\PrismicTemplateHandler::class => Middleware\Container\PrismicTemplateHandlerFactory::class,
                 Middleware\WebhookHandler::class => Middleware\Container\WebhookHandlerFactory::class,
-                Prismic\Api::class => Container\ApiFactory::class,
+                Prismic\ApiClient::class => Container\ApiFactory::class,
                 Prismic\ResultSet\StandardResultSetFactory::class => Container\StandardResultSetFactoryFactory::class,
                 Router\DocumentResolver::class => Router\Container\DocumentResolverFactory::class,
                 Router\RouteMatcher::class => Router\Container\RouteMatcherFactory::class,

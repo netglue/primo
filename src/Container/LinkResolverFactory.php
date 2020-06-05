@@ -7,7 +7,7 @@ use Mezzio\Helper\UrlHelper;
 use Primo\LinkResolver;
 use Primo\Router\RouteMatcher;
 use Primo\Router\RouteParams;
-use Prismic\Api;
+use Prismic\ApiClient;
 use Psr\Container\ContainerInterface;
 
 final class LinkResolverFactory
@@ -18,7 +18,7 @@ final class LinkResolverFactory
             $container->get(RouteParams::class),
             $container->get(RouteMatcher::class),
             $container->get(UrlHelper::class),
-            $container->get(Api::class)->data()->bookmarks()
+            $container->get(ApiClient::class)->data()->bookmarks()
         );
     }
 }

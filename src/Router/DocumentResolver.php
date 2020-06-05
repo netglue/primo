@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace Primo\Router;
 
 use Mezzio\Router\RouteResult;
-use Prismic\Api;
+use Prismic\ApiClient;
 use Prismic\Document;
 
-final class DocumentResolver
+class DocumentResolver
 {
     /** @var RouteParams */
     private $routeParams;
-    /** @var Api */
+    /** @var ApiClient */
     private $api;
 
-    public function __construct(Api $api, RouteParams $routeParams)
+    public function __construct(ApiClient $api, RouteParams $routeParams)
     {
         $this->api = $api;
         $this->routeParams = $routeParams;

@@ -13,11 +13,12 @@ class RouteParamsTest extends TestCase
     public function testOptionsArray() : RouteParams
     {
         $options = [
-            'id'       => 'id',
-            'uid'      => 'uid',
-            'type'     => 'type',
-            'bookmark' => 'bookmark',
-            'lang'     => 'lang',
+            'id'                => 'id',
+            'uid'               => 'uid',
+            'type'              => 'type',
+            'bookmark'          => 'bookmark',
+            'lang'              => 'lang',
+            'reuseResultParams' => 'reuse',
         ];
         $params = RouteParams::fromArray($options);
         $this->addToAssertionCount(1);
@@ -53,6 +54,12 @@ class RouteParamsTest extends TestCase
     public function testLang(RouteParams $params) : void
     {
         $this->assertSame('lang', $params->lang());
+    }
+
+    /** @depends testOptionsArray */
+    public function testReuseParams(RouteParams $params) : void
+    {
+        $this->assertSame('reuse', $params->reuseResultParams());
     }
 
     /** @return mixed[] */

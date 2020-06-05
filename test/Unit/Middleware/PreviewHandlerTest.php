@@ -5,36 +5,27 @@ namespace PrimoTest\Unit\Middleware;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Laminas\Diactoros\Response\TextResponse;
-use Prismic\Document\Fragment\DocumentLink;
-use Prismic\LinkResolver;
+use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Middleware\PreviewHandler;
 use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
+use Prismic\Document\Fragment\DocumentLink;
+use Prismic\LinkResolver;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class PreviewHandlerTest extends TestCase
 {
-    /**
-     * @var \Psr\Http\Message\ServerRequestInterface
-     */
+    /** @var ServerRequestInterface */
     private $request;
-    /**
-     * @var RequestHandlerInterface
-     */
+    /** @var RequestHandlerInterface */
     private $handler;
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|ApiClient
-     */
+    /** @var MockObject|ApiClient */
     private $api;
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|LinkResolver
-     */
+    /** @var MockObject|LinkResolver */
     private $linkResolver;
-    /**
-     * @var PreviewHandler
-     */
+    /** @var PreviewHandler */
     private $subject;
 
     protected function setUp() : void

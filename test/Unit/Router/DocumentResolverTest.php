@@ -44,7 +44,7 @@ class DocumentResolverTest extends TestCase
 
     public function testRouteResultWithoutMatchingParamsWillReturnNull() : void
     {
-        $result = RouteResult::fromRoute(new Route('/foo', $this->middleware), []);
+        $result = RouteResult::fromRoute(new Route('/foo', $this->middleware, ['GET']), []);
         $this->assertNull($this->resolver->resolve($result));
     }
 
@@ -57,7 +57,7 @@ class DocumentResolverTest extends TestCase
             ->willReturn($document);
 
         $result = RouteResult::fromRoute(
-            new Route('/foo', $this->middleware),
+            new Route('/foo', $this->middleware, ['GET']),
             [$this->params->bookmark() => 'bookmark-name']
         );
 
@@ -73,7 +73,7 @@ class DocumentResolverTest extends TestCase
             ->willReturn($document);
 
         $result = RouteResult::fromRoute(
-            new Route('/foo', $this->middleware),
+            new Route('/foo', $this->middleware, ['GET']),
             [$this->params->id() => 'doc-id']
         );
 
@@ -89,7 +89,7 @@ class DocumentResolverTest extends TestCase
             ->willReturn($document);
 
         $result = RouteResult::fromRoute(
-            new Route('/foo', $this->middleware),
+            new Route('/foo', $this->middleware, ['GET']),
             [
                 $this->params->uid() => 'uid',
                 $this->params->type() => 'type',
@@ -108,7 +108,7 @@ class DocumentResolverTest extends TestCase
             ->willReturn($document);
 
         $result = RouteResult::fromRoute(
-            new Route('/foo', $this->middleware),
+            new Route('/foo', $this->middleware, ['GET']),
             [
                 $this->params->uid() => 'uid',
                 $this->params->type() => 'type',

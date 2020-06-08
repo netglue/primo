@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace PrimoTest\Unit\Router\Container;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Router\Container\RouteParamsFactory;
 use PrimoTest\Unit\TestCase;
-use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Container\ContainerInterface;
 
 class RouteParamsFactoryTest extends TestCase
 {
     /** @var RouteParamsFactory */
     private $factory;
-    /** @var \PHPUnit\Framework\MockObject\MockObject|ContainerInterface */
+    /** @var MockObject|ContainerInterface */
     private $container;
 
     protected function setUp() : void

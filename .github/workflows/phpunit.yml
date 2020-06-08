@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       php_extentions: mbstring,curl,json,intl,apcu
-      php_extensions_cache_key: 'php-extensions-v1'
+      php_extensions_cache_key: 'php-extensions-v2'
     strategy:
       fail-fast: false
       matrix:
@@ -60,7 +60,7 @@ jobs:
       - name: Check CS
         run: composer cs-check
       - name: PHPUnit
-        run: php -dpcov.directory=. -dpcov.enabled=1 -dpcov.exclude="~vendor~" ./vendor/bin/phpunit --stop-on-error --coverage-clover=coverage.xml
+        run: php -dpcov.enabled=1 ./vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Upload Coverage to CodeCov
         uses: codecov/codecov-action@v1
         with:

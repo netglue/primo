@@ -56,10 +56,6 @@ final class RouteMatcher
     {
         $options = $route->getOptions();
         $option = $options['defaults'][$this->params->type()] ?? [];
-        if (! $option) {
-            return false;
-        }
-
         if (is_array($option) && in_array($type, $option, true)) {
             return true;
         }

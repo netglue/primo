@@ -9,6 +9,5 @@ use Prophecy\PhpUnit\ProphecyTrait;
 
 class TestCase extends PHPUnitTestCase
 {
-    use ProphecyTrait;
     use Psr7Assertions;
 }

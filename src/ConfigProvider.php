@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Primo;
 
+use Mezzio;
+use Primo\Content\Document;
 use Prismic;
 
 final class ConfigProvider
@@ -37,6 +39,10 @@ final class ConfigProvider
                     // The URL that webhooks should be posted to
                     'url' => self::DEFAULT_WEBHOOK_URL,
                 ],
+                'typeMap' => [
+                    'default' => Document::class,
+                    'map' => [],
+                ],
             ],
             'dependencies' => $this->dependencies(),
         ];
@@ -54,6 +60,8 @@ final class ConfigProvider
                 Middleware\WebhookHandler::class => Middleware\Container\WebhookHandlerFactory::class,
                 Prismic\ApiClient::class => Container\ApiFactory::class,
                 Prismic\ResultSet\StandardResultSetFactory::class => Container\StandardResultSetFactoryFactory::class,
+                ResultSet\HydratingResultSetFactory::class => ResultSet\Container\HydratingResultSetFactoryFactory::class,
+                ResultSet\TypeMap::class => ResultSet\Container\TypeMapFactory::class,
                 Router\DocumentResolver::class => Router\Container\DocumentResolverFactory::class,
                 Router\RouteMatcher::class => Router\Container\RouteMatcherFactory::class,
                 Router\RouteParams::class => Router\Container\RouteParamsFactory::class,
@@ -61,6 +69,13 @@ final class ConfigProvider
             ],
             'aliases' => [
                 Prismic\ResultSet\ResultSetFactory::class => Prismic\ResultSet\StandardResultSetFactory::class,
+                // To Opt-In to Hydrating Result Sets, alias the Prismic ResultSetFactory to the Hydrating Result Set FQCN
+                //Prismic\ResultSet\ResultSetFactory::class => ResultSet\HydratingResultSetFactory::class,
+            ],
+            'delegators' => [
+                Mezzio\Application::class => [
+                    PipelineAndRoutesDelegator::class,
+                ],
             ],
         ];
     }

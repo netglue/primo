@@ -27,7 +27,7 @@ final class PipelineAndRoutesDelegator
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $previewUrl = $config['primo']['previews']['previewUrl'] ?? ConfigProvider::DEFAULT_PREVIEW_URL;
-        $app->get($previewUrl, [PreviewHandler::class]);
+        $app->get($previewUrl, PreviewHandler::class);
     }
 
     private function configureWebhooks(ContainerInterface $container, Application $app) : void
@@ -40,6 +40,6 @@ final class PipelineAndRoutesDelegator
         }
 
         $url = $options['url'] ?? ConfigProvider::DEFAULT_WEBHOOK_URL;
-        $app->post($url, [WebhookHandler::class]);
+        $app->post($url, WebhookHandler::class);
     }
 }

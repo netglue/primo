@@ -6,7 +6,6 @@ namespace Primo;
 use Mezzio;
 use Primo\Content\Document;
 use Prismic;
-use Psr;
 
 final class ConfigProvider
 {
@@ -54,6 +53,7 @@ final class ConfigProvider
     {
         return [
             'factories' => [
+                Http\PrismicHttpClient::class => Http\PrismicHttpClientFactory::class,
                 Middleware\DocumentResolver::class => Middleware\Container\DocumentResolverFactory::class,
                 Middleware\InjectRequestCookies::class => Middleware\Container\InjectRequestCookiesFactory::class,
                 Middleware\PreviewHandler::class => Middleware\Container\PreviewHandlerFactory::class,
@@ -69,8 +69,6 @@ final class ConfigProvider
                 LinkResolver::class => Container\LinkResolverFactory::class,
             ],
             'aliases' => [
-                // Aliases our marker interface to the regular ClientInterface
-                Http\PrismicHttpClient::class => Psr\Http\Client\ClientInterface::class,
                 Prismic\ResultSet\ResultSetFactory::class => Prismic\ResultSet\StandardResultSetFactory::class,
                 // To Opt-In to Hydrating Result Sets, alias the Prismic ResultSetFactory to the Hydrating Result Set FQCN
                 //Prismic\ResultSet\ResultSetFactory::class => ResultSet\HydratingResultSetFactory::class,

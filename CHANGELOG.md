@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.2.1 - 2020-06-10
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#3](https://github.com/netglue/primo/pull/3) Fixes delegation of the Prismic specific http client by creating a factory for the client that can actually be delegated by consumers. Aliases don't trigger delegation in Laminas Service Manager which is a pain in the ass and something that is very likely we'll want to do.
+
 ## 0.2.0 - 2020-06-10
 
 ### Added

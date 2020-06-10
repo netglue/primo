@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Primo\Container;
 
 use Primo\Exception\ConfigurationError;
+use Primo\Http\PrismicHttpClient;
 use Prismic\Api;
 use Prismic\ResultSet\ResultSetFactory;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
@@ -27,7 +27,7 @@ final class ApiFactory
         return Api::get(
             $apiUrl,
             $config['prismic']['token'] ?? null,
-            $container->has(ClientInterface::class) ? $container->get(ClientInterface::class) : null,
+            $container->has(PrismicHttpClient::class) ? $container->get(PrismicHttpClient::class) : null,
             $container->has(RequestFactoryInterface::class) ? $container->get(RequestFactoryInterface::class) : null,
             $container->has(UriFactoryInterface::class) ? $container->get(UriFactoryInterface::class) : null,
             $container->has(ResultSetFactory::class) ? $container->get(ResultSetFactory::class) : null

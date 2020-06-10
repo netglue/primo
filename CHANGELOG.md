@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.2.2 - 2020-06-10
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- The default link resolver is now listed in the container using `Prismic\LinkResolver` which is what most consumers will want…
+
 ## 0.2.1 - 2020-06-10
 
 ### Added

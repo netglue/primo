@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
 
+use DateTimeImmutable;
+use DateTimeZone;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Laminas\Diactoros\Response\TextResponse;
 use Mezzio\Router\RouteResult;
@@ -26,6 +28,8 @@ class DocumentResolverTest extends TestCase
     private $handler;
     /** @var ServerRequestInterface */
     private $request;
+    /** @var MockObject|Document */
+    private $document;
 
     protected function setUp() : void
     {
@@ -44,6 +48,10 @@ class DocumentResolverTest extends TestCase
                 return new TextResponse('Boom');
             }
         };
+        $this->document = $this->createMock(Document::class);
+        $this->document
+            ->method('lastPublished')
+            ->willReturn(DateTimeImmutable::createFromFormat('!Y-m-d', '2020-01-01', new DateTimeZone('UTC')));
     }
 
     public function testAnExceptionIsThrownWhenThereIsNoRouteResultAvailable() : void
@@ -54,18 +62,19 @@ class DocumentResolverTest extends TestCase
         $subject->process($this->request, $this->handler);
     }
 
-    public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes() : void
+    public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes() : ResponseInterface
     {
-        $document = $this->createMock(Document::class);
         $this->resolver->method('resolve')->with($this->routeResult)->willReturn(
-            $document
+            $this->document
         );
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
         $this->assertNull($request->getAttribute(Document::class));
 
         $subject = new DocumentResolver($this->resolver);
-        $subject->process($request, $this->handler);
-        $this->assertSame($document, $this->handler->lastRequest->getAttribute(Document::class));
+        $response = $subject->process($request, $this->handler);
+        $this->assertSame($this->document, $this->handler->lastRequest->getAttribute(Document::class));
+
+        return $response;
     }
 
     public function testThatRequestAttributeIsNotPresentWhenADocumentCannotBeResolved() : void
@@ -77,5 +86,13 @@ class DocumentResolverTest extends TestCase
         $subject = new DocumentResolver($this->resolver);
         $subject->process($request, $this->handler);
         $this->assertNull($this->handler->lastRequest->getAttribute(Document::class));
+    }
+
+    /** @depends testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes */
+    public function testThatTheResponseHasALastModifiedHeaderWhenADocumentCanBeResolved(ResponseInterface $response) : void
+    {
+        $date = DateTimeImmutable::createFromFormat('!Y-m-d', '2020-01-01', new DateTimeZone('UTC'));
+        $expectedDate = $date->format(DateTimeImmutable::RFC7231);
+        self::assertMessageHasHeader($response, 'Last-Modified', $this->equalTo($expectedDate));
     }
 }

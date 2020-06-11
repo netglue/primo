@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.3.0 - TBD
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- The document resolver middleware now adds a Last-Modified header to the response using the resolved document's last publication date.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.2.2 - 2020-06-10
 
 ### Added

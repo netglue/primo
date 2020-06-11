@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- Added middleware that sets a Cache-Control header in the response to 'no-cache' when preview mode is active.
 
 ### Changed
 

@@ -56,6 +56,7 @@ final class ConfigProvider
                 Http\PrismicHttpClient::class => Http\PrismicHttpClientFactory::class,
                 Middleware\DocumentResolver::class => Middleware\Container\DocumentResolverFactory::class,
                 Middleware\InjectRequestCookies::class => Middleware\Container\InjectRequestCookiesFactory::class,
+                Middleware\PreviewCacheHeaders::class => Middleware\Container\PreviewCacheHeadersFactory::class,
                 Middleware\PreviewHandler::class => Middleware\Container\PreviewHandlerFactory::class,
                 Middleware\PrismicTemplateHandler::class => Middleware\Container\PrismicTemplateHandlerFactory::class,
                 Middleware\WebhookHandler::class => Middleware\Container\WebhookHandlerFactory::class,

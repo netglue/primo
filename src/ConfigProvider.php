@@ -29,7 +29,7 @@ final class ConfigProvider
                 ],
                 'templates' => [
                     // The attribute to look for in the request that specifies the template to render
-                    'templateAttribute' => Middleware\PrismicTemplateHandler::DEFAULT_TEMPLATE_ATTRIBUTE,
+                    'templateAttribute' => Middleware\PrismicTemplate::DEFAULT_TEMPLATE_ATTRIBUTE,
                 ],
                 'webhook' => [
                     // The secret yu expect in the webhook payload
@@ -58,7 +58,7 @@ final class ConfigProvider
                 Middleware\InjectRequestCookies::class => Middleware\Container\InjectRequestCookiesFactory::class,
                 Middleware\PreviewCacheHeaders::class => Middleware\Container\PreviewCacheHeadersFactory::class,
                 Middleware\PreviewHandler::class => Middleware\Container\PreviewHandlerFactory::class,
-                Middleware\PrismicTemplateHandler::class => Middleware\Container\PrismicTemplateHandlerFactory::class,
+                Middleware\PrismicTemplate::class => Middleware\Container\PrismicTemplateFactory::class,
                 Middleware\WebhookHandler::class => Middleware\Container\WebhookHandlerFactory::class,
                 Prismic\ApiClient::class => Container\ApiFactory::class,
                 Prismic\LinkResolver::class => Container\LinkResolverFactory::class,

@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Changed
 
 - The document resolver middleware now adds a Last-Modified header to the response using the resolved document's last publication date.
+- Renamed the PrismicTemplateHandler to PrismicTemplate. It is now middleware rather than a request handler and only returns a response when a document has been successfully resolved, otherwise, it delegates to the next handler. This is a better way of dealing with CMS 404's whilst preserving the default behaviour of the Mezzio NotFoundHandler. 
 
 ### Deprecated
 

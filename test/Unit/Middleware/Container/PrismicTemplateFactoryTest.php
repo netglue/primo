@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace PrimoTest\Unit\Middleware\Container;
 
 use Mezzio\Template\TemplateRendererInterface;
-use Primo\Middleware\Container\PrismicTemplateHandlerFactory;
+use Primo\Middleware\Container\PrismicTemplateFactory;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class PrismicTemplateHandlerFactoryTest extends TestCase
+class PrismicTemplateFactoryTest extends TestCase
 {
     public function testFactory() : void
     {
@@ -22,7 +22,7 @@ class PrismicTemplateHandlerFactoryTest extends TestCase
             ->with(TemplateRendererInterface::class)
             ->willReturn($this->createMock(TemplateRendererInterface::class));
 
-        $factory = new PrismicTemplateHandlerFactory();
+        $factory = new PrismicTemplateFactory();
         $factory->__invoke($container);
     }
 }

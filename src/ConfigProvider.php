@@ -74,11 +74,6 @@ final class ConfigProvider
                 // To Opt-In to Hydrating Result Sets, alias the Prismic ResultSetFactory to the Hydrating Result Set FQCN
                 //Prismic\ResultSet\ResultSetFactory::class => ResultSet\HydratingResultSetFactory::class,
             ],
-            'delegators' => [
-                Mezzio\Application::class => [
-                    PipelineAndRoutesDelegator::class,
-                ],
-            ],
         ];
     }
 

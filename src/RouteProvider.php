@@ -10,17 +10,12 @@ use Psr\Container\ContainerInterface;
 
 use function assert;
 
-final class PipelineAndRoutesDelegator
+final class RouteProvider
 {
-    public function __invoke(ContainerInterface $container, string $serviceName, callable $callback) : Application
+    public function __invoke(Application $application, ContainerInterface $container) : void
     {
-        $app = $callback();
-        assert($app instanceof Application);
-
-        $this->configurePreviews($container, $app);
-        $this->configureWebhooks($container, $app);
-
-        return $app;
+        $this->configurePreviews($container, $application);
+        $this->configureWebhooks($container, $application);
     }
 
     private function configurePreviews(ContainerInterface $container, Application $app) : void

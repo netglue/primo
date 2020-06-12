@@ -10,6 +10,7 @@ use Primo\Middleware\PreviewHandler;
 use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Prismic\Document\Fragment\DocumentLink;
+use Prismic\Exception\InvalidPreviewToken;
 use Prismic\LinkResolver;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -52,6 +53,19 @@ class PreviewHandlerTest extends TestCase
     {
         $this->assertEmpty($this->request->getQueryParams());
         $response = $this->subject->process($this->request, $this->handler);
+        $this->assertSame('Boom', (string) $response->getBody());
+    }
+
+    public function testThatWhenTheTokenIsInvalidNoRedirectWillOccur() : void
+    {
+        $token = 'expected-token';
+        $request = $this->request->withQueryParams(['token' => $token]);
+        $this->api
+            ->expects($this->once())
+            ->method('previewSession')
+            ->with($token)
+            ->willThrowException(new InvalidPreviewToken('bad news'));
+        $response = $this->subject->process($request, $this->handler);
         $this->assertSame('Boom', (string) $response->getBody());
     }
 

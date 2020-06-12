@@ -5,6 +5,7 @@ namespace Primo\Middleware;
 
 use Laminas\Diactoros\Response\RedirectResponse;
 use Prismic\ApiClient;
+use Prismic\Exception\InvalidPreviewToken;
 use Prismic\LinkResolver;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -41,7 +42,12 @@ final class PreviewHandler implements MiddlewareInterface
 
         $token = urldecode($query['token']);
 
-        $link = $this->api->previewSession($token);
+        try {
+            $link = $this->api->previewSession($token);
+        } catch (InvalidPreviewToken $error) {
+            return $handler->handle($request);
+        }
+
         $url = $link ? $this->linkResolver->resolve($link) : $this->defaultUrl;
 
         return new RedirectResponse($url, 302);

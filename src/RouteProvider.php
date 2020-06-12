@@ -8,8 +8,6 @@ use Primo\Middleware\PreviewHandler;
 use Primo\Middleware\WebhookHandler;
 use Psr\Container\ContainerInterface;
 
-use function assert;
-
 final class RouteProvider
 {
     public function __invoke(Application $application, ContainerInterface $container) : void

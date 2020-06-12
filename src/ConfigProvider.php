@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Primo;
 
-use Mezzio;
 use Primo\Content\Document;
 use Prismic;
 

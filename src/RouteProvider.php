@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Primo;
 
 use Mezzio\Application;
+use Primo\Middleware\ExpiredPreviewHandler;
 use Primo\Middleware\PreviewHandler;
 use Primo\Middleware\WebhookHandler;
 use Psr\Container\ContainerInterface;
@@ -20,7 +21,10 @@ final class RouteProvider
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $previewUrl = $config['primo']['previews']['previewUrl'] ?? ConfigProvider::DEFAULT_PREVIEW_URL;
-        $app->get($previewUrl, PreviewHandler::class);
+        $app->get($previewUrl, [
+            PreviewHandler::class,
+            ExpiredPreviewHandler::class,
+        ]);
     }
 
     private function configureWebhooks(ContainerInterface $container, Application $app) : void

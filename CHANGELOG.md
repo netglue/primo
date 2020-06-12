@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Added
 
 - Added middleware that sets a Cache-Control header in the response to 'no-cache' when preview mode is active.
+- Added middleware that will expire the preview cookie when the request has an attribute for `\Prismic\Exception\PreviewTokenExpired`. This optional middleware should be placed after the preview handler to kill dead cookies and redirect when a preview token has expired.
 
 ### Changed
 

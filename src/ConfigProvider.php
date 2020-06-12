@@ -54,6 +54,7 @@ final class ConfigProvider
             'factories' => [
                 Http\PrismicHttpClient::class => Http\PrismicHttpClientFactory::class,
                 Middleware\DocumentResolver::class => Middleware\Container\DocumentResolverFactory::class,
+                Middleware\ExpiredPreviewHandler::class => Middleware\Container\ExpiredPreviewHandlerFactory::class,
                 Middleware\InjectRequestCookies::class => Middleware\Container\InjectRequestCookiesFactory::class,
                 Middleware\PreviewCacheHeaders::class => Middleware\Container\PreviewCacheHeadersFactory::class,
                 Middleware\PreviewHandler::class => Middleware\Container\PreviewHandlerFactory::class,

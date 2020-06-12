@@ -11,6 +11,7 @@ use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Prismic\Document\Fragment\DocumentLink;
 use Prismic\Exception\InvalidPreviewToken;
+use Prismic\Exception\PreviewTokenExpired;
 use Prismic\LinkResolver;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -67,6 +68,23 @@ class PreviewHandlerTest extends TestCase
             ->willThrowException(new InvalidPreviewToken('bad news'));
         $response = $this->subject->process($request, $this->handler);
         $this->assertSame('Boom', (string) $response->getBody());
+    }
+
+    public function testThatWhenTheTokenHasExpiredNoRedirectOccursAndRequestAttributeIsGiven() : void
+    {
+        $token = 'expected-token';
+        $request = $this->request->withQueryParams(['token' => $token]);
+        $error = new PreviewTokenExpired('bad news');
+        $this->api
+            ->expects($this->once())
+            ->method('previewSession')
+            ->with($token)
+            ->willThrowException($error);
+
+        $response = $this->subject->process($request, $this->handler);
+        $this->assertSame('Boom', (string) $response->getBody());
+
+        $this->assertSame($error, $this->handler->lastRequest->getAttribute(PreviewTokenExpired::class));
     }
 
     public function testThatTheRedirectWillBeTheDefaultUrlWhenTheApiDoesNotReturnALink() : void

@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file, in reverse 
 - The document resolver middleware now adds a Last-Modified header to the response using the resolved document's last publication date.
 - Renamed the PrismicTemplateHandler to PrismicTemplate. It is now middleware rather than a request handler and only returns a response when a document has been successfully resolved, otherwise, it delegates to the next handler. This is a better way of dealing with CMS 404's whilst preserving the default behaviour of the Mezzio NotFoundHandler. 
 - Removed automatic registration of routes and renamed the `PipelineAndRoutesDelegator` to `RouteProvider`. Now, consumers will need to add `(new RouteProvider())($application, $container);` to their route configuration file.
+- Improved handling of invalid preview tokens so that junk is ignored, passing through to the next middleware (Likely a 404)
+- Improved handling of expired preview tokens so that these pass through with a modified request with an attribute containing the expiry exception from the api.
 
 ### Deprecated
 

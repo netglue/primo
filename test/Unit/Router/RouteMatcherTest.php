@@ -109,4 +109,70 @@ class RouteMatcherTest extends TestCase
         $matcher = $this->matcher(true);
         $this->assertSame($second, $matcher->getTypedRoute('type'));
     }
+
+    public function testThatMultipleRoutesMatchingATypeCanBeFound() : void
+    {
+        $first = $this->collector->get('/some-path', $this->middleware, 'some-route');
+        $first->setOptions(['defaults' => [$this->params->type() => 'type']]);
+        $second = $this->collector->get('/other-path', $this->middleware, 'other-route');
+        $second->setOptions(['defaults' => [$this->params->type() => 'type']]);
+        $third = $this->collector->get('/third-path', $this->middleware, 'third-route');
+        $third->setOptions(['defaults' => []]);
+        $matcher = $this->matcher();
+        $results = $matcher->routesMatchingType('type');
+        $this->assertCount(2, $results);
+        $this->assertNotContains($third, $results);
+    }
+
+    public function testThatMultipleRoutesMatchingATagCanBeFound() : void
+    {
+        $first = $this->collector->get('/some-path', $this->middleware, 'some-route');
+        $first->setOptions(['defaults' => [$this->params->tag() => 'a']]);
+        $second = $this->collector->get('/other-path', $this->middleware, 'other-route');
+        $second->setOptions(['defaults' => [$this->params->tag() => 'a']]);
+        $third = $this->collector->get('/third-path', $this->middleware, 'third-route');
+        $third->setOptions(['defaults' => [$this->params->tag() => 'b']]);
+        $matcher = $this->matcher();
+        $results = $matcher->routesMatchingTag('a');
+        $this->assertCount(2, $results);
+        $this->assertNotContains($third, $results);
+    }
+
+    public function testThatMatchingTagsIsCaseSensitive() : void
+    {
+        $first = $this->collector->get('/some-path', $this->middleware, 'some-route');
+        $first->setOptions(['defaults' => [$this->params->tag() => 'a']]);
+        $second = $this->collector->get('/other-path', $this->middleware, 'other-route');
+        $second->setOptions(['defaults' => [$this->params->tag() => 'A']]);
+
+        $matcher = $this->matcher();
+        $results = $matcher->routesMatchingTag('a');
+        $this->assertCount(1, $results);
+        $this->assertContains($first, $results);
+        $results = $matcher->routesMatchingTag('A');
+        $this->assertCount(1, $results);
+        $this->assertContains($second, $results);
+    }
+
+    public function testThatUidRouteIsNullWhenThereAreNoMatchingRoutes() : void
+    {
+        $matcher = $this->matcher();
+        $this->assertNull($matcher->getUidRoute('foo', 'bar'));
+    }
+
+    public function testThatUidRouteIsNullWhenTypeMatchesButUidDoesNot() : void
+    {
+        $route = $this->collector->get('/some-path', $this->middleware, 'some-route');
+        $route->setOptions(['defaults' => [$this->params->type() => 'a']]);
+        $matcher = $this->matcher();
+        $this->assertNull($matcher->getUidRoute('a', 'bar'));
+    }
+
+    public function testThatUidRouteMatches() : void
+    {
+        $route = $this->collector->get('/some-path', $this->middleware, 'some-route');
+        $route->setOptions(['defaults' => [$this->params->type() => 'a', $this->params->uid() => 'bar']]);
+        $matcher = $this->matcher();
+        $this->assertSame($route, $matcher->getUidRoute('a', 'bar'));
+    }
 }

@@ -12,6 +12,11 @@ use Prismic\Link;
 use Prismic\LinkResolver as PrismicLinkResolver;
 use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
+use Traversable;
+
+use function count;
+use function iterator_to_array;
+use function reset;
 
 final class LinkResolver implements PrismicLinkResolver
 {
@@ -62,6 +67,11 @@ final class LinkResolver implements PrismicLinkResolver
             return $this->url($link, $route);
         }
 
+        $route = $this->resolveByUid($link);
+        if ($route) {
+            return $this->url($link, $route);
+        }
+
         return null;
     }
 
@@ -77,12 +87,27 @@ final class LinkResolver implements PrismicLinkResolver
 
     private function resolveByType(DocumentLink $link) :? Route
     {
-        return $this->routeMatcher->getTypedRoute($link->type());
+        $routes = $this->routeMatcher->routesMatchingType($link->type());
+        $routes = $routes instanceof Traversable ? iterator_to_array($routes, false) : $routes;
+        if (count($routes) === 1) {
+            return reset($routes);
+        }
+
+        return null;
+    }
+
+    private function resolveByUid(DocumentLink $link) :? Route
+    {
+        return $this->routeMatcher->getUidRoute($link->type(), $link->uid());
     }
 
     /** @return string[] */
     private function routeParams(DocumentLink $link) : array
     {
+        /**
+         * You cannot use tags to construct a url from scratch because there is no way of knowing which
+         * tag amongst many is the correct tag for the current context.
+         */
         return [
             $this->routeParams->id() => $link->id(),
             $this->routeParams->uid() => $link->uid(),

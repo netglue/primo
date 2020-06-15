@@ -41,10 +41,51 @@ final class RouteMatcher
         return null;
     }
 
+    /** @return Route[] */
+    public function routesMatchingType(string $type) : iterable
+    {
+        $routes = [];
+        foreach ($this->routes() as $route) {
+            if (! $this->matchesType($route, $type)) {
+                continue;
+            }
+
+            $routes[] = $route;
+        }
+
+        return $routes;
+    }
+
+    /** @return Route[] */
+    public function routesMatchingTag(string $tag) : iterable
+    {
+        $routes = [];
+        foreach ($this->routes() as $route) {
+            if (! $this->matchesTag($route, $tag)) {
+                continue;
+            }
+
+            $routes[] = $route;
+        }
+
+        return $routes;
+    }
+
     public function getTypedRoute(string $type) :? Route
     {
         foreach ($this->routes() as $route) {
             if ($this->matchesType($route, $type)) {
+                return $route;
+            }
+        }
+
+        return null;
+    }
+
+    public function getUidRoute(string $type, string $uid) :? Route
+    {
+        foreach ($this->routesMatchingType($type) as $route) {
+            if ($this->matchesUid($route, $uid)) {
                 return $route;
             }
         }
@@ -61,6 +102,23 @@ final class RouteMatcher
         }
 
         return is_string($option) && $option === $type;
+    }
+
+    private function matchesTag(Route $route, string $tag) : bool
+    {
+        $options = $route->getOptions();
+        $option = $options['defaults'][$this->params->tag()] ?? null;
+        $match = is_string($option) ? $option : null;
+
+        return $match === $tag;
+    }
+
+    private function matchesUid(Route $route, string $uid) : bool
+    {
+        $options = $route->getOptions();
+        $option = $options['defaults'][$this->params->uid()] ?? null;
+
+        return $option === $uid;
     }
 
     /** @return Route[] */

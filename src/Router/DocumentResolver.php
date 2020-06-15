@@ -4,8 +4,13 @@ declare(strict_types=1);
 namespace Primo\Router;
 
 use Mezzio\Router\RouteResult;
+use Primo\Exception\RoutingError;
 use Prismic\ApiClient;
 use Prismic\Document;
+use Prismic\Predicate;
+
+use function count;
+use function sprintf;
 
 class DocumentResolver
 {
@@ -20,12 +25,16 @@ class DocumentResolver
         $this->routeParams = $routeParams;
     }
 
+    /**
+     * @throws RoutingError if the uid is required by the route, but no document type is defined.
+     * @throws RoutingError if the matched route will yield more than one document.
+     */
     public function resolve(RouteResult $routeResult) :? Document
     {
         $document = $this->resolveWithBookmark($routeResult);
 
         if (! $document) {
-            $document = $this->resolveWithUid($routeResult);
+            $document = $this->resolveWithParams($routeResult);
         }
 
         if (! $document) {
@@ -46,17 +55,49 @@ class DocumentResolver
         return $this->api->findByBookmark($bookmark);
     }
 
-    private function resolveWithUid(RouteResult $routeResult) :? Document
+    /** @throws RoutingError */
+    private function resolveWithParams(RouteResult $routeResult) :? Document
     {
         $params = $routeResult->getMatchedParams();
         $type = $params[$this->routeParams->type()] ?? null;
-        $uid  = $params[$this->routeParams->uid()]  ?? null;
-        $lang = $params[$this->routeParams->lang()] ?? '*';
-        if (! $type || ! $uid) {
+        $uid = $params[$this->routeParams->uid()]  ?? null;
+        $tags = $params[$this->routeParams->tag()] ?? null;
+
+        // At least one of these must be present to attempt a match
+        if (! $type && ! $uid && ! $tags) {
             return null;
         }
 
-        return $this->api->findByUid($type, $uid, $lang);
+        // If the uid is present, the type must be present
+        if ($uid && ! $type) {
+            throw RoutingError::uidMatchedWithoutType($routeResult);
+        }
+
+        $predicates = [];
+        if ($type) {
+            $predicates[] = Predicate::at('document.type', $type);
+        }
+
+        if ($uid) {
+            $predicates[] = Predicate::at(sprintf('my.%s.uid', $type), $uid);
+        }
+
+        if (! empty($tags)) {
+            $predicates[] = Predicate::at('document.tags', $tags);
+        }
+
+        $lang = $params[$this->routeParams->lang()] ?? '*';
+
+        $query = $this->api->createQuery()
+            ->query(...$predicates)
+            ->lang($lang);
+
+        $resultSet = $this->api->query($query);
+        if (count($resultSet) > 1) {
+            throw RoutingError::nonUniqueResult($routeResult, $resultSet);
+        }
+
+        return $resultSet->first();
     }
 
     private function resolveWithId(RouteResult $routeResult) :? Document

@@ -7,11 +7,14 @@ use Laminas\Diactoros\Response\TextResponse;
 use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
 use PHPUnit\Framework\MockObject\MockObject;
+use Primo\Exception\RoutingError;
 use Primo\Router\DocumentResolver;
 use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Prismic\Document;
+use Prismic\Query;
+use Prismic\ResultSet;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -80,13 +83,43 @@ class DocumentResolverTest extends TestCase
         $this->assertSame($document, $this->resolver->resolve($result));
     }
 
-    public function testThatResultFromApiIsReturnedWhenRouteMatchesType() : void
+    private function apiWillReturnSingleDocumentInLanguage(string $lang) : Document
     {
         $document = $this->createMock(Document::class);
+        $query = $this->createMock(Query::class);
+        $resultSet = $this->createMock(ResultSet::class);
+
+        $query->expects($this->once())
+            ->method('query')
+            ->willReturnSelf();
+        $query->expects($this->once())
+            ->method('lang')
+            ->with($lang)
+            ->willReturnSelf();
+
         $this->api->expects($this->once())
-            ->method('findByUid')
-            ->with('type', 'uid', '*')
+            ->method('createQuery')
+            ->willReturn($query);
+
+        $this->api->expects($this->once())
+            ->method('query')
+            ->with($query)
+            ->willReturn($resultSet);
+
+        $resultSet->expects($this->once())
+            ->method('count')
+            ->willReturn(1);
+
+        $resultSet->expects($this->once())
+            ->method('first')
             ->willReturn($document);
+
+        return $document;
+    }
+
+    public function testThatResultFromApiIsReturnedWhenRouteMatchesTypeAndUid() : void
+    {
+        $document = $this->apiWillReturnSingleDocumentInLanguage('*');
 
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET']),
@@ -101,11 +134,7 @@ class DocumentResolverTest extends TestCase
 
     public function testThatLanguageIsProvidedToApiMethodWhenFoundInTheRouteParams() : void
     {
-        $document = $this->createMock(Document::class);
-        $this->api->expects($this->once())
-            ->method('findByUid')
-            ->with('type', 'uid', 'en-gb')
-            ->willReturn($document);
+        $document = $this->apiWillReturnSingleDocumentInLanguage('en-gb');
 
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET']),
@@ -117,5 +146,75 @@ class DocumentResolverTest extends TestCase
         );
 
         $this->assertSame($document, $this->resolver->resolve($result));
+    }
+
+    public function testThatTypeMustBeKnownInOrderToResolveByUid() : void
+    {
+        $result = RouteResult::fromRoute(
+            new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
+            [$this->params->uid() => 'uid']
+        );
+
+        $this->expectException(RoutingError::class);
+        $this->expectExceptionMessage('The route named "myRoute" matches a Prismic UID, but the type cannot be resolved');
+        $this->resolver->resolve($result);
+    }
+
+    public function testThatItIsPossibleToQueryOnASingleType() : void
+    {
+        $document = $this->apiWillReturnSingleDocumentInLanguage('*');
+
+        $result = RouteResult::fromRoute(
+            new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
+            [$this->params->type() => 'type']
+        );
+
+        $this->assertSame($document, $this->resolver->resolve($result));
+    }
+
+    public function testThatItIsPossibleToQueryByTag() : void
+    {
+        $document = $this->apiWillReturnSingleDocumentInLanguage('*');
+
+        $result = RouteResult::fromRoute(
+            new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
+            [$this->params->tag() => 'my-tag']
+        );
+
+        $this->assertSame($document, $this->resolver->resolve($result));
+    }
+
+    public function testAnExceptionIsThrownWhenAResultSetContainsMultipleResults() : void
+    {
+        $query = $this->createMock(Query::class);
+        $resultSet = $this->createMock(ResultSet::class);
+
+        $query->expects($this->once())
+            ->method('query')
+            ->willReturnSelf();
+        $query->expects($this->once())
+            ->method('lang')
+            ->with('*')
+            ->willReturnSelf();
+
+        $this->api->expects($this->once())
+            ->method('createQuery')
+            ->willReturn($query);
+
+        $this->api->expects($this->once())
+            ->method('query')
+            ->with($query)
+            ->willReturn($resultSet);
+
+        $resultSet->method('count')
+            ->willReturn(2);
+
+        $this->expectException(RoutingError::class);
+        $this->expectExceptionMessage('The route named "myRoute" matched 2 documents when transformed into a query');
+        $result = RouteResult::fromRoute(
+            new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
+            [$this->params->tag() => 'my-tag']
+        );
+        $this->resolver->resolve($result);
     }
 }

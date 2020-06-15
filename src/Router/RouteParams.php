@@ -22,9 +22,11 @@ final class RouteParams
     /** @var string */
     private $lang = 'document-lang';
     /** @var string */
+    private $tag = 'document-tag';
+    /** @var string */
     private $reuseResultParams = 'reuse_result_params';
     /** @var string[] */
-    private static $acceptable = ['key', 'id', 'uid', 'type', 'bookmark', 'lang', 'reuseResultParams'];
+    private static $acceptable = ['key', 'id', 'uid', 'type', 'bookmark', 'lang', 'tag', 'reuseResultParams'];
 
     private function __construct()
     {
@@ -82,5 +84,10 @@ final class RouteParams
     public function reuseResultParams() : string
     {
         return $this->reuseResultParams;
+    }
+
+    public function tag() : string
+    {
+        return $this->tag;
     }
 }

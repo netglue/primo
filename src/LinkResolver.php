@@ -58,63 +58,18 @@ final class LinkResolver implements PrismicLinkResolver
             return null;
         }
 
-        $route = $this->resolveAsBookmark($link);
-        if ($route) {
-            return $this->url($link, $route);
-        }
-
-        $route = $this->resolveByType($link);
-        if ($route) {
-            return $this->url($link, $route);
-        }
-
-        $route = $this->resolveByUid($link);
+        $route = $this->routeMatcher->bestMatch(
+            $link->id(),
+            $link->type(),
+            $link->uid(),
+            $this->bookmarkNameByDocumentId($link->id()),
+            $link->tags()
+        );
         if ($route) {
             return $this->url($link, $route);
         }
 
         return null;
-    }
-
-    private function resolveAsBookmark(DocumentLink $link) :? Route
-    {
-        $bookmark = $this->bookmarkNameByDocumentId($link->id());
-        if (! $bookmark) {
-            return null;
-        }
-
-        return $this->routeMatcher->getBookmarkedRoute($bookmark);
-    }
-
-    private function resolveByType(DocumentLink $link) :? Route
-    {
-        $routes = $this->routeMatcher->routesMatchingType($link->type());
-        $routes = $routes instanceof Traversable ? iterator_to_array($routes, false) : $routes;
-        if (count($routes) === 1) {
-            return reset($routes);
-        }
-
-        // Can the matches based on type be reduced to a single match based on document tags?
-        $matches = array_filter($routes, function (Route $route) use ($link) : bool {
-            foreach ($link->tags() as $tag) {
-                if ($this->routeMatcher->matchesTag($route, $tag)) {
-                    return true;
-                }
-            }
-
-            return false;
-        });
-
-        if (count($matches) === 1) {
-            return reset($matches);
-        }
-
-        return null;
-    }
-
-    private function resolveByUid(DocumentLink $link) :? Route
-    {
-        return $this->routeMatcher->getUidRoute($link->type(), $link->uid());
     }
 
     /** @return string[] */

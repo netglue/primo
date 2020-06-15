@@ -5,11 +5,16 @@ namespace Primo\Router;
 
 use Mezzio\Router\Route;
 use Mezzio\Router\RouteCollector;
+use Primo\Exception\ConfigurationError;
 
+use function array_diff;
 use function array_reverse;
+use function count;
+use function end;
 use function in_array;
 use function is_array;
 use function is_string;
+use function uasort;
 
 final class RouteMatcher
 {
@@ -25,6 +30,58 @@ final class RouteMatcher
         $this->params = $params;
         $this->collector = $collector;
         $this->lifo = $lifo;
+    }
+
+    /**
+     * Return the route with the best match for the given parameters
+     *
+     * @param string[] $tags
+     */
+    public function bestMatch(string $id, string $type, ?string $uid, ?string $bookmark, array $tags) :? Route
+    {
+        // A matching bookmark is nearly the most specific type of route and the easiest to reason about
+        if ($bookmark) {
+            $route = $this->getBookmarkedRoute($bookmark);
+            if ($route) {
+                return $route;
+            }
+        }
+
+        // See if there's a route with a hard-coded UID that matches the argument
+        if ($uid) {
+            $route = $this->getUidRoute($type, $uid);
+            if ($route) {
+                return $route;
+            }
+        }
+
+        /** @var ScoredRoute[] $candidates */
+        $candidates = [];
+        foreach ($this->routesMatchingType($type) as $route) {
+            $score = 0;
+            // Increase score by the number of tags desired by the route where all tags match
+            $routeTags = $this->wantsTag($route);
+            $unmatched = count(array_diff($routeTags, $tags));
+            if ($unmatched > 0) {
+                continue;
+            }
+
+            $score += count($routeTags);
+            $candidates[] = new ScoredRoute($route, $score);
+        }
+
+        uasort($candidates, static function (ScoredRoute $a, ScoredRoute $b) : int {
+            return $a->compare($b);
+        });
+
+        if (count($candidates)) {
+            $best = end($candidates);
+
+            return $best->route();
+        }
+
+        // Finally, if for some reason an identifier has been hard-coded into route definitions, try returning a match for that
+        return $this->routeMatchingId($id);
     }
 
     public function getBookmarkedRoute(string $bookmark) :? Route
@@ -106,11 +163,29 @@ final class RouteMatcher
 
     public function matchesTag(Route $route, string $tag) : bool
     {
-        $options = $route->getOptions();
-        $option = $options['defaults'][$this->params->tag()] ?? null;
-        $match = is_string($option) ? $option : null;
+        return in_array($tag, $this->wantsTag($route), true);
+    }
 
-        return $match === $tag;
+    /** @return string[] */
+    private function wantsTag(Route $route) : array
+    {
+        $options = $route->getOptions();
+        $tags = $options['defaults'][$this->params->tag()] ?? null;
+        if (! $tags) {
+            return [];
+        }
+
+        if (is_string($tags)) {
+            return [$tags];
+        }
+
+        if (! is_array($tags)) {
+            throw new ConfigurationError(
+                'Tags specified in routes must be either a string or an array of strings'
+            );
+        }
+
+        return $tags;
     }
 
     private function matchesUid(Route $route, string $uid) : bool
@@ -119,6 +194,19 @@ final class RouteMatcher
         $option = $options['defaults'][$this->params->uid()] ?? null;
 
         return $option === $uid;
+    }
+
+    private function routeMatchingId(string $id) :? Route
+    {
+        foreach ($this->routes() as $route) {
+            $options = $route->getOptions();
+            $option = $options['defaults'][$this->params->id()] ?? null;
+            if ($option === $id) {
+                return $route;
+            }
+        }
+
+        return null;
     }
 
     /** @return Route[] */

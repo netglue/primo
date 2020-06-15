@@ -5,7 +5,9 @@ namespace PrimoTest\Unit\Router;
 
 use Laminas\Diactoros\Response\TextResponse;
 use Mezzio\Router\FastRouteRouter;
+use Mezzio\Router\Route;
 use Mezzio\Router\RouteCollector;
+use Primo\Exception\ConfigurationError;
 use Primo\Router\RouteMatcher;
 use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
@@ -174,5 +176,65 @@ class RouteMatcherTest extends TestCase
         $route->setOptions(['defaults' => [$this->params->type() => 'a', $this->params->uid() => 'bar']]);
         $matcher = $this->matcher();
         $this->assertSame($route, $matcher->getUidRoute('a', 'bar'));
+    }
+
+    /** @return mixed[] */
+    public function routeMatchingProvider() : array
+    {
+        return [
+            'bookmark' => [$this->params->bookmark() => 'mark'],
+            'id' => [$this->params->id() => 'id'],
+            'uid' => [
+                $this->params->type() => 'type',
+                $this->params->uid() => 'uid',
+            ],
+            'type-only' => [$this->params->type() => 'type'],
+            'one-tag' => [
+                $this->params->type() => 'type',
+                $this->params->tag() => 'tag',
+            ],
+            'two-tags' => [
+                $this->params->type() => 'type',
+                $this->params->tag() => ['a', 'b'],
+            ],
+        ];
+    }
+
+    private function loadRoutes() : void
+    {
+        foreach ($this->routeMatchingProvider() as $name => $defaults) {
+            $route = $this->collector->get('/' . $name, $this->middleware, $name);
+            $route->setOptions(['defaults' => $defaults]);
+        }
+    }
+
+    public function testBestMatch() : void
+    {
+        $this->loadRoutes();
+        $matcher = $this->matcher();
+        $this->assertBastMatch('bookmark', $matcher->bestMatch('id', 'type', 'no-match', 'mark', ['tag']));
+        $this->assertBastMatch('id', $matcher->bestMatch('id', 'no-match', 'no-match', null, ['tag']));
+        $this->assertBastMatch('uid', $matcher->bestMatch('id', 'type', 'uid', null, ['tag']));
+        $this->assertBastMatch('type-only', $matcher->bestMatch('id', 'type', 'no-match', null, ['no-match']));
+        $this->assertBastMatch('one-tag', $matcher->bestMatch('id', 'type', 'no-match', null, ['tag']));
+        $this->assertBastMatch('one-tag', $matcher->bestMatch('id', 'type', 'no-match', null, ['tag', 'tag2']));
+        $this->assertBastMatch('type-only', $matcher->bestMatch('id', 'type', 'no-match', null, ['a']));
+        $this->assertBastMatch('two-tags', $matcher->bestMatch('id', 'type', 'no-match', null, ['a', 'b']));
+    }
+
+    private function assertBastMatch(string $name, ?Route $match) : void
+    {
+        $this->assertNotNull($match, 'A match was not found');
+        $this->assertSame($name, $match->getName());
+    }
+
+    public function testRouteDefinitionWithInvalidTagParameterWillCauseException() : void
+    {
+        $route = $this->collector->get('/some-path', $this->middleware, 'some-route');
+        $route->setOptions(['defaults' => [$this->params->tag() => true]]);
+        $matcher = $this->matcher();
+        $this->expectException(ConfigurationError::class);
+        $this->expectExceptionMessage('Tags specified in routes must be either a string or an array of strings');
+        $matcher->matchesTag($route, 'foo');
     }
 }

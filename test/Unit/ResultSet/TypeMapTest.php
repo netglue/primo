@@ -38,7 +38,7 @@ class TypeMapTest extends TestCase
     public function testThatAnExceptionIsThrownWhenAClassDoesNotExist() : void
     {
         $this->expectException(InvalidArgument::class);
-        $this->expectExceptionMessage('does not exist. Please create it or check your document type mapping configuration.');
+        $this->expectExceptionMessage('The target class "Primo\UnknownClass" does not exist. Please create it or check your document type mapping configuration.');
 
         new TypeMap([
             UnknownClass::class => ['a', 'b'],

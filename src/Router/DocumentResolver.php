@@ -10,6 +10,7 @@ use Prismic\Document;
 use Prismic\Predicate;
 
 use function count;
+use function is_string;
 use function sprintf;
 
 class DocumentResolver
@@ -83,6 +84,7 @@ class DocumentResolver
         }
 
         if (! empty($tags)) {
+            $tags = is_string($tags) ? [$tags] : $tags;
             $predicates[] = Predicate::at('document.tags', $tags);
         }
 

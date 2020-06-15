@@ -8,6 +8,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Added middleware that sets a Cache-Control header in the response to 'no-cache' when preview mode is active.
 - Added middleware that will expire the preview cookie when the request has an attribute for `\Prismic\Exception\PreviewTokenExpired`. This optional middleware should be placed after the preview handler to kill dead cookies and redirect when a preview token has expired.
+- Added `\Primo\Exception\RoutingError` to describe errors specific to routing configuration
+- Methods to the RouteMatcher to find routes that are specific to a particular tag. 
 
 ### Changed
 
@@ -17,6 +19,9 @@ All notable changes to this project will be documented in this file, in reverse 
 - Improved handling of invalid preview tokens so that junk is ignored, passing through to the next middleware (Likely a 404)
 - Improved handling of expired preview tokens so that these pass through with a modified request with an attribute containing the expiry exception from the api.
 - Improved error message for a mapped type when the target class does not exist
+- The document resolver helper will throw exceptions when route configuration breaks certain rules
+- You can now route on type alone, i.e. Prismic singletons.
+- You can now write more specific routes with the same document type in multiple routes by specifying a tag.
 
 ### Deprecated
 

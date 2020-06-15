@@ -14,6 +14,7 @@ use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
 use Traversable;
 
+use function array_filter;
 use function count;
 use function iterator_to_array;
 use function reset;
@@ -91,6 +92,21 @@ final class LinkResolver implements PrismicLinkResolver
         $routes = $routes instanceof Traversable ? iterator_to_array($routes, false) : $routes;
         if (count($routes) === 1) {
             return reset($routes);
+        }
+
+        // Can the matches based on type be reduced to a single match based on document tags?
+        $matches = array_filter($routes, function (Route $route) use ($link) : bool {
+            foreach ($link->tags() as $tag) {
+                if ($this->routeMatcher->matchesTag($route, $tag)) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        if (count($matches) === 1) {
+            return reset($matches);
         }
 
         return null;

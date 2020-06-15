@@ -104,7 +104,7 @@ final class RouteMatcher
         return is_string($option) && $option === $type;
     }
 
-    private function matchesTag(Route $route, string $tag) : bool
+    public function matchesTag(Route $route, string $tag) : bool
     {
         $options = $route->getOptions();
         $option = $options['defaults'][$this->params->tag()] ?? null;

@@ -6,6 +6,7 @@ namespace PrimoTest\Unit\ResultSet;
 use Primo\Content\Document;
 use Primo\Exception\InvalidArgument;
 use Primo\ResultSet\TypeMap;
+use Primo\UnknownClass;
 use PrimoTest\Unit\Asset\BadHierarchy;
 use PrimoTest\Unit\Asset\SimpleDocument;
 use PrimoTest\Unit\TestCase;
@@ -32,6 +33,16 @@ class TypeMapTest extends TestCase
     {
         $map = new TypeMap([SimpleDocument::class => 'c']);
         $this->assertSame(SimpleDocument::class, $map->className('c'));
+    }
+
+    public function testThatAnExceptionIsThrownWhenAClassDoesNotExist() : void
+    {
+        $this->expectException(InvalidArgument::class);
+        $this->expectExceptionMessage('does not exist. Please create it or check your document type mapping configuration.');
+
+        new TypeMap([
+            UnknownClass::class => ['a', 'b'],
+        ]);
     }
 
     public function testThatAnExceptionIsThrownWithClassNamesNotImplementingHierarchy() : void

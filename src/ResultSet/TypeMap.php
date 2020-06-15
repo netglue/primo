@@ -6,6 +6,7 @@ namespace Primo\ResultSet;
 use Primo\Content\Document;
 use Primo\Exception\InvalidArgument;
 
+use function class_exists;
 use function is_a;
 use function is_array;
 use function sprintf;
@@ -59,6 +60,13 @@ final class TypeMap
 
     private function classHierarchyCheck(string $className) : void
     {
+        if (! class_exists($className)) {
+            throw new InvalidArgument(sprintf(
+                'The target class "%s" does not exist. Please create it or check your document type mapping configuration.',
+                Document::class
+            ));
+        }
+
         if (! is_a($className, Document::class, true)) {
             throw new InvalidArgument(sprintf(
                 'All target classes to hydrate to must descend from %s because I can guarantee the constructor accepts ' .

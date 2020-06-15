@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file, in reverse 
 - Removed automatic registration of routes and renamed the `PipelineAndRoutesDelegator` to `RouteProvider`. Now, consumers will need to add `(new RouteProvider())($application, $container);` to their route configuration file.
 - Improved handling of invalid preview tokens so that junk is ignored, passing through to the next middleware (Likely a 404)
 - Improved handling of expired preview tokens so that these pass through with a modified request with an attribute containing the expiry exception from the api.
+- Improved error message for a mapped type when the target class does not exist
 
 ### Deprecated
 

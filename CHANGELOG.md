@@ -22,6 +22,8 @@ All notable changes to this project will be documented in this file, in reverse 
 - The document resolver helper will throw exceptions when route configuration breaks certain rules
 - You can now route on type alone, i.e. Prismic singletons.
 - You can now write more specific routes with the same document type in multiple routes by specifying a tag.
+- Removed LIFO parameter to RouteMatcher constructor that was unused and poorly conceived.
+- 
 
 ### Deprecated
 

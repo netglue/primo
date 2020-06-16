@@ -8,7 +8,6 @@ use Mezzio\Router\RouteCollector;
 use Primo\Exception\ConfigurationError;
 
 use function array_diff;
-use function array_reverse;
 use function count;
 use function end;
 use function in_array;
@@ -22,14 +21,11 @@ final class RouteMatcher
     private $params;
     /** @var RouteCollector */
     private $collector;
-    /** @var bool */
-    private $lifo;
 
-    public function __construct(RouteParams $params, RouteCollector $collector, bool $lifo = false)
+    public function __construct(RouteParams $params, RouteCollector $collector)
     {
         $this->params = $params;
         $this->collector = $collector;
-        $this->lifo = $lifo;
     }
 
     /**
@@ -212,10 +208,6 @@ final class RouteMatcher
     /** @return Route[] */
     private function routes() : iterable
     {
-        $routes = $this->collector->getRoutes();
-
-        return $this->lifo
-            ? array_reverse($routes)
-            : $routes;
+        return $this->collector->getRoutes();
     }
 }

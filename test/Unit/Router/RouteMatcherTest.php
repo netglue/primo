@@ -40,9 +40,9 @@ class RouteMatcherTest extends TestCase
         };
     }
 
-    private function matcher(bool $lifo = false) : RouteMatcher
+    private function matcher() : RouteMatcher
     {
-        return new RouteMatcher($this->params, $this->collector, $lifo);
+        return new RouteMatcher($this->params, $this->collector);
     }
 
     public function testThatBookmarkedRouteIsNullWhenThereAreNoMatchingRoutes() : void
@@ -100,16 +100,6 @@ class RouteMatcherTest extends TestCase
         $second->setOptions(['defaults' => [$this->params->type() => 'type']]);
         $matcher = $this->matcher();
         $this->assertSame($first, $matcher->getTypedRoute('type'));
-    }
-
-    public function testThatMatchingIsLifoWhenInstructed() : void
-    {
-        $first = $this->collector->get('/some-path', $this->middleware, 'typed-route');
-        $first->setOptions(['defaults' => [$this->params->type() => 'type']]);
-        $second = $this->collector->get('/other-path', $this->middleware, 'typed-route');
-        $second->setOptions(['defaults' => [$this->params->type() => 'type']]);
-        $matcher = $this->matcher(true);
-        $this->assertSame($second, $matcher->getTypedRoute('type'));
     }
 
     public function testThatMultipleRoutesMatchingATypeCanBeFound() : void

@@ -12,12 +12,6 @@ use Prismic\Link;
 use Prismic\LinkResolver as PrismicLinkResolver;
 use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
-use Traversable;
-
-use function array_filter;
-use function count;
-use function iterator_to_array;
-use function reset;
 
 final class LinkResolver implements PrismicLinkResolver
 {

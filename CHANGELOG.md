@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 0.3.0 - TBD
+## 0.3.0 - 2020-06-17
 
 ### Added
 
@@ -23,7 +23,6 @@ All notable changes to this project will be documented in this file, in reverse 
 - You can now route on type alone, i.e. Prismic singletons.
 - You can now write more specific routes with the same document type in multiple routes by specifying a tag.
 - Removed LIFO parameter to RouteMatcher constructor that was unused and poorly conceived.
-- 
 
 ### Deprecated
 

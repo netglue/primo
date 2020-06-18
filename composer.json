@@ -64,7 +64,6 @@
     },
     "suggest": {
         "netglue/prismic-cli": "for building your custom content model definitions for the Prismic.io API",
-        "netglue/laminas-symfony-console": "for bootstrapping and configuring Symfony Console commands",
         "laminas/laminas-cli": "for bootstrapping and configuring Symfony Console commands"
     }
 }

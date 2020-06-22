@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.4.0 - TBD
+
+### Added
+
+- `Primo\Cache\PrismicApiCache` marker interface for retrieving api client specific cache pool.
+
+### Changed
+
+- Minimum ApiClient lib version bumped to 0.4.0
+- Hydrating result set updated to match changes in api client lib
+- Api client factory now injects cache item pool if configured
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.3.0 - 2020-06-17
 
 ### Added

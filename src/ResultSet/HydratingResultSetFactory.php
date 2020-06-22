@@ -24,7 +24,13 @@ final class HydratingResultSetFactory implements ResultSetFactory
 
     public function withHttpResponse(ResponseInterface $response) : ResultSet
     {
-        $data = Json::decodeObject((string) $response->getBody());
+        return $this->withJsonObject(
+            Json::decodeObject((string) $response->getBody())
+        );
+    }
+
+    public function withJsonObject(object $data) : ResultSet
+    {
         $results = [];
         foreach ($data->results as $documentData) {
             $content = DocumentData::factory($documentData);

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace PrimoTest\Unit\Container;
 
+use Primo\Cache\PrismicApiCache;
 use Primo\Container\ApiFactory;
 use Primo\Exception\ConfigurationError;
 use PrimoTest\Unit\TestCase;
@@ -32,7 +33,7 @@ class ApiFactoryTest extends TestCase
     public function testFactoryWithNoDependenciesSatisfied() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->exactly(5))
+        $container->expects($this->exactly(6))
             ->method('has')
             ->willReturnMap([
                 ['config', true],
@@ -40,6 +41,7 @@ class ApiFactoryTest extends TestCase
                 [RequestFactoryInterface::class, false],
                 [UriFactoryInterface::class, false],
                 [ResultSetFactory::class, false],
+                [PrismicApiCache::class, false],
             ]);
 
         $container->expects($this->once())

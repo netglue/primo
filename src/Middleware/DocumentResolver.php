@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Primo\Middleware;
 
-use DateTimeInterface;
 use Mezzio\Router\RouteResult;
 use Primo\Exception\RequestError;
 use Primo\Router\DocumentResolver as Resolver;

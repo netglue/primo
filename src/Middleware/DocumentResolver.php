@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Primo\Middleware;
 
-use DateTimeInterface;
 use Mezzio\Router\RouteResult;
 use Primo\Exception\RequestError;
 use Primo\Router\DocumentResolver as Resolver;
@@ -37,11 +36,6 @@ final class DocumentResolver implements MiddlewareInterface
             return $handler->handle($request);
         }
 
-        $response = $handler->handle($request->withAttribute(Document::class, $document));
-
-        return $response->withHeader(
-            'Last-Modified',
-            $document->lastPublished()->format(DateTimeInterface::RFC7231)
-        );
+        return $handler->handle($request->withAttribute(Document::class, $document));
     }
 }

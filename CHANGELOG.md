@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.5.0 - TBD
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Changed the `DocumentResolver` middleware so that it does not set a `Last-Modified` header in the response after successfully resolving the requested document. It's not the responsibility of the resolver to do this, and, it's incorrect to assume that *nothing* has changed since the document was last published.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.4.0 - 2020-06-22
 
 ### Added

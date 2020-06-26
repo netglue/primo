@@ -87,12 +87,4 @@ class DocumentResolverTest extends TestCase
         $subject->process($request, $this->handler);
         $this->assertNull($this->handler->lastRequest->getAttribute(Document::class));
     }
-
-    /** @depends testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes */
-    public function testThatTheResponseHasALastModifiedHeaderWhenADocumentCanBeResolved(ResponseInterface $response) : void
-    {
-        $date = DateTimeImmutable::createFromFormat('!Y-m-d', '2020-01-01', new DateTimeZone('UTC'));
-        $expectedDate = $date->format(DateTimeImmutable::RFC7231);
-        self::assertMessageHasHeader($response, 'Last-Modified', $this->equalTo($expectedDate));
-    }
 }

@@ -27,7 +27,7 @@
     "require": {
         "php": ">= 7.3",
         "ext-json": "*",
-        "dflydev/fig-cookies": "^2.0",
+        "dflydev/fig-cookies": "^2.0 || ^3.0",
         "laminas/laminas-diactoros": "^2.3",
         "laminas/laminas-stdlib": "^3.2",
         "mezzio/mezzio": "^3.2",

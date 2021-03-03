@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.5.1 - 2021-03-03
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- [#8](https://github.com/netglue/primo/pull/8) Improves CI by using [the matrix action from the Laminas project](https://github.com/laminas/laminas-ci-matrix-action).
+- [#8](https://github.com/netglue/primo/pull/8) Also updates dependencies, fixing test failures on 8 _(Out of date PHPUnit)_ and fixing a test failure due to copy/paste of a duplicate route name.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.5.0 - 2020-09-08
 
 ### Added

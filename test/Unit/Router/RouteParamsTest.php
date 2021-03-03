@@ -29,37 +29,37 @@ class RouteParamsTest extends TestCase
     /** @depends testOptionsArray */
     public function testId(RouteParams $params) : void
     {
-        $this->assertSame('id', $params->id());
+        self::assertSame('id', $params->id());
     }
 
     /** @depends testOptionsArray */
     public function testUid(RouteParams $params) : void
     {
-        $this->assertSame('uid', $params->uid());
+        self::assertSame('uid', $params->uid());
     }
 
     /** @depends testOptionsArray */
     public function testType(RouteParams $params) : void
     {
-        $this->assertSame('type', $params->type());
+        self::assertSame('type', $params->type());
     }
 
     /** @depends testOptionsArray */
     public function testBookmark(RouteParams $params) : void
     {
-        $this->assertSame('bookmark', $params->bookmark());
+        self::assertSame('bookmark', $params->bookmark());
     }
 
     /** @depends testOptionsArray */
     public function testLang(RouteParams $params) : void
     {
-        $this->assertSame('lang', $params->lang());
+        self::assertSame('lang', $params->lang());
     }
 
     /** @depends testOptionsArray */
     public function testReuseParams(RouteParams $params) : void
     {
-        $this->assertSame('reuse', $params->reuseResultParams());
+        self::assertSame('reuse', $params->reuseResultParams());
     }
 
     /** @return mixed[] */

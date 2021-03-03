@@ -22,7 +22,7 @@ class PrismicHttpClientFactoryTest extends TestCase
 
     private function clientInContainer(bool $value) : void
     {
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('has')
             ->with(ClientInterface::class)
             ->willReturn($value);
@@ -33,19 +33,19 @@ class PrismicHttpClientFactoryTest extends TestCase
         $client = $this->createMock(ClientInterface::class);
         $this->clientInContainer(true);
 
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('get')
             ->with(ClientInterface::class)
             ->willReturn($client);
 
         $factory = new PrismicHttpClientFactory();
-        $this->assertSame($client, $factory($this->container));
+        self::assertSame($client, $factory($this->container));
     }
 
     public function testThatClientDiscoveryWillBeUsedWhenNoClientIsInTheContainer() : void
     {
         $this->clientInContainer(false);
-        $this->container->expects($this->never())->method('get');
+        $this->container->expects(self::never())->method('get');
         $factory = new PrismicHttpClientFactory();
         $factory($this->container);
         $this->addToAssertionCount(1);

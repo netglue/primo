@@ -43,7 +43,7 @@ class ExpiredPreviewHandlerTest extends TestCase
     public function testThatMiddlewareIsNoOpByDefault() : void
     {
         $response = $this->subject->process($this->request, $this->handler);
-        $this->assertSame('Boom', (string) $response->getBody());
+        self::assertSame('Boom', (string) $response->getBody());
     }
 
     public function testThatResponseIsRedirectWithCookieWhenExpiryErrorIsPresent() : void
@@ -53,6 +53,6 @@ class ExpiredPreviewHandlerTest extends TestCase
         $response = $this->subject->process($request, $this->handler);
 
         self::assertResponseHasStatus($response, 302);
-        self::assertMessageHasHeader($response, 'Set-Cookie', $this->stringStartsWith(ApiClient::PREVIEW_COOKIE));
+        self::assertMessageHasHeader($response, 'Set-Cookie', self::stringStartsWith(ApiClient::PREVIEW_COOKIE));
     }
 }

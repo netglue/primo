@@ -12,7 +12,7 @@ class ExpiredPreviewHandlerFactoryTest extends TestCase
     public function testFactoryWhenNoConfigIsAvailable() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(false);

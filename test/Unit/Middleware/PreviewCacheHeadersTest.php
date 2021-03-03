@@ -43,7 +43,7 @@ class PreviewCacheHeadersTest extends TestCase
         $this->api->method('inPreview')->willReturn(false);
         $response = $this->subject->process($this->request, $this->handler);
 
-        $this->assertEmpty($response->getHeader('Cache-Control'));
+        self::assertEmpty($response->getHeader('Cache-Control'));
     }
 
     public function testThatCacheControlHeaderIsSetWhenPreviewIsActive() : void

@@ -16,7 +16,7 @@ class TypeMapTest extends TestCase
     public function testGivenAnyTypeTheDefaultWillBeReturned() : void
     {
         $map = new TypeMap([]);
-        $this->assertSame(Document::class, $map->className('whatever'));
+        self::assertSame(Document::class, $map->className('whatever'));
     }
 
     public function testGivenSpecificTypeTheCorrectClassWillBeReturned() : void
@@ -25,14 +25,14 @@ class TypeMapTest extends TestCase
             SimpleDocument::class => ['a', 'b'],
         ]);
 
-        $this->assertSame(SimpleDocument::class, $map->className('a'));
-        $this->assertSame(SimpleDocument::class, $map->className('b'));
+        self::assertSame(SimpleDocument::class, $map->className('a'));
+        self::assertSame(SimpleDocument::class, $map->className('b'));
     }
 
     public function testThatMappingCanBeString() : void
     {
         $map = new TypeMap([SimpleDocument::class => 'c']);
-        $this->assertSame(SimpleDocument::class, $map->className('c'));
+        self::assertSame(SimpleDocument::class, $map->className('c'));
     }
 
     public function testThatAnExceptionIsThrownWhenAClassDoesNotExist() : void

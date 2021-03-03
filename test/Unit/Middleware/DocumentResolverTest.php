@@ -68,11 +68,11 @@ class DocumentResolverTest extends TestCase
             $this->document
         );
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
-        $this->assertNull($request->getAttribute(Document::class));
+        self::assertNull($request->getAttribute(Document::class));
 
         $subject = new DocumentResolver($this->resolver);
         $response = $subject->process($request, $this->handler);
-        $this->assertSame($this->document, $this->handler->lastRequest->getAttribute(Document::class));
+        self::assertSame($this->document, $this->handler->lastRequest->getAttribute(Document::class));
 
         return $response;
     }
@@ -82,9 +82,9 @@ class DocumentResolverTest extends TestCase
         $this->resolver->method('resolve')->with($this->routeResult)->willReturn(null);
 
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
-        $this->assertNull($request->getAttribute(Document::class));
+        self::assertNull($request->getAttribute(Document::class));
         $subject = new DocumentResolver($this->resolver);
         $subject->process($request, $this->handler);
-        $this->assertNull($this->handler->lastRequest->getAttribute(Document::class));
+        self::assertNull($this->handler->lastRequest->getAttribute(Document::class));
     }
 }

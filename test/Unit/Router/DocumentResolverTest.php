@@ -48,13 +48,13 @@ class DocumentResolverTest extends TestCase
     public function testRouteResultWithoutMatchingParamsWillReturnNull() : void
     {
         $result = RouteResult::fromRoute(new Route('/foo', $this->middleware, ['GET']), []);
-        $this->assertNull($this->resolver->resolve($result));
+        self::assertNull($this->resolver->resolve($result));
     }
 
     public function testThatResultFromApiWillBeReturnedWhenBookmarkMatches() : void
     {
         $document = $this->createMock(Document::class);
-        $this->api->expects($this->once())
+        $this->api->expects(self::once())
             ->method('findByBookmark')
             ->with('bookmark-name')
             ->willReturn($document);
@@ -64,13 +64,13 @@ class DocumentResolverTest extends TestCase
             [$this->params->bookmark() => 'bookmark-name']
         );
 
-        $this->assertSame($document, $this->resolver->resolve($result));
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 
     public function testThatResultFromApiWillBeReturnedWhenRouteMatchesDocumentId() : void
     {
         $document = $this->createMock(Document::class);
-        $this->api->expects($this->once())
+        $this->api->expects(self::once())
             ->method('findById')
             ->with('doc-id')
             ->willReturn($document);
@@ -80,7 +80,7 @@ class DocumentResolverTest extends TestCase
             [$this->params->id() => 'doc-id']
         );
 
-        $this->assertSame($document, $this->resolver->resolve($result));
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 
     private function apiWillReturnSingleDocumentInLanguage(string $lang) : Document
@@ -89,28 +89,28 @@ class DocumentResolverTest extends TestCase
         $query = $this->createMock(Query::class);
         $resultSet = $this->createMock(ResultSet::class);
 
-        $query->expects($this->once())
+        $query->expects(self::once())
             ->method('query')
             ->willReturnSelf();
-        $query->expects($this->once())
+        $query->expects(self::once())
             ->method('lang')
             ->with($lang)
             ->willReturnSelf();
 
-        $this->api->expects($this->once())
+        $this->api->expects(self::once())
             ->method('createQuery')
             ->willReturn($query);
 
-        $this->api->expects($this->once())
+        $this->api->expects(self::once())
             ->method('query')
             ->with($query)
             ->willReturn($resultSet);
 
-        $resultSet->expects($this->once())
+        $resultSet->expects(self::once())
             ->method('count')
             ->willReturn(1);
 
-        $resultSet->expects($this->once())
+        $resultSet->expects(self::once())
             ->method('first')
             ->willReturn($document);
 
@@ -129,7 +129,7 @@ class DocumentResolverTest extends TestCase
             ]
         );
 
-        $this->assertSame($document, $this->resolver->resolve($result));
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 
     public function testThatLanguageIsProvidedToApiMethodWhenFoundInTheRouteParams() : void
@@ -145,7 +145,7 @@ class DocumentResolverTest extends TestCase
             ]
         );
 
-        $this->assertSame($document, $this->resolver->resolve($result));
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 
     public function testThatTypeMustBeKnownInOrderToResolveByUid() : void
@@ -169,7 +169,7 @@ class DocumentResolverTest extends TestCase
             [$this->params->type() => 'type']
         );
 
-        $this->assertSame($document, $this->resolver->resolve($result));
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 
     public function testThatItIsPossibleToQueryByTag() : void
@@ -181,7 +181,7 @@ class DocumentResolverTest extends TestCase
             [$this->params->tag() => 'my-tag']
         );
 
-        $this->assertSame($document, $this->resolver->resolve($result));
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 
     public function testAnExceptionIsThrownWhenAResultSetContainsMultipleResults() : void
@@ -189,19 +189,19 @@ class DocumentResolverTest extends TestCase
         $query = $this->createMock(Query::class);
         $resultSet = $this->createMock(ResultSet::class);
 
-        $query->expects($this->once())
+        $query->expects(self::once())
             ->method('query')
             ->willReturnSelf();
-        $query->expects($this->once())
+        $query->expects(self::once())
             ->method('lang')
             ->with('*')
             ->willReturnSelf();
 
-        $this->api->expects($this->once())
+        $this->api->expects(self::once())
             ->method('createQuery')
             ->willReturn($query);
 
-        $this->api->expects($this->once())
+        $this->api->expects(self::once())
             ->method('query')
             ->with($query)
             ->willReturn($resultSet);

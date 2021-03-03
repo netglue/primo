@@ -18,7 +18,7 @@ class ApiFactoryTest extends TestCase
     public function testAnExceptionIsThrownWhenAnApiUrlHasNotBeenConfigured() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(false);
@@ -33,7 +33,7 @@ class ApiFactoryTest extends TestCase
     public function testFactoryWithNoDependenciesSatisfied() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->exactly(6))
+        $container->expects(self::exactly(6))
             ->method('has')
             ->willReturnMap([
                 ['config', true],
@@ -44,7 +44,7 @@ class ApiFactoryTest extends TestCase
                 [PrismicApiCache::class, false],
             ]);
 
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with('config')
             ->willReturn(['prismic' => ['api' => 'https://example.com']]);

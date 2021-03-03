@@ -37,11 +37,11 @@ class InjectRequestCookiesTest extends TestCase
 
     public function testThatRequestCookiesAreProvidedToTheApi() : void
     {
-        $this->assertFalse($this->api->inPreview());
+        self::assertFalse($this->api->inPreview());
         $request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $request = $request->withCookieParams([Api::PREVIEW_COOKIE => 'cookieValue']);
         $this->subject->process($request, $this->handler);
-        $this->assertTrue($this->api->inPreview());
-        $this->assertSame('cookieValue', (string) $this->api->ref());
+        self::assertTrue($this->api->inPreview());
+        self::assertSame('cookieValue', (string) $this->api->ref());
     }
 }

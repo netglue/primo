@@ -14,7 +14,7 @@ class PreviewHandlerFactoryTest extends TestCase
     public function testFactoryExecutesWhenConfigIsNotAvailable() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(false);
@@ -30,7 +30,7 @@ class PreviewHandlerFactoryTest extends TestCase
             ],
         ];
 
-        $container->expects($this->exactly(2))
+        $container->expects(self::exactly(2))
             ->method('get')
             ->willReturnMap($map);
 

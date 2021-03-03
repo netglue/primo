@@ -102,12 +102,12 @@ class LinkResolverFactoryTest extends TestCase
             }
         }'));
         $api = $this->createMock(ApiClient::class);
-        $api->expects($this->once())
+        $api->expects(self::once())
             ->method('data')
             ->willReturn($data);
 
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->exactly(4))
+        $container->expects(self::exactly(4))
             ->method('get')
             ->willReturnMap([
                 [RouteParams::class, RouteParams::fromArray([])],

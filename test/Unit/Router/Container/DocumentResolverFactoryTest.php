@@ -15,7 +15,7 @@ class DocumentResolverFactoryTest extends TestCase
     {
         $container = $this->createMock(ContainerInterface::class);
         $api = $this->createMock(ApiClient::class);
-        $container->expects($this->exactly(2))
+        $container->expects(self::exactly(2))
             ->method('get')
             ->willReturnMap([
                 [ApiClient::class, $api],

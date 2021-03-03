@@ -14,7 +14,7 @@ class HydratingResultSetFactoryFactoryTest extends TestCase
     {
         $map = new TypeMap([]);
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with(TypeMap::class)
             ->willReturn($map);

@@ -14,12 +14,12 @@ class TypeMapFactoryTest extends TestCase
     public function testFactoryWithConfig() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(true);
 
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with('config')
             ->willReturn([
@@ -37,28 +37,28 @@ class TypeMapFactoryTest extends TestCase
         $factory = new TypeMapFactory();
         $map = $factory->__invoke($container);
 
-        $this->assertSame(SimpleDocument::class, $map->className('a'));
-        $this->assertSame(SimpleDocument::class, $map->className('b'));
-        $this->assertSame(Document::class, $map->className('c'));
-        $this->assertSame(SimpleDocument::class, $map->className('d'));
+        self::assertSame(SimpleDocument::class, $map->className('a'));
+        self::assertSame(SimpleDocument::class, $map->className('b'));
+        self::assertSame(Document::class, $map->className('c'));
+        self::assertSame(SimpleDocument::class, $map->className('d'));
     }
 
     public function testFactoryWithoutConfig() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(false);
-        $container->expects($this->never())
+        $container->expects(self::never())
             ->method('get');
 
         $factory = new TypeMapFactory();
         $map = $factory->__invoke($container);
 
-        $this->assertSame(Document::class, $map->className('a'));
-        $this->assertSame(Document::class, $map->className('b'));
-        $this->assertSame(Document::class, $map->className('c'));
-        $this->assertSame(Document::class, $map->className('d'));
+        self::assertSame(Document::class, $map->className('a'));
+        self::assertSame(Document::class, $map->className('b'));
+        self::assertSame(Document::class, $map->className('c'));
+        self::assertSame(Document::class, $map->className('d'));
     }
 }

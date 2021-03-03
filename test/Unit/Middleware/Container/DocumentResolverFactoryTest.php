@@ -14,7 +14,7 @@ class DocumentResolverFactoryTest extends TestCase
     {
         $resolver = $this->createMock(DocumentResolver::class);
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with(DocumentResolver::class)
             ->willReturn($resolver);

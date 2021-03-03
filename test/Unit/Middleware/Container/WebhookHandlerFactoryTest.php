@@ -14,7 +14,7 @@ class WebhookHandlerFactoryTest extends TestCase
     public function testThatAnExceptionIsThrownWhenNoEventDispatcherIsAvailable() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->exactly(2))
+        $container->expects(self::exactly(2))
             ->method('has')
             ->willReturnMap([
                 ['config', false],
@@ -31,14 +31,14 @@ class WebhookHandlerFactoryTest extends TestCase
     public function testFactoryWhenDispatcherCanBeFound() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->exactly(2))
+        $container->expects(self::exactly(2))
             ->method('has')
             ->willReturnMap([
                 ['config', false],
                 [EventDispatcherInterface::class, true],
             ]);
 
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->willReturn($this->createMock(EventDispatcherInterface::class));
 

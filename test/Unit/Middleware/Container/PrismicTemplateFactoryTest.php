@@ -13,11 +13,11 @@ class PrismicTemplateFactoryTest extends TestCase
     public function testFactory() : void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->willReturn(false);
 
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with(TemplateRendererInterface::class)
             ->willReturn($this->createMock(TemplateRendererInterface::class));

@@ -24,11 +24,11 @@ class WebhookEventTest extends TestCase
         $copy = unserialize($data);
         assert($copy instanceof WebhookEvent);
 
-        $this->assertEquals(
+        self::assertEquals(
             $event->received(),
             $copy->received()
         );
-        $this->assertSame(
+        self::assertSame(
             $event->payload()->foo,
             $copy->payload()->foo
         );

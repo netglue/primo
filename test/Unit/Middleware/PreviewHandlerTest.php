@@ -52,9 +52,9 @@ class PreviewHandlerTest extends TestCase
 
     public function testThatWhenTheTokenIsEmptyNoRedirectWillOccur() : void
     {
-        $this->assertEmpty($this->request->getQueryParams());
+        self::assertEmpty($this->request->getQueryParams());
         $response = $this->subject->process($this->request, $this->handler);
-        $this->assertSame('Boom', (string) $response->getBody());
+        self::assertSame('Boom', (string) $response->getBody());
     }
 
     public function testThatWhenTheTokenIsInvalidNoRedirectWillOccur() : void
@@ -62,12 +62,12 @@ class PreviewHandlerTest extends TestCase
         $token = 'expected-token';
         $request = $this->request->withQueryParams(['token' => $token]);
         $this->api
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('previewSession')
             ->with($token)
             ->willThrowException(new InvalidPreviewToken('bad news'));
         $response = $this->subject->process($request, $this->handler);
-        $this->assertSame('Boom', (string) $response->getBody());
+        self::assertSame('Boom', (string) $response->getBody());
     }
 
     public function testThatWhenTheTokenHasExpiredNoRedirectOccursAndRequestAttributeIsGiven() : void
@@ -76,15 +76,15 @@ class PreviewHandlerTest extends TestCase
         $request = $this->request->withQueryParams(['token' => $token]);
         $error = new PreviewTokenExpired('bad news');
         $this->api
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('previewSession')
             ->with($token)
             ->willThrowException($error);
 
         $response = $this->subject->process($request, $this->handler);
-        $this->assertSame('Boom', (string) $response->getBody());
+        self::assertSame('Boom', (string) $response->getBody());
 
-        $this->assertSame($error, $this->handler->lastRequest->getAttribute(PreviewTokenExpired::class));
+        self::assertSame($error, $this->handler->lastRequest->getAttribute(PreviewTokenExpired::class));
     }
 
     public function testThatTheRedirectWillBeTheDefaultUrlWhenTheApiDoesNotReturnALink() : void

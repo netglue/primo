@@ -48,13 +48,13 @@ class RouteMatcherTest extends TestCase
     public function testThatBookmarkedRouteIsNullWhenThereAreNoMatchingRoutes() : void
     {
         $matcher = $this->matcher();
-        $this->assertNull($matcher->getBookmarkedRoute('anything'));
+        self::assertNull($matcher->getBookmarkedRoute('anything'));
     }
 
     public function testThatTypedRouteIsNullWhenThereAreNoMatchingRoutes() : void
     {
         $matcher = $this->matcher();
-        $this->assertNull($matcher->getTypedRoute('any-type'));
+        self::assertNull($matcher->getTypedRoute('any-type'));
     }
 
     public function testThatTheRouteMatcherCanFindABookmarkedRoute() : void
@@ -63,7 +63,7 @@ class RouteMatcherTest extends TestCase
         $bookmarkedRoute->setOptions(['defaults' => [$this->params->bookmark() => 'bookmark-name']]);
         $matcher = $this->matcher();
         $route = $matcher->getBookmarkedRoute('bookmark-name');
-        $this->assertSame($bookmarkedRoute, $route);
+        self::assertSame($bookmarkedRoute, $route);
     }
 
     public function testThatATypedRouteIsMatchedWhenTypeIsDefinedAsAString() : void
@@ -72,7 +72,7 @@ class RouteMatcherTest extends TestCase
         $typedRoute->setOptions(['defaults' => [$this->params->type() => 'some-type']]);
         $matcher = $this->matcher();
         $route = $matcher->getTypedRoute('some-type');
-        $this->assertSame($typedRoute, $route);
+        self::assertSame($typedRoute, $route);
     }
 
     public function testThatATypedRouteIsMatchedWhenTheTypeIsDefinedAsAnArray() : void
@@ -87,9 +87,9 @@ class RouteMatcherTest extends TestCase
             ],
         ]);
         $matcher = $this->matcher();
-        $this->assertSame($typedRoute, $matcher->getTypedRoute('some-type'));
-        $this->assertSame($typedRoute, $matcher->getTypedRoute('other-type'));
-        $this->assertNull($matcher->getTypedRoute('wrong-type'));
+        self::assertSame($typedRoute, $matcher->getTypedRoute('some-type'));
+        self::assertSame($typedRoute, $matcher->getTypedRoute('other-type'));
+        self::assertNull($matcher->getTypedRoute('wrong-type'));
     }
 
     public function testThatMatchingIsFifoByDefault() : void
@@ -99,7 +99,7 @@ class RouteMatcherTest extends TestCase
         $second = $this->collector->get('/other-path', $this->middleware, 'route-two');
         $second->setOptions(['defaults' => [$this->params->type() => 'type']]);
         $matcher = $this->matcher();
-        $this->assertSame($first, $matcher->getTypedRoute('type'));
+        self::assertSame($first, $matcher->getTypedRoute('type'));
     }
 
     public function testThatMultipleRoutesMatchingATypeCanBeFound() : void
@@ -112,8 +112,8 @@ class RouteMatcherTest extends TestCase
         $third->setOptions(['defaults' => []]);
         $matcher = $this->matcher();
         $results = $matcher->routesMatchingType('type');
-        $this->assertCount(2, $results);
-        $this->assertNotContains($third, $results);
+        self::assertCount(2, $results);
+        self::assertNotContains($third, $results);
     }
 
     public function testThatMultipleRoutesMatchingATagCanBeFound() : void
@@ -126,8 +126,8 @@ class RouteMatcherTest extends TestCase
         $third->setOptions(['defaults' => [$this->params->tag() => 'b']]);
         $matcher = $this->matcher();
         $results = $matcher->routesMatchingTag('a');
-        $this->assertCount(2, $results);
-        $this->assertNotContains($third, $results);
+        self::assertCount(2, $results);
+        self::assertNotContains($third, $results);
     }
 
     public function testThatMatchingTagsIsCaseSensitive() : void
@@ -139,17 +139,17 @@ class RouteMatcherTest extends TestCase
 
         $matcher = $this->matcher();
         $results = $matcher->routesMatchingTag('a');
-        $this->assertCount(1, $results);
-        $this->assertContains($first, $results);
+        self::assertCount(1, $results);
+        self::assertContains($first, $results);
         $results = $matcher->routesMatchingTag('A');
-        $this->assertCount(1, $results);
-        $this->assertContains($second, $results);
+        self::assertCount(1, $results);
+        self::assertContains($second, $results);
     }
 
     public function testThatUidRouteIsNullWhenThereAreNoMatchingRoutes() : void
     {
         $matcher = $this->matcher();
-        $this->assertNull($matcher->getUidRoute('foo', 'bar'));
+        self::assertNull($matcher->getUidRoute('foo', 'bar'));
     }
 
     public function testThatUidRouteIsNullWhenTypeMatchesButUidDoesNot() : void
@@ -157,7 +157,7 @@ class RouteMatcherTest extends TestCase
         $route = $this->collector->get('/some-path', $this->middleware, 'some-route');
         $route->setOptions(['defaults' => [$this->params->type() => 'a']]);
         $matcher = $this->matcher();
-        $this->assertNull($matcher->getUidRoute('a', 'bar'));
+        self::assertNull($matcher->getUidRoute('a', 'bar'));
     }
 
     public function testThatUidRouteMatches() : void
@@ -165,7 +165,7 @@ class RouteMatcherTest extends TestCase
         $route = $this->collector->get('/some-path', $this->middleware, 'some-route');
         $route->setOptions(['defaults' => [$this->params->type() => 'a', $this->params->uid() => 'bar']]);
         $matcher = $this->matcher();
-        $this->assertSame($route, $matcher->getUidRoute('a', 'bar'));
+        self::assertSame($route, $matcher->getUidRoute('a', 'bar'));
     }
 
     /** @return mixed[] */
@@ -214,8 +214,8 @@ class RouteMatcherTest extends TestCase
 
     private function assertBastMatch(string $name, ?Route $match) : void
     {
-        $this->assertNotNull($match, 'A match was not found');
-        $this->assertSame($name, $match->getName());
+        self::assertNotNull($match, 'A match was not found');
+        self::assertSame($name, $match->getName());
     }
 
     public function testRouteDefinitionWithInvalidTagParameterWillCauseException() : void

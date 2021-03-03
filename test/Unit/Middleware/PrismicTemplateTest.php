@@ -63,11 +63,11 @@ class PrismicTemplateTest extends TestCase
     public function testThatRequestIsDelegatedWhenADocumentIsNotFound() : void
     {
         $request = $this->requestHasTemplate();
-        $this->assertNull($this->handler->lastRequest);
+        self::assertNull($this->handler->lastRequest);
 
         $this->subject->process($request, $this->handler);
 
-        $this->assertSame($request, $this->handler->lastRequest);
+        self::assertSame($request, $this->handler->lastRequest);
     }
 
     private function requestHasDocument() : ServerRequestInterface
@@ -79,26 +79,26 @@ class PrismicTemplateTest extends TestCase
 
     public function testThatTheTemplateWillBeRenderedWhenRequestCriteriaAreMet() : void
     {
-        $this->templates->expects($this->once())
+        $this->templates->expects(self::once())
             ->method('addDefaultParam')
             ->with(
-                $this->equalTo(TemplateRendererInterface::TEMPLATE_ALL),
-                $this->equalTo('document'),
-                $this->equalTo($this->document)
+                self::equalTo(TemplateRendererInterface::TEMPLATE_ALL),
+                self::equalTo('document'),
+                self::equalTo($this->document)
             );
 
-        $this->templates->expects($this->once())
+        $this->templates->expects(self::once())
             ->method('render')
-            ->with($this->equalTo('template::foo'))
+            ->with(self::equalTo('template::foo'))
             ->willReturn('Some Markup');
 
-        $this->document->expects($this->once())
+        $this->document->expects(self::once())
             ->method('lang')
             ->willReturn('en-gb');
 
         $response = $this->subject->process($this->requestHasDocument(), $this->handler);
         self::assertResponseIsSuccess($response);
-        self::assertMessageBodyMatches($response, $this->equalTo('Some Markup'));
+        self::assertMessageBodyMatches($response, self::equalTo('Some Markup'));
         self::assertMessageHasHeader($response, 'content-language', 'en-gb');
     }
 }

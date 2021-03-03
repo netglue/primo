@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Http;
@@ -14,13 +15,13 @@ class PrismicHttpClientFactoryTest extends TestCase
     /** @var MockObject|ClientInterface */
     private $container;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = $this->createMock(ContainerInterface::class);
     }
 
-    private function clientInContainer(bool $value) : void
+    private function clientInContainer(bool $value): void
     {
         $this->container->expects(self::once())
             ->method('has')
@@ -28,7 +29,7 @@ class PrismicHttpClientFactoryTest extends TestCase
             ->willReturn($value);
     }
 
-    public function testThatClientInContainerWillBeReturnedWhenAvailable() : void
+    public function testThatClientInContainerWillBeReturnedWhenAvailable(): void
     {
         $client = $this->createMock(ClientInterface::class);
         $this->clientInContainer(true);
@@ -42,7 +43,7 @@ class PrismicHttpClientFactoryTest extends TestCase
         self::assertSame($client, $factory($this->container));
     }
 
-    public function testThatClientDiscoveryWillBeUsedWhenNoClientIsInTheContainer() : void
+    public function testThatClientDiscoveryWillBeUsedWhenNoClientIsInTheContainer(): void
     {
         $this->clientInContainer(false);
         $this->container->expects(self::never())->method('get');

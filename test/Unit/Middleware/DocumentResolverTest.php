@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -31,7 +32,7 @@ class DocumentResolverTest extends TestCase
     /** @var MockObject|Document */
     private $document;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
@@ -41,7 +42,7 @@ class DocumentResolverTest extends TestCase
             /** @var ServerRequestInterface */
             public $lastRequest;
 
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $this->lastRequest = $request;
 
@@ -54,7 +55,7 @@ class DocumentResolverTest extends TestCase
             ->willReturn(DateTimeImmutable::createFromFormat('!Y-m-d', '2020-01-01', new DateTimeZone('UTC')));
     }
 
-    public function testAnExceptionIsThrownWhenThereIsNoRouteResultAvailable() : void
+    public function testAnExceptionIsThrownWhenThereIsNoRouteResultAvailable(): void
     {
         $subject = new DocumentResolver($this->resolver);
         $this->expectException(RequestError::class);
@@ -62,7 +63,7 @@ class DocumentResolverTest extends TestCase
         $subject->process($this->request, $this->handler);
     }
 
-    public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes() : ResponseInterface
+    public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes(): ResponseInterface
     {
         $this->resolver->method('resolve')->with($this->routeResult)->willReturn(
             $this->document
@@ -77,7 +78,7 @@ class DocumentResolverTest extends TestCase
         return $response;
     }
 
-    public function testThatRequestAttributeIsNotPresentWhenADocumentCannotBeResolved() : void
+    public function testThatRequestAttributeIsNotPresentWhenADocumentCannotBeResolved(): void
     {
         $this->resolver->method('resolve')->with($this->routeResult)->willReturn(null);
 

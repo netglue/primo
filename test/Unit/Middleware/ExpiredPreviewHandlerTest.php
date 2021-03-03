@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -22,7 +23,7 @@ class ExpiredPreviewHandlerTest extends TestCase
     /** @var RequestHandlerInterface */
     private $handler;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
@@ -30,7 +31,7 @@ class ExpiredPreviewHandlerTest extends TestCase
             /** @var ServerRequestInterface */
             public $lastRequest;
 
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $this->lastRequest = $request;
 
@@ -40,13 +41,13 @@ class ExpiredPreviewHandlerTest extends TestCase
         $this->subject = new ExpiredPreviewHandler('/go-here');
     }
 
-    public function testThatMiddlewareIsNoOpByDefault() : void
+    public function testThatMiddlewareIsNoOpByDefault(): void
     {
         $response = $this->subject->process($this->request, $this->handler);
         self::assertSame('Boom', (string) $response->getBody());
     }
 
-    public function testThatResponseIsRedirectWithCookieWhenExpiryErrorIsPresent() : void
+    public function testThatResponseIsRedirectWithCookieWhenExpiryErrorIsPresent(): void
     {
         $error = new PreviewTokenExpired('Bad News');
         $request = $this->request->withAttribute(PreviewTokenExpired::class, $error);

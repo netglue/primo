@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
@@ -10,7 +11,7 @@ use Psr\Container\ContainerInterface;
 
 final class PreviewHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : PreviewHandler
+    public function __invoke(ContainerInterface $container): PreviewHandler
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $defaultUrl = $config['primo']['previews']['defaultUrl'] ?? '/';

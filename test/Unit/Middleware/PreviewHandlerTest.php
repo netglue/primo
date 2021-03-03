@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -30,7 +31,7 @@ class PreviewHandlerTest extends TestCase
     /** @var PreviewHandler */
     private $subject;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
@@ -38,7 +39,7 @@ class PreviewHandlerTest extends TestCase
             /** @var ServerRequestInterface */
             public $lastRequest;
 
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $this->lastRequest = $request;
 
@@ -50,14 +51,14 @@ class PreviewHandlerTest extends TestCase
         $this->subject = new PreviewHandler($this->api, $this->linkResolver, '/go-here');
     }
 
-    public function testThatWhenTheTokenIsEmptyNoRedirectWillOccur() : void
+    public function testThatWhenTheTokenIsEmptyNoRedirectWillOccur(): void
     {
         self::assertEmpty($this->request->getQueryParams());
         $response = $this->subject->process($this->request, $this->handler);
         self::assertSame('Boom', (string) $response->getBody());
     }
 
-    public function testThatWhenTheTokenIsInvalidNoRedirectWillOccur() : void
+    public function testThatWhenTheTokenIsInvalidNoRedirectWillOccur(): void
     {
         $token = 'expected-token';
         $request = $this->request->withQueryParams(['token' => $token]);
@@ -70,7 +71,7 @@ class PreviewHandlerTest extends TestCase
         self::assertSame('Boom', (string) $response->getBody());
     }
 
-    public function testThatWhenTheTokenHasExpiredNoRedirectOccursAndRequestAttributeIsGiven() : void
+    public function testThatWhenTheTokenHasExpiredNoRedirectOccursAndRequestAttributeIsGiven(): void
     {
         $token = 'expected-token';
         $request = $this->request->withQueryParams(['token' => $token]);
@@ -87,7 +88,7 @@ class PreviewHandlerTest extends TestCase
         self::assertSame($error, $this->handler->lastRequest->getAttribute(PreviewTokenExpired::class));
     }
 
-    public function testThatTheRedirectWillBeTheDefaultUrlWhenTheApiDoesNotReturnALink() : void
+    public function testThatTheRedirectWillBeTheDefaultUrlWhenTheApiDoesNotReturnALink(): void
     {
         $token = 'expected-token';
         $request = $this->request->withQueryParams(['token' => $token]);
@@ -98,7 +99,7 @@ class PreviewHandlerTest extends TestCase
         self::assertMessageHasHeader($response, 'location', '/go-here');
     }
 
-    public function testThatTheRedirectWillBeDeterminedByLinkResolver() : void
+    public function testThatTheRedirectWillBeDeterminedByLinkResolver(): void
     {
         $token = 'expected-token';
         $request = $this->request->withQueryParams(['token' => $token]);

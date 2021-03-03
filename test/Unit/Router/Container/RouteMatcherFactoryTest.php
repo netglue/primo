@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Router\Container;
@@ -11,7 +12,7 @@ use Psr\Container\ContainerInterface;
 
 class RouteMatcherFactoryTest extends TestCase
 {
-    public function testFactory() : void
+    public function testFactory(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::exactly(2))

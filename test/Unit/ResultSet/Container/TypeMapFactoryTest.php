@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\ResultSet\Container;
@@ -11,7 +12,7 @@ use Psr\Container\ContainerInterface;
 
 class TypeMapFactoryTest extends TestCase
 {
-    public function testFactoryWithConfig() : void
+    public function testFactoryWithConfig(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::once())
@@ -43,7 +44,7 @@ class TypeMapFactoryTest extends TestCase
         self::assertSame(SimpleDocument::class, $map->className('d'));
     }
 
-    public function testFactoryWithoutConfig() : void
+    public function testFactoryWithoutConfig(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::once())

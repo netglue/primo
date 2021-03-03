@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -19,7 +20,7 @@ final class PreviewCacheHeaders implements MiddlewareInterface
         $this->apiClient = $apiClient;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $handler->handle($request);
         if ($response->getStatusCode() === 200 && $this->apiClient->inPreview()) {

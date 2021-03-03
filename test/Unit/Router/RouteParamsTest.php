@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Router;
@@ -10,7 +11,7 @@ use TypeError;
 
 class RouteParamsTest extends TestCase
 {
-    public function testOptionsArray() : RouteParams
+    public function testOptionsArray(): RouteParams
     {
         $options = [
             'id'                => 'id',
@@ -27,43 +28,43 @@ class RouteParamsTest extends TestCase
     }
 
     /** @depends testOptionsArray */
-    public function testId(RouteParams $params) : void
+    public function testId(RouteParams $params): void
     {
         self::assertSame('id', $params->id());
     }
 
     /** @depends testOptionsArray */
-    public function testUid(RouteParams $params) : void
+    public function testUid(RouteParams $params): void
     {
         self::assertSame('uid', $params->uid());
     }
 
     /** @depends testOptionsArray */
-    public function testType(RouteParams $params) : void
+    public function testType(RouteParams $params): void
     {
         self::assertSame('type', $params->type());
     }
 
     /** @depends testOptionsArray */
-    public function testBookmark(RouteParams $params) : void
+    public function testBookmark(RouteParams $params): void
     {
         self::assertSame('bookmark', $params->bookmark());
     }
 
     /** @depends testOptionsArray */
-    public function testLang(RouteParams $params) : void
+    public function testLang(RouteParams $params): void
     {
         self::assertSame('lang', $params->lang());
     }
 
     /** @depends testOptionsArray */
-    public function testReuseParams(RouteParams $params) : void
+    public function testReuseParams(RouteParams $params): void
     {
         self::assertSame('reuse', $params->reuseResultParams());
     }
 
     /** @return mixed[] */
-    public function typeErrorProvider() : iterable
+    public function typeErrorProvider(): iterable
     {
         return [
             'Non string option key' => [[0 => 'value']],
@@ -76,13 +77,13 @@ class RouteParamsTest extends TestCase
      *
      * @dataProvider typeErrorProvider
      */
-    public function testOptionTypeError(array $options) : void
+    public function testOptionTypeError(array $options): void
     {
         $this->expectException(TypeError::class);
         RouteParams::fromArray($options);
     }
 
-    public function testExceptionThrownForInvalidOptionKeys() : void
+    public function testExceptionThrownForInvalidOptionKeys(): void
     {
         $this->expectException(InvalidArgument::class);
         $this->expectExceptionMessage('"nuts" is not a valid option key. Valid options are:');

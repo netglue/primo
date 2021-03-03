@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -19,7 +20,7 @@ final class InjectRequestCookies implements MiddlewareInterface
         $this->api = $api;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $this->api->setRequestCookies($request->getCookieParams());
 

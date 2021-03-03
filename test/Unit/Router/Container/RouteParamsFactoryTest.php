@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Router\Container;
@@ -15,14 +16,14 @@ class RouteParamsFactoryTest extends TestCase
     /** @var MockObject|ContainerInterface */
     private $container;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = $this->createMock(ContainerInterface::class);
         $this->factory = new RouteParamsFactory();
     }
 
-    public function testContainerWithoutConfigWillYieldParamsWithDefaultValues() : void
+    public function testContainerWithoutConfigWillYieldParamsWithDefaultValues(): void
     {
         $this->container->expects(self::once())
             ->method('has')
@@ -37,7 +38,7 @@ class RouteParamsFactoryTest extends TestCase
         self::assertSame('document-id', $params->id());
     }
 
-    public function testContainerWithConfiguredParamsWillYieldParamsWithConfiguredValues() : void
+    public function testContainerWithConfiguredParamsWillYieldParamsWithConfiguredValues(): void
     {
         $this->container->expects(self::once())
             ->method('has')

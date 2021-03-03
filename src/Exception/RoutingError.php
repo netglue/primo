@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Exception;
@@ -14,7 +15,7 @@ use const JSON_THROW_ON_ERROR;
 
 class RoutingError extends RuntimeError
 {
-    public static function uidMatchedWithoutType(RouteResult $routeResult) : self
+    public static function uidMatchedWithoutType(RouteResult $routeResult): self
     {
         return new static(sprintf(
             'The route named "%s" matches a Prismic UID, but the type cannot be resolved. You cannot resolve documents '
@@ -24,7 +25,7 @@ class RoutingError extends RuntimeError
         ), 400);
     }
 
-    public static function nonUniqueResult(RouteResult $routeResult, ResultSet $resultSet) : self
+    public static function nonUniqueResult(RouteResult $routeResult, ResultSet $resultSet): self
     {
         return new static(sprintf(
             'The route named "%s" matched %d documents when transformed into a query. Route parameters were: %s',
@@ -34,14 +35,14 @@ class RoutingError extends RuntimeError
         ), 400);
     }
 
-    protected static function routeName(RouteResult $routeResult) : string
+    protected static function routeName(RouteResult $routeResult): string
     {
         $routeName = $routeResult->getMatchedRouteName();
 
         return $routeName ?: '[Unnamed Route]';
     }
 
-    protected static function matchedParams(RouteResult $routeResult) : string
+    protected static function matchedParams(RouteResult $routeResult): string
     {
         return json_encode($routeResult->getMatchedParams(), JSON_THROW_ON_ERROR);
     }

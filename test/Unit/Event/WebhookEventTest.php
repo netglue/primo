@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Event;
@@ -13,7 +14,7 @@ use function unserialize;
 
 class WebhookEventTest extends TestCase
 {
-    public function testThatEventsCanBeSerialised() : void
+    public function testThatEventsCanBeSerialised(): void
     {
         $payload = new stdClass();
         $payload->foo = 'baz';

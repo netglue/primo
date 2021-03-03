@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Container;
@@ -14,7 +15,7 @@ use Psr\Http\Message\UriFactoryInterface;
 
 final class ApiFactory
 {
-    public function __invoke(ContainerInterface $container) : Api
+    public function __invoke(ContainerInterface $container): Api
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $apiUrl = $config['prismic']['api'] ?? null;

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Router\Container;
@@ -8,7 +9,7 @@ use Psr\Container\ContainerInterface;
 
 final class RouteParamsFactory
 {
-    public function __invoke(ContainerInterface $container) : RouteParams
+    public function __invoke(ContainerInterface $container): RouteParams
     {
         $config = $container->has('config')
             ? $container->get('config')

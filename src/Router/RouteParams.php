@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Router;
@@ -33,7 +34,7 @@ final class RouteParams
     }
 
     /** @param string[] $options */
-    public static function fromArray(array $options) : self
+    public static function fromArray(array $options): self
     {
         $params = new static();
         foreach ($options as $name => $value) {
@@ -43,7 +44,7 @@ final class RouteParams
         return $params;
     }
 
-    private function setParameter(string $name, string $value) : void
+    private function setParameter(string $name, string $value): void
     {
         if (! in_array($name, self::$acceptable, true)) {
             throw new InvalidArgument(sprintf(
@@ -56,37 +57,37 @@ final class RouteParams
         $this->{$name} = $value;
     }
 
-    public function id() : string
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function uid() : string
+    public function uid(): string
     {
         return $this->uid;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
 
-    public function bookmark() : string
+    public function bookmark(): string
     {
         return $this->bookmark;
     }
 
-    public function lang() : string
+    public function lang(): string
     {
         return $this->lang;
     }
 
-    public function reuseResultParams() : string
+    public function reuseResultParams(): string
     {
         return $this->reuseResultParams;
     }
 
-    public function tag() : string
+    public function tag(): string
     {
         return $this->tag;
     }

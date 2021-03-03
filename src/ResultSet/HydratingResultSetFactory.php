@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\ResultSet;
@@ -22,14 +23,14 @@ final class HydratingResultSetFactory implements ResultSetFactory
         $this->map = $map;
     }
 
-    public function withHttpResponse(ResponseInterface $response) : ResultSet
+    public function withHttpResponse(ResponseInterface $response): ResultSet
     {
         return $this->withJsonObject(
             Json::decodeObject((string) $response->getBody())
         );
     }
 
-    public function withJsonObject(object $data) : ResultSet
+    public function withJsonObject(object $data): ResultSet
     {
         $results = [];
         foreach ($data->results as $documentData) {

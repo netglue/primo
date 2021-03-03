@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\ResultSet\Container;
@@ -10,7 +11,7 @@ use Psr\Container\ContainerInterface;
 
 class HydratingResultSetFactoryFactoryTest extends TestCase
 {
-    public function testFactory() : void
+    public function testFactory(): void
     {
         $map = new TypeMap([]);
         $container = $this->createMock(ContainerInterface::class);

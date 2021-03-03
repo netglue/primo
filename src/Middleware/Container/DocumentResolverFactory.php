@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
@@ -9,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 final class DocumentResolverFactory
 {
-    public function __invoke(ContainerInterface $container) : DocumentResolver
+    public function __invoke(ContainerInterface $container): DocumentResolver
     {
         return new DocumentResolver(
             $container->get(Resolver::class)

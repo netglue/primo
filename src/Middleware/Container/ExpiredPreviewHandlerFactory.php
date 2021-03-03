@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
@@ -8,7 +9,7 @@ use Psr\Container\ContainerInterface;
 
 class ExpiredPreviewHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : ExpiredPreviewHandler
+    public function __invoke(ContainerInterface $container): ExpiredPreviewHandler
     {
         $config = $container->has('config') ? $container->get('config') : [];
 

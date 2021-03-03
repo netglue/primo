@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\ResultSet;
@@ -39,26 +40,26 @@ final class TypeMap
         }
     }
 
-    public function className(string $type) : string
+    public function className(string $type): string
     {
         return $this->map[$type] ?? $this->default;
     }
 
     /** @param string[] $types */
-    private function addTypes(string $className, array $types) : void
+    private function addTypes(string $className, array $types): void
     {
         foreach ($types as $type) {
             $this->addType($type, $className);
         }
     }
 
-    private function addType(string $type, string $class) : void
+    private function addType(string $type, string $class): void
     {
         $this->classHierarchyCheck($class);
         $this->map[$type] = $class;
     }
 
-    private function classHierarchyCheck(string $className) : void
+    private function classHierarchyCheck(string $className): void
     {
         if (! class_exists($className)) {
             throw new InvalidArgument(sprintf(

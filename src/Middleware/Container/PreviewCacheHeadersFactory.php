@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
@@ -9,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 class PreviewCacheHeadersFactory
 {
-    public function __invoke(ContainerInterface $container) : PreviewCacheHeaders
+    public function __invoke(ContainerInterface $container): PreviewCacheHeaders
     {
         return new PreviewCacheHeaders($container->get(ApiClient::class));
     }

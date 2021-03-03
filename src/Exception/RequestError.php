@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Exception;
@@ -13,7 +14,7 @@ class RequestError extends RuntimeException implements PrimoError
     /** @var RequestInterface|null */
     private $request;
 
-    public static function withRequest(RequestInterface $request, string $message, int $code) : self
+    public static function withRequest(RequestInterface $request, string $message, int $code): self
     {
         $error = new static($message, $code);
         $error->request = $request;
@@ -21,7 +22,7 @@ class RequestError extends RuntimeException implements PrimoError
         return $error;
     }
 
-    public static function withMissingRouteResult(RequestInterface $request) : self
+    public static function withMissingRouteResult(RequestInterface $request): self
     {
         $message = sprintf(
             'The request for %s failed because the route result was not available. This means that routing has ' .
@@ -32,7 +33,7 @@ class RequestError extends RuntimeException implements PrimoError
         return self::withRequest($request, $message, 500);
     }
 
-    public static function withMissingTemplateAttribute(RequestInterface $request, string $expectedTemplateAttribute) : self
+    public static function withMissingTemplateAttribute(RequestInterface $request, string $expectedTemplateAttribute): self
     {
         $message = sprintf(
             'The request for "%s" failed because there was no template attribute found in the request. I was ' .
@@ -44,7 +45,7 @@ class RequestError extends RuntimeException implements PrimoError
         return self::withRequest($request, $message, 500);
     }
 
-    public function getRequest() :? RequestInterface
+    public function getRequest(): ?RequestInterface
     {
         return $this->request;
     }

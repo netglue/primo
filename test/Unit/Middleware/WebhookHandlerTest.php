@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -19,7 +20,7 @@ class WebhookHandlerTest extends TestCase
     /** @var WebhookHandler */
     private $subject;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->events = $this->createMock(EventDispatcherInterface::class);
@@ -27,13 +28,13 @@ class WebhookHandlerTest extends TestCase
         $this->subject = new WebhookHandler($this->events, 'secret');
     }
 
-    public function testAnEmptyRequestBodyIsABadRequest() : void
+    public function testAnEmptyRequestBodyIsABadRequest(): void
     {
         $response = $this->subject->handle($this->request);
         self::assertResponseHasStatus($response, 400);
     }
 
-    public function testAnInvalidPayloadIsABadRequest() : void
+    public function testAnInvalidPayloadIsABadRequest(): void
     {
         $stream = Psr17FactoryDiscovery::findStreamFactory()->createStream('Not JSON');
         $request = $this->request->withBody($stream);
@@ -42,7 +43,7 @@ class WebhookHandlerTest extends TestCase
     }
 
     /** @return mixed[] */
-    public function theWrongSecret() : iterable
+    public function theWrongSecret(): iterable
     {
         return [
             'Missing Secret' => ['{"not-defined":"foo"}'],
@@ -51,7 +52,7 @@ class WebhookHandlerTest extends TestCase
     }
 
     /** @dataProvider theWrongSecret */
-    public function testUnsuccessfulSecrets(string $body) : void
+    public function testUnsuccessfulSecrets(string $body): void
     {
         $stream = Psr17FactoryDiscovery::findStreamFactory()->createStream($body);
         $request = $this->request->withBody($stream);
@@ -59,7 +60,7 @@ class WebhookHandlerTest extends TestCase
         self::assertResponseHasStatus($response, 400);
     }
 
-    public function testPayloadWithTheCorrectSecretIsSuccessful() : void
+    public function testPayloadWithTheCorrectSecretIsSuccessful(): void
     {
         $body = '{"secret":"secret"}';
         $stream = Psr17FactoryDiscovery::findStreamFactory()->createStream($body);
@@ -69,7 +70,7 @@ class WebhookHandlerTest extends TestCase
     }
 
     /** @dataProvider theWrongSecret */
-    public function testPayloadIsSuccessfulWhenSecretIsNotRequired(string $body) : void
+    public function testPayloadIsSuccessfulWhenSecretIsNotRequired(string $body): void
     {
         $subject = new WebhookHandler($this->events, null);
         $stream = Psr17FactoryDiscovery::findStreamFactory()->createStream($body);

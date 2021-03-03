@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware\Container;
@@ -11,7 +12,7 @@ use Psr\Container\ContainerInterface;
 
 class PreviewHandlerFactoryTest extends TestCase
 {
-    public function testFactoryExecutesWhenConfigIsNotAvailable() : void
+    public function testFactoryExecutesWhenConfigIsNotAvailable(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::once())

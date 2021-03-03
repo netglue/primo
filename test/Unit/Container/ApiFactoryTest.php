@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Container;
@@ -15,7 +16,7 @@ use Psr\Http\Message\UriFactoryInterface;
 
 class ApiFactoryTest extends TestCase
 {
-    public function testAnExceptionIsThrownWhenAnApiUrlHasNotBeenConfigured() : void
+    public function testAnExceptionIsThrownWhenAnApiUrlHasNotBeenConfigured(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::once())
@@ -30,7 +31,7 @@ class ApiFactoryTest extends TestCase
         $factory->__invoke($container);
     }
 
-    public function testFactoryWithNoDependenciesSatisfied() : void
+    public function testFactoryWithNoDependenciesSatisfied(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::exactly(6))

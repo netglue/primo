@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\ResultSet;
@@ -13,13 +14,13 @@ use PrimoTest\Unit\TestCase;
 
 class TypeMapTest extends TestCase
 {
-    public function testGivenAnyTypeTheDefaultWillBeReturned() : void
+    public function testGivenAnyTypeTheDefaultWillBeReturned(): void
     {
         $map = new TypeMap([]);
         self::assertSame(Document::class, $map->className('whatever'));
     }
 
-    public function testGivenSpecificTypeTheCorrectClassWillBeReturned() : void
+    public function testGivenSpecificTypeTheCorrectClassWillBeReturned(): void
     {
         $map = new TypeMap([
             SimpleDocument::class => ['a', 'b'],
@@ -29,13 +30,13 @@ class TypeMapTest extends TestCase
         self::assertSame(SimpleDocument::class, $map->className('b'));
     }
 
-    public function testThatMappingCanBeString() : void
+    public function testThatMappingCanBeString(): void
     {
         $map = new TypeMap([SimpleDocument::class => 'c']);
         self::assertSame(SimpleDocument::class, $map->className('c'));
     }
 
-    public function testThatAnExceptionIsThrownWhenAClassDoesNotExist() : void
+    public function testThatAnExceptionIsThrownWhenAClassDoesNotExist(): void
     {
         $this->expectException(InvalidArgument::class);
         $this->expectExceptionMessage('The target class "Primo\UnknownClass" does not exist. Please create it or check your document type mapping configuration.');
@@ -45,7 +46,7 @@ class TypeMapTest extends TestCase
         ]);
     }
 
-    public function testThatAnExceptionIsThrownWithClassNamesNotImplementingHierarchy() : void
+    public function testThatAnExceptionIsThrownWithClassNamesNotImplementingHierarchy(): void
     {
         $this->expectException(InvalidArgument::class);
         $this->expectExceptionMessage('All target classes to hydrate to must descend from ' . Document::class);

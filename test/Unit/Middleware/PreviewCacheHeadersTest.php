@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -24,12 +25,12 @@ class PreviewCacheHeadersTest extends TestCase
     /** @var PreviewCacheHeaders */
     private $subject;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->handler = new class () implements RequestHandlerInterface {
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 return new TextResponse('Boom');
             }
@@ -38,7 +39,7 @@ class PreviewCacheHeadersTest extends TestCase
         $this->subject = new PreviewCacheHeaders($this->api);
     }
 
-    public function testThatNoCacheControlHeaderIsSetWhenPreviewIsNotActive() : void
+    public function testThatNoCacheControlHeaderIsSetWhenPreviewIsNotActive(): void
     {
         $this->api->method('inPreview')->willReturn(false);
         $response = $this->subject->process($this->request, $this->handler);
@@ -46,7 +47,7 @@ class PreviewCacheHeadersTest extends TestCase
         self::assertEmpty($response->getHeader('Cache-Control'));
     }
 
-    public function testThatCacheControlHeaderIsSetWhenPreviewIsActive() : void
+    public function testThatCacheControlHeaderIsSetWhenPreviewIsActive(): void
     {
         $this->api->method('inPreview')->willReturn(true);
         $response = $this->subject->process($this->request, $this->handler);

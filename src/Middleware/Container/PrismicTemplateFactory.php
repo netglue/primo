@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
@@ -9,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 final class PrismicTemplateFactory
 {
-    public function __invoke(ContainerInterface $container) : PrismicTemplate
+    public function __invoke(ContainerInterface $container): PrismicTemplate
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $templateAttribute = $config['primo']['templates']['templateAttribute']

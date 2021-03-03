@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo;
@@ -33,7 +34,7 @@ final class LinkResolver implements PrismicLinkResolver
         $this->urlHelper = $urlHelper;
     }
 
-    public function resolve(Link $link) :? string
+    public function resolve(Link $link): ?string
     {
         if ($link instanceof UrlLink) {
             return $link->url();
@@ -46,7 +47,7 @@ final class LinkResolver implements PrismicLinkResolver
         return null;
     }
 
-    private function resolveDocumentLink(DocumentLink $link) :? string
+    private function resolveDocumentLink(DocumentLink $link): ?string
     {
         if ($link->isBroken()) {
             return null;
@@ -67,7 +68,7 @@ final class LinkResolver implements PrismicLinkResolver
     }
 
     /** @return string[] */
-    private function routeParams(DocumentLink $link) : array
+    private function routeParams(DocumentLink $link): array
     {
         /**
          * You cannot use tags to construct a url from scratch because there is no way of knowing which
@@ -82,7 +83,7 @@ final class LinkResolver implements PrismicLinkResolver
         ];
     }
 
-    private function bookmarkNameByDocumentId(string $id) :? string
+    private function bookmarkNameByDocumentId(string $id): ?string
     {
         foreach ($this->bookmarks as $bookmark) {
             if ($bookmark->documentId() === $id) {
@@ -93,7 +94,7 @@ final class LinkResolver implements PrismicLinkResolver
         return null;
     }
 
-    private function url(DocumentLink $link, Route $route) : string
+    private function url(DocumentLink $link, Route $route): string
     {
         $options = $route->getOptions();
         $reuseResultParams = $options['defaults'][$this->routeParams->reuseResultParams()] ?? true;

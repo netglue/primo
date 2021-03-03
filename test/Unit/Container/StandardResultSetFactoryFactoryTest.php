@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Container;
@@ -9,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 class StandardResultSetFactoryFactoryTest extends TestCase
 {
-    public function testFactory() : void
+    public function testFactory(): void
     {
         $factory = new StandardResultSetFactoryFactory();
         $factory->__invoke($this->createMock(ContainerInterface::class));

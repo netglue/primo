@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -28,7 +29,7 @@ class PrismicTemplateTest extends TestCase
     /** @var RequestHandlerInterface */
     private $handler;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->templates = $this->createMock(TemplateRendererInterface::class);
@@ -39,7 +40,7 @@ class PrismicTemplateTest extends TestCase
             /** @var ServerRequestInterface */
             public $lastRequest;
 
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $this->lastRequest = $request;
 
@@ -48,57 +49,57 @@ class PrismicTemplateTest extends TestCase
         };
     }
 
-    public function testThatTheTemplateMustBeKnownInAdvance() : void
+    public function testThatTheTemplateMustBeKnownInAdvance(): void
     {
         $this->expectException(RequestError::class);
         $this->expectExceptionMessage('The request for "/foo" failed because there was no template attribute found in the request');
         $this->subject->process($this->request, $this->handler);
     }
 
-    private function requestHasTemplate() : ServerRequestInterface
+    private function requestHasTemplate(): ServerRequestInterface
     {
         return $this->request->withAttribute('template', 'template::foo');
     }
 
-    public function testThatRequestIsDelegatedWhenADocumentIsNotFound() : void
+    public function testThatRequestIsDelegatedWhenADocumentIsNotFound(): void
     {
         $request = $this->requestHasTemplate();
-        $this->assertNull($this->handler->lastRequest);
+        self::assertNull($this->handler->lastRequest);
 
         $this->subject->process($request, $this->handler);
 
-        $this->assertSame($request, $this->handler->lastRequest);
+        self::assertSame($request, $this->handler->lastRequest);
     }
 
-    private function requestHasDocument() : ServerRequestInterface
+    private function requestHasDocument(): ServerRequestInterface
     {
         $request = $this->requestHasTemplate();
 
         return $request->withAttribute(Document::class, $this->document);
     }
 
-    public function testThatTheTemplateWillBeRenderedWhenRequestCriteriaAreMet() : void
+    public function testThatTheTemplateWillBeRenderedWhenRequestCriteriaAreMet(): void
     {
-        $this->templates->expects($this->once())
+        $this->templates->expects(self::once())
             ->method('addDefaultParam')
             ->with(
-                $this->equalTo(TemplateRendererInterface::TEMPLATE_ALL),
-                $this->equalTo('document'),
-                $this->equalTo($this->document)
+                self::equalTo(TemplateRendererInterface::TEMPLATE_ALL),
+                self::equalTo('document'),
+                self::equalTo($this->document)
             );
 
-        $this->templates->expects($this->once())
+        $this->templates->expects(self::once())
             ->method('render')
-            ->with($this->equalTo('template::foo'))
+            ->with(self::equalTo('template::foo'))
             ->willReturn('Some Markup');
 
-        $this->document->expects($this->once())
+        $this->document->expects(self::once())
             ->method('lang')
             ->willReturn('en-gb');
 
         $response = $this->subject->process($this->requestHasDocument(), $this->handler);
         self::assertResponseIsSuccess($response);
-        self::assertMessageBodyMatches($response, $this->equalTo('Some Markup'));
+        self::assertMessageBodyMatches($response, self::equalTo('Some Markup'));
         self::assertMessageHasHeader($response, 'content-language', 'en-gb');
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware;
@@ -22,7 +23,7 @@ class ExpiredPreviewHandlerTest extends TestCase
     /** @var RequestHandlerInterface */
     private $handler;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
@@ -30,7 +31,7 @@ class ExpiredPreviewHandlerTest extends TestCase
             /** @var ServerRequestInterface */
             public $lastRequest;
 
-            public function handle(ServerRequestInterface $request) : ResponseInterface
+            public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 $this->lastRequest = $request;
 
@@ -40,19 +41,19 @@ class ExpiredPreviewHandlerTest extends TestCase
         $this->subject = new ExpiredPreviewHandler('/go-here');
     }
 
-    public function testThatMiddlewareIsNoOpByDefault() : void
+    public function testThatMiddlewareIsNoOpByDefault(): void
     {
         $response = $this->subject->process($this->request, $this->handler);
-        $this->assertSame('Boom', (string) $response->getBody());
+        self::assertSame('Boom', (string) $response->getBody());
     }
 
-    public function testThatResponseIsRedirectWithCookieWhenExpiryErrorIsPresent() : void
+    public function testThatResponseIsRedirectWithCookieWhenExpiryErrorIsPresent(): void
     {
         $error = new PreviewTokenExpired('Bad News');
         $request = $this->request->withAttribute(PreviewTokenExpired::class, $error);
         $response = $this->subject->process($request, $this->handler);
 
         self::assertResponseHasStatus($response, 302);
-        self::assertMessageHasHeader($response, 'Set-Cookie', $this->stringStartsWith(ApiClient::PREVIEW_COOKIE));
+        self::assertMessageHasHeader($response, 'Set-Cookie', self::stringStartsWith(ApiClient::PREVIEW_COOKIE));
     }
 }

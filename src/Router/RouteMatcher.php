@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Router;
@@ -33,7 +34,7 @@ final class RouteMatcher
      *
      * @param string[] $tags
      */
-    public function bestMatch(string $id, string $type, ?string $uid, ?string $bookmark, array $tags) :? Route
+    public function bestMatch(string $id, string $type, ?string $uid, ?string $bookmark, array $tags): ?Route
     {
         // A matching bookmark is nearly the most specific type of route and the easiest to reason about
         if ($bookmark) {
@@ -66,7 +67,7 @@ final class RouteMatcher
             $candidates[] = new ScoredRoute($route, $score);
         }
 
-        uasort($candidates, static function (ScoredRoute $a, ScoredRoute $b) : int {
+        uasort($candidates, static function (ScoredRoute $a, ScoredRoute $b): int {
             return $a->compare($b);
         });
 
@@ -80,7 +81,7 @@ final class RouteMatcher
         return $this->routeMatchingId($id);
     }
 
-    public function getBookmarkedRoute(string $bookmark) :? Route
+    public function getBookmarkedRoute(string $bookmark): ?Route
     {
         foreach ($this->routes() as $route) {
             $options = $route->getOptions();
@@ -95,7 +96,7 @@ final class RouteMatcher
     }
 
     /** @return Route[] */
-    public function routesMatchingType(string $type) : iterable
+    public function routesMatchingType(string $type): iterable
     {
         $routes = [];
         foreach ($this->routes() as $route) {
@@ -110,7 +111,7 @@ final class RouteMatcher
     }
 
     /** @return Route[] */
-    public function routesMatchingTag(string $tag) : iterable
+    public function routesMatchingTag(string $tag): iterable
     {
         $routes = [];
         foreach ($this->routes() as $route) {
@@ -124,7 +125,7 @@ final class RouteMatcher
         return $routes;
     }
 
-    public function getTypedRoute(string $type) :? Route
+    public function getTypedRoute(string $type): ?Route
     {
         foreach ($this->routes() as $route) {
             if ($this->matchesType($route, $type)) {
@@ -135,7 +136,7 @@ final class RouteMatcher
         return null;
     }
 
-    public function getUidRoute(string $type, string $uid) :? Route
+    public function getUidRoute(string $type, string $uid): ?Route
     {
         foreach ($this->routesMatchingType($type) as $route) {
             if ($this->matchesUid($route, $uid)) {
@@ -146,7 +147,7 @@ final class RouteMatcher
         return null;
     }
 
-    private function matchesType(Route $route, string $type) : bool
+    private function matchesType(Route $route, string $type): bool
     {
         $options = $route->getOptions();
         $option = $options['defaults'][$this->params->type()] ?? [];
@@ -157,13 +158,13 @@ final class RouteMatcher
         return is_string($option) && $option === $type;
     }
 
-    public function matchesTag(Route $route, string $tag) : bool
+    public function matchesTag(Route $route, string $tag): bool
     {
         return in_array($tag, $this->wantsTag($route), true);
     }
 
     /** @return string[] */
-    private function wantsTag(Route $route) : array
+    private function wantsTag(Route $route): array
     {
         $options = $route->getOptions();
         $tags = $options['defaults'][$this->params->tag()] ?? null;
@@ -184,7 +185,7 @@ final class RouteMatcher
         return $tags;
     }
 
-    private function matchesUid(Route $route, string $uid) : bool
+    private function matchesUid(Route $route, string $uid): bool
     {
         $options = $route->getOptions();
         $option = $options['defaults'][$this->params->uid()] ?? null;
@@ -192,7 +193,7 @@ final class RouteMatcher
         return $option === $uid;
     }
 
-    private function routeMatchingId(string $id) :? Route
+    private function routeMatchingId(string $id): ?Route
     {
         foreach ($this->routes() as $route) {
             $options = $route->getOptions();
@@ -206,7 +207,7 @@ final class RouteMatcher
     }
 
     /** @return Route[] */
-    private function routes() : iterable
+    private function routes(): iterable
     {
         return $this->collector->getRoutes();
     }

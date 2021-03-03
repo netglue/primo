@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -22,7 +23,7 @@ final class ExpiredPreviewHandler implements MiddlewareInterface
         $this->redirectUrl = $redirectUrl;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if (! $request->getAttribute(PreviewTokenExpired::class)) {
             return $handler->handle($request);

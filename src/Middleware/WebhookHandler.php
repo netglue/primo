@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -25,7 +26,7 @@ final class WebhookHandler implements RequestHandlerInterface
         $this->expectedSecret = $expectedSecret;
     }
 
-    public function handle(ServerRequestInterface $request) : ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $body = (string) $request->getBody();
 
@@ -48,7 +49,7 @@ final class WebhookHandler implements RequestHandlerInterface
         return new JsonResponse(['message' => 'Received'], 200);
     }
 
-    private function jsonError(string $errorMessage, int $statusCode) : ResponseInterface
+    private function jsonError(string $errorMessage, int $statusCode): ResponseInterface
     {
         return new JsonResponse(['error' => $errorMessage], $statusCode);
     }

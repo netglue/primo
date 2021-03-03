@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware\Container;
@@ -10,11 +11,11 @@ use Psr\Container\ContainerInterface;
 
 class DocumentResolverFactoryTest extends TestCase
 {
-    public function testFactory() : void
+    public function testFactory(): void
     {
         $resolver = $this->createMock(DocumentResolver::class);
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with(DocumentResolver::class)
             ->willReturn($resolver);

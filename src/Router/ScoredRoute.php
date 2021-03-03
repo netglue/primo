@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Router;
@@ -19,12 +20,12 @@ class ScoredRoute
         $this->score = $score;
     }
 
-    public function route() : Route
+    public function route(): Route
     {
         return $this->route;
     }
 
-    public function compare(self $other) : int
+    public function compare(self $other): int
     {
         return $this->score <=> $other->score;
     }

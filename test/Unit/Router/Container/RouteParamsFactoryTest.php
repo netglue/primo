@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Router\Container;
@@ -15,36 +16,36 @@ class RouteParamsFactoryTest extends TestCase
     /** @var MockObject|ContainerInterface */
     private $container;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = $this->createMock(ContainerInterface::class);
         $this->factory = new RouteParamsFactory();
     }
 
-    public function testContainerWithoutConfigWillYieldParamsWithDefaultValues() : void
+    public function testContainerWithoutConfigWillYieldParamsWithDefaultValues(): void
     {
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(false);
 
-        $this->container->expects($this->never())
+        $this->container->expects(self::never())
             ->method('get')
             ->with('config');
 
         $params = $this->factory->__invoke($this->container);
-        $this->assertSame('document-id', $params->id());
+        self::assertSame('document-id', $params->id());
     }
 
-    public function testContainerWithConfiguredParamsWillYieldParamsWithConfiguredValues() : void
+    public function testContainerWithConfiguredParamsWillYieldParamsWithConfiguredValues(): void
     {
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(true);
 
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('get')
             ->with('config')
             ->willReturn([
@@ -62,10 +63,10 @@ class RouteParamsFactoryTest extends TestCase
             ]);
 
         $params = $this->factory->__invoke($this->container);
-        $this->assertSame('a', $params->id());
-        $this->assertSame('b', $params->uid());
-        $this->assertSame('c', $params->type());
-        $this->assertSame('d', $params->bookmark());
-        $this->assertSame('e', $params->lang());
+        self::assertSame('a', $params->id());
+        self::assertSame('b', $params->uid());
+        self::assertSame('c', $params->type());
+        self::assertSame('d', $params->bookmark());
+        self::assertSame('e', $params->lang());
     }
 }

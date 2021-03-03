@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Container;
@@ -16,7 +17,7 @@ use Psr\Container\ContainerInterface;
 
 class LinkResolverFactoryTest extends TestCase
 {
-    private function routeMatcher() : RouteMatcher
+    private function routeMatcher(): RouteMatcher
     {
         return new RouteMatcher(
             RouteParams::fromArray([]),
@@ -24,7 +25,7 @@ class LinkResolverFactoryTest extends TestCase
         );
     }
 
-    public function testFactory() : void
+    public function testFactory(): void
     {
         $data = ApiData::factory(Json::decodeObject('{
             "refs": [
@@ -102,12 +103,12 @@ class LinkResolverFactoryTest extends TestCase
             }
         }'));
         $api = $this->createMock(ApiClient::class);
-        $api->expects($this->once())
+        $api->expects(self::once())
             ->method('data')
             ->willReturn($data);
 
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->exactly(4))
+        $container->expects(self::exactly(4))
             ->method('get')
             ->willReturnMap([
                 [RouteParams::class, RouteParams::fromArray([])],

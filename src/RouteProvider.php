@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo;
@@ -11,13 +12,13 @@ use Psr\Container\ContainerInterface;
 
 final class RouteProvider
 {
-    public function __invoke(Application $application, ContainerInterface $container) : void
+    public function __invoke(Application $application, ContainerInterface $container): void
     {
         $this->configurePreviews($container, $application);
         $this->configureWebhooks($container, $application);
     }
 
-    private function configurePreviews(ContainerInterface $container, Application $app) : void
+    private function configurePreviews(ContainerInterface $container, Application $app): void
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $previewUrl = $config['primo']['previews']['previewUrl'] ?? ConfigProvider::DEFAULT_PREVIEW_URL;
@@ -27,7 +28,7 @@ final class RouteProvider
         ]);
     }
 
-    private function configureWebhooks(ContainerInterface $container, Application $app) : void
+    private function configureWebhooks(ContainerInterface $container, Application $app): void
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $options = $config['primo']['webhook'];

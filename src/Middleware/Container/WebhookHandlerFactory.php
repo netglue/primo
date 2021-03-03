@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
@@ -12,7 +13,7 @@ use function sprintf;
 
 final class WebhookHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : WebhookHandler
+    public function __invoke(ContainerInterface $container): WebhookHandler
     {
         $config = $container->has('config') ? $container->get('config') : [];
 
@@ -22,7 +23,7 @@ final class WebhookHandlerFactory
         );
     }
 
-    private function assertEventDispatcher(ContainerInterface $container) : EventDispatcherInterface
+    private function assertEventDispatcher(ContainerInterface $container): EventDispatcherInterface
     {
         if ($container->has(EventDispatcherInterface::class)) {
             return $container->get(EventDispatcherInterface::class);

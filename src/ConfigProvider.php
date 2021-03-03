@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo;
@@ -12,7 +13,7 @@ final class ConfigProvider
     public const DEFAULT_WEBHOOK_URL = '/prismic-webhook';
 
     /** @return mixed[] */
-    public function __invoke() : array
+    public function __invoke(): array
     {
         return [
             'prismic' => [
@@ -48,7 +49,7 @@ final class ConfigProvider
     }
 
     /** @return mixed[] */
-    private function dependencies() : array
+    private function dependencies(): array
     {
         return [
             'factories' => [
@@ -78,7 +79,7 @@ final class ConfigProvider
     }
 
     /** @return mixed[] */
-    private function routing() : array
+    private function routing(): array
     {
         return [
             'params' => [

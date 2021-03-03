@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware\Container;
@@ -9,10 +10,10 @@ use Psr\Container\ContainerInterface;
 
 class ExpiredPreviewHandlerFactoryTest extends TestCase
 {
-    public function testFactoryWhenNoConfigIsAvailable() : void
+    public function testFactoryWhenNoConfigIsAvailable(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('has')
             ->with('config')
             ->willReturn(false);

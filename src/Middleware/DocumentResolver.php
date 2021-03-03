@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -22,7 +23,7 @@ final class DocumentResolver implements MiddlewareInterface
         $this->resolver = $resolver;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         // Get hold of the matched route (RouteResult) so we can inspect and resolve a document
         $routeResult = $request->getAttribute(RouteResult::class);

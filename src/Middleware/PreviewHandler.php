@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -33,7 +34,7 @@ final class PreviewHandler implements MiddlewareInterface
         $this->defaultUrl = $defaultUrl;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $query = $request->getQueryParams();
         if (! isset($query['token']) || empty($query['token'])) {

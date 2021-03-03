@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - [#8](https://github.com/netglue/primo/pull/8) Improves CI by using [the matrix action from the Laminas project](https://github.com/laminas/laminas-ci-matrix-action).
 - [#8](https://github.com/netglue/primo/pull/8) Also updates dependencies, fixing test failures on 8 _(Out of date PHPUnit)_ and fixing a test failure due to copy/paste of a duplicate route name.
+- [#9](https://github.com/netglue/primo/pull/9) Cleans up CS so it's the same as the adopted coding standard.
 
 ### Deprecated
 

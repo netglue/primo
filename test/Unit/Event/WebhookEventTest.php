@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Event;
@@ -13,7 +14,7 @@ use function unserialize;
 
 class WebhookEventTest extends TestCase
 {
-    public function testThatEventsCanBeSerialised() : void
+    public function testThatEventsCanBeSerialised(): void
     {
         $payload = new stdClass();
         $payload->foo = 'baz';
@@ -24,11 +25,11 @@ class WebhookEventTest extends TestCase
         $copy = unserialize($data);
         assert($copy instanceof WebhookEvent);
 
-        $this->assertEquals(
+        self::assertEquals(
             $event->received(),
             $copy->received()
         );
-        $this->assertSame(
+        self::assertSame(
             $event->payload()->foo,
             $copy->payload()->foo
         );

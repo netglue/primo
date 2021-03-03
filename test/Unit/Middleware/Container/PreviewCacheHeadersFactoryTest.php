@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrimoTest\Unit\Middleware\Container;
@@ -10,10 +11,10 @@ use Psr\Container\ContainerInterface;
 
 class PreviewCacheHeadersFactoryTest extends TestCase
 {
-    public function testFactory() : void
+    public function testFactory(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())
+        $container->expects(self::once())
             ->method('get')
             ->with(ApiClient::class)
             ->willReturn($this->createMock(ApiClient::class));

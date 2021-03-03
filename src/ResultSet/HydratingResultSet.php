@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\ResultSet;
@@ -34,7 +35,7 @@ final class HydratingResultSet implements ResultSet
         $this->results = $results;
     }
 
-    public function merge(ResultSet $with) : ResultSet
+    public function merge(ResultSet $with): ResultSet
     {
         $results = array_merge($this->results, $with->results());
 

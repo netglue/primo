@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Primo\Middleware;
@@ -27,7 +28,7 @@ final class PrismicTemplate implements MiddlewareInterface
         $this->templateAttribute = $templateAttribute;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $template = $request->getAttribute($this->templateAttribute);
         if (! $template) {

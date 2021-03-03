@@ -94,9 +94,9 @@ class RouteMatcherTest extends TestCase
 
     public function testThatMatchingIsFifoByDefault() : void
     {
-        $first = $this->collector->get('/some-path', $this->middleware, 'typed-route');
+        $first = $this->collector->get('/some-path', $this->middleware, 'route-one');
         $first->setOptions(['defaults' => [$this->params->type() => 'type']]);
-        $second = $this->collector->get('/other-path', $this->middleware, 'typed-route');
+        $second = $this->collector->get('/other-path', $this->middleware, 'route-two');
         $second->setOptions(['defaults' => [$this->params->type() => 'type']]);
         $matcher = $this->matcher();
         $this->assertSame($first, $matcher->getTypedRoute('type'));

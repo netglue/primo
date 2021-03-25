@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24b119e273a353ee6544a84c4741d8ff",
+    "content-hash": "ad7e98b39dfe502b2cc118c92adec816",
     "packages": [
         {
             "name": "dflydev/fig-cookies",
@@ -889,16 +889,16 @@
         },
         {
             "name": "netglue/prismic-client",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/netglue/prismic-client.git",
-                "reference": "b442526bb3b1edbf7021a1faacee6cf7d1e1ca91"
+                "reference": "9570c39182d2c295b8daf8862f2cfdc67ee23cb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/netglue/prismic-client/zipball/b442526bb3b1edbf7021a1faacee6cf7d1e1ca91",
-                "reference": "b442526bb3b1edbf7021a1faacee6cf7d1e1ca91",
+                "url": "https://api.github.com/repos/netglue/prismic-client/zipball/9570c39182d2c295b8daf8862f2cfdc67ee23cb1",
+                "reference": "9570c39182d2c295b8daf8862f2cfdc67ee23cb1",
                 "shasum": ""
             },
             "require": {
@@ -953,9 +953,9 @@
             ],
             "support": {
                 "issues": "https://github.com/netglue/prismic-client/issues",
-                "source": "https://github.com/netglue/prismic-client/tree/0.5.0"
+                "source": "https://github.com/netglue/prismic-client/tree/0.6.0"
             },
-            "time": "2021-03-03T10:43:07+00:00"
+            "time": "2021-03-24T15:17:13+00:00"
         },
         {
             "name": "php-http/discovery",

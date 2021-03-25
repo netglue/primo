@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
-- Changed constraint for `netglue/prismic-client` to update to any release in the `0.x` series.
+- Update `netglue/prismic-client` to `0.6.0`
 
 ### Deprecated
 

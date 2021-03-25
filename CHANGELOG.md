@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.5.2 - 2021-03-25
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Changed constraint for `netglue/prismic-client` to update to any release in the `0.x` series.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.5.1 - 2021-03-03
 
 ### Added

@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.5.3 - 2021-03-29
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#15](https://github.com/netglue/primo/pull/15) fixes [#14](https://github.com/netglue/primo/issues/14).
+  When a route provides a document type _and_ an identifier, use that identifier to narrow down the result set to
+  a single document.
+
 ## 0.5.2 - 2021-03-25
 
 ### Added

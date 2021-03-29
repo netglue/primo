@@ -220,7 +220,7 @@ class DocumentResolverTest extends TestCase
         $this->resolver->resolve($result);
     }
 
-    public function testThatWhenTheTypeAndIdentifierArePresentInRoutingParametersTheIsWillBeUsedToResolveADocument() : void
+    public function testThatWhenTheTypeAndIdentifierArePresentInRoutingParametersTheIsWillBeUsedToResolveADocument(): void
     {
         $document = $this->createMock(Document::class);
         $query = $this->createMock(Query::class);
@@ -236,13 +236,15 @@ class DocumentResolverTest extends TestCase
 
         $query->expects(self::once())
             ->method('query')
-            ->with(self::callback(function ($arg) {
+            ->with(self::callback(static function ($arg): bool {
                 $expect = (string) Predicate::at('document.type', 'type');
                 self::assertEquals($expect, (string) $arg);
+
                 return true;
-            }), self::callback(function ($arg) {
+            }), self::callback(static function ($arg): bool {
                 $expect = (string) Predicate::at('document.id', 'my-id');
                 self::assertEquals($expect, (string) $arg);
+
                 return true;
             }))
             ->willReturnSelf();

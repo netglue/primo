@@ -14,6 +14,7 @@ use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Prismic\Document;
+use Prismic\Predicate;
 use Prismic\Query;
 use Prismic\ResultSet;
 use Psr\Http\Message\ResponseInterface;
@@ -217,5 +218,60 @@ class DocumentResolverTest extends TestCase
             [$this->params->tag() => 'my-tag']
         );
         $this->resolver->resolve($result);
+    }
+
+    public function testThatWhenTheTypeAndIdentifierArePresentInRoutingParametersTheIsWillBeUsedToResolveADocument() : void
+    {
+        $document = $this->createMock(Document::class);
+        $query = $this->createMock(Query::class);
+        $resultSet = $this->createMock(ResultSet::class);
+
+        $resultSet->expects(self::once())
+            ->method('count')
+            ->willReturn(1);
+
+        $resultSet->expects(self::once())
+            ->method('first')
+            ->willReturn($document);
+
+        $query->expects(self::once())
+            ->method('query')
+            ->with(self::callback(function ($arg) {
+                $expect = (string) Predicate::at('document.type', 'type');
+                self::assertEquals($expect, (string) $arg);
+                return true;
+            }), self::callback(function ($arg) {
+                $expect = (string) Predicate::at('document.id', 'my-id');
+                self::assertEquals($expect, (string) $arg);
+                return true;
+            }))
+            ->willReturnSelf();
+
+        $query->expects(self::once())
+            ->method('lang')
+            ->with('*')
+            ->willReturnSelf();
+
+        $this->api->expects(self::once())
+            ->method('createQuery')
+            ->willReturn($query);
+
+        $this->api->expects(self::once())
+            ->method('query')
+            ->with($query)
+            ->willReturn($resultSet);
+
+        $resultSet->method('count')
+            ->willReturn(1);
+
+        $result = RouteResult::fromRoute(
+            new Route('/foo', $this->middleware, ['GET']),
+            [
+                $this->params->id() => 'my-id',
+                $this->params->type() => 'type',
+            ]
+        );
+
+        self::assertSame($document, $this->resolver->resolve($result));
     }
 }

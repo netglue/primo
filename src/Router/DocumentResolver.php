@@ -63,6 +63,7 @@ class DocumentResolver
         $params = $routeResult->getMatchedParams();
         $type = $params[$this->routeParams->type()] ?? null;
         $uid = $params[$this->routeParams->uid()]  ?? null;
+        $id = $params[$this->routeParams->id()] ?? null;
         $tags = $params[$this->routeParams->tag()] ?? null;
 
         // At least one of these must be present to attempt a match
@@ -82,6 +83,10 @@ class DocumentResolver
 
         if ($uid) {
             $predicates[] = Predicate::at(sprintf('my.%s.uid', $type), $uid);
+        }
+
+        if ($id) {
+            $predicates[] = Predicate::at('document.id', $id);
         }
 
         if (! empty($tags)) {

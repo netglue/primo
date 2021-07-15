@@ -72,7 +72,8 @@
         ],
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "static-analysis": "psalm --shepherd --stats"
     },
     "suggest": {
         "netglue/prismic-cli": "for building your custom content model definitions for the Prismic.io API",

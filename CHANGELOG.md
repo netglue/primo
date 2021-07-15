@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.6.0 - TBD
+
+### Added
+
+- [#31](https://github.com/netglue/primo/pull/31) Adds a route name for both the preview and webhook routes. The routes are opt-in anyway, but you would typically execute `(new RouteProvider())($app, $container);` in your `routes.php` configuration file to benefit from these features. Adding the route name enables you to identify these routes and target them more easily. Both route names are identified with public constants that you can get from the RouteProvider with:
+    - `\Primo\RouteProvider::PREVIEW_ROUTE_NAME`
+    - `\Primo\RouteProvider::WEBHOOK_ROUTE_NAME`
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.5.4 - 2021-07-05
 
 ### Added

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace PrimoTest\Integration;
 
+use Laminas;
 use Laminas\ConfigAggregator\ConfigAggregator;
 use Laminas\ServiceManager\ServiceManager;
 use Mezzio;
-use Laminas;
 use PHPUnit\Framework\TestCase;
 use Primo\ConfigProvider;
 use Psr\Container\ContainerInterface;

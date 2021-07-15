@@ -21,7 +21,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PrimoTest\\Unit\\": "test/Unit"
+            "PrimoTest\\Unit\\": "test/Unit",
+            "PrimoTest\\Integration\\": "test/Integration"
         }
     },
     "require": {
@@ -36,12 +37,14 @@
         "mezzio/mezzio-template": "^2.0",
         "netglue/prismic-client": ">= 0.5 < 1.0",
         "psr/cache": "^1.0",
-        "psr/container": "^1.0",
+        "psr/container": "^1.0 || ^2.0",
         "psr/event-dispatcher": "^1.0"
     },
     "require-dev": {
         "doctrine/coding-standard": "^9.0.0",
         "helmich/phpunit-psr7-assert": "^4.1",
+        "laminas/laminas-config-aggregator": "^1.5",
+        "laminas/laminas-servicemanager": "^3.6",
         "mezzio/mezzio-fastroute": "^3.0",
         "php-http/curl-client": "^2.1",
         "php-http/mock-client": "^1.3",

@@ -12,5 +12,8 @@
         <testsuite name="Unit Tests">
             <directory>./test/Unit</directory>
         </testsuite>
+        <testsuite name="Integration Tests">
+            <directory>./test/Integration</directory>
+        </testsuite>
     </testsuites>
 </phpunit>

@@ -43,6 +43,8 @@
     "require-dev": {
         "doctrine/coding-standard": "^9.0.0",
         "helmich/phpunit-psr7-assert": "^4.1",
+        "laminas/laminas-config-aggregator": "^1.5",
+        "laminas/laminas-servicemanager": "^3.6",
         "mezzio/mezzio-fastroute": "^3.0",
         "php-http/curl-client": "^2.1",
         "php-http/mock-client": "^1.3",

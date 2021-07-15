@@ -12,6 +12,9 @@ use Psr\Container\ContainerInterface;
 
 final class RouteProvider
 {
+    public const PREVIEW_ROUTE_NAME = 'prismic-preview-route';
+    public const WEBHOOK_ROUTE_NAME = 'prismic-webhook-route';
+
     public function __invoke(Application $application, ContainerInterface $container): void
     {
         $this->configurePreviews($container, $application);
@@ -25,7 +28,7 @@ final class RouteProvider
         $app->get($previewUrl, [
             PreviewHandler::class,
             ExpiredPreviewHandler::class,
-        ]);
+        ], self::PREVIEW_ROUTE_NAME);
     }
 
     private function configureWebhooks(ContainerInterface $container, Application $app): void
@@ -38,6 +41,6 @@ final class RouteProvider
         }
 
         $url = $options['url'] ?? ConfigProvider::DEFAULT_WEBHOOK_URL;
-        $app->post($url, WebhookHandler::class);
+        $app->post($url, WebhookHandler::class, self::WEBHOOK_ROUTE_NAME);
     }
 }

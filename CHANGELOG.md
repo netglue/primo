@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#32](https://github.com/netglue/primo/pull/32) adds a workflow using [Composer Require Checker](https://github.com/maglnet/ComposerRequireChecker) to make sure that all dependencies used in the code are declared in `composer.json`… and also declares the ones that were missing.
 
 ## 0.5.4 - 2021-07-05
 

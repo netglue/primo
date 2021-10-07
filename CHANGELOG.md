@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.6.1 - 2021-10-07
+
+### Added
+
+- [#49](https://github.com/netglue/primo/pull/49) Adds support for PHP 8.1 thanks to @gsteel
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.6.0 - 2021-07-15
 
 ### Added

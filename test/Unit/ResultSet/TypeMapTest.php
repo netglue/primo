@@ -7,7 +7,6 @@ namespace PrimoTest\Unit\ResultSet;
 use Primo\Content\Document;
 use Primo\Exception\InvalidArgument;
 use Primo\ResultSet\TypeMap;
-use Primo\UnknownClass;
 use PrimoTest\Unit\Asset\BadHierarchy;
 use PrimoTest\Unit\Asset\SimpleDocument;
 use PrimoTest\Unit\TestCase;
@@ -42,7 +41,7 @@ class TypeMapTest extends TestCase
         $this->expectExceptionMessage('The target class "Primo\UnknownClass" does not exist. Please create it or check your document type mapping configuration.');
 
         new TypeMap([
-            UnknownClass::class => ['a', 'b'],
+            'Primo\UnknownClass' => ['a', 'b'],
         ]);
     }
 

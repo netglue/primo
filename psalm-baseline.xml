@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.19.0@a2ad69ae4f5ab1f7d225a8dc4e2ec2d9415ed599">
   <file src="src/Event/WebhookEvent.php">
-    <FalsableReturnStatement occurrences="1">
-      <code>DateTimeImmutable::createFromFormat('U', (string) $this-&gt;received, new DateTimeZone('UTC'))</code>
-    </FalsableReturnStatement>
-    <InvalidFalsableReturnType occurrences="1">
-      <code>DateTimeImmutable</code>
-    </InvalidFalsableReturnType>
-    <MixedArgument occurrences="1">
-      <code>$serialized</code>
-    </MixedArgument>
     <MixedAssignment occurrences="2">
       <code>$this-&gt;payload</code>
       <code>$this-&gt;received</code>

@@ -30,7 +30,6 @@
         "ext-json": "*",
         "dflydev/fig-cookies": "^2.0||^3.0",
         "laminas/laminas-diactoros": "^2.7.0",
-        "laminas/laminas-stdlib": "^3.6",
         "mezzio/mezzio": "^3.6",
         "mezzio/mezzio-helpers": "^5.6",
         "mezzio/mezzio-router": "^3.7",

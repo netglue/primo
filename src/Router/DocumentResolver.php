@@ -46,6 +46,9 @@ class DocumentResolver
         return $document;
     }
 
+    /**
+     * @psalm-suppress DeprecatedMethod
+     */
     private function resolveWithBookmark(RouteResult $routeResult): ?Document
     {
         $params = $routeResult->getMatchedParams();

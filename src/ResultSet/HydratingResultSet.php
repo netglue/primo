@@ -12,11 +12,15 @@ use function array_merge;
 use function count;
 use function max;
 
+/**
+ * @template-implements ResultSet<Document>
+ */
 final class HydratingResultSet implements ResultSet
 {
+    /** @use TypicalResultSetBehaviour<Document> */
     use TypicalResultSetBehaviour;
 
-    /** @param Document[] $results */
+    /** @param list<Document> $results */
     public function __construct(
         int $page,
         int $resultsPerPage,
@@ -35,11 +39,16 @@ final class HydratingResultSet implements ResultSet
         $this->results = $results;
     }
 
+    /**
+     * @param ResultSet<Document> $with
+     *
+     * @return ResultSet<Document>
+     */
     public function merge(ResultSet $with): ResultSet
     {
         $results = array_merge($this->results, $with->results());
 
-        return new static(
+        return new self(
             1,
             count($results),
             $this->totalResults,

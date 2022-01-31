@@ -14,6 +14,9 @@ use Prismic\LinkResolver as PrismicLinkResolver;
 use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
 
+/**
+ * @psalm-suppress DeprecatedClass
+ */
 final class LinkResolver implements PrismicLinkResolver
 {
     /** @var RouteParams */
@@ -67,11 +70,11 @@ final class LinkResolver implements PrismicLinkResolver
         return null;
     }
 
-    /** @return string[] */
+    /** @return non-empty-array<string, string|null> */
     private function routeParams(DocumentLink $link): array
     {
         /**
-         * You cannot use tags to construct a url from scratch because there is no way of knowing which
+         * You cannot use tags to construct an url from scratch because there is no way of knowing which
          * tag amongst many is the correct tag for the current context.
          */
         return [

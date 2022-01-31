@@ -9,6 +9,9 @@ use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
 use TypeError;
 
+/**
+ * @psalm-suppress DeprecatedMethod
+ */
 class RouteParamsTest extends TestCase
 {
     public function testOptionsArray(): RouteParams
@@ -22,7 +25,7 @@ class RouteParamsTest extends TestCase
             'reuseResultParams' => 'reuse',
         ];
         $params = RouteParams::fromArray($options);
-        $this->addToAssertionCount(1);
+        self::assertTrue(true);
 
         return $params;
     }
@@ -63,8 +66,8 @@ class RouteParamsTest extends TestCase
         self::assertSame('reuse', $params->reuseResultParams());
     }
 
-    /** @return mixed[] */
-    public function typeErrorProvider(): iterable
+    /** @return array<string, array{0: array<array-key, mixed>}> */
+    public function typeErrorProvider(): array
     {
         return [
             'Non string option key' => [[0 => 'value']],
@@ -73,13 +76,14 @@ class RouteParamsTest extends TestCase
     }
 
     /**
-     * @param mixed[] $options
+     * @param array<array-key, mixed> $options
      *
      * @dataProvider typeErrorProvider
      */
     public function testOptionTypeError(array $options): void
     {
         $this->expectException(TypeError::class);
+        /** @psalm-suppress MixedArgumentTypeCoercion, PossiblyInvalidArgument */
         RouteParams::fromArray($options);
     }
 

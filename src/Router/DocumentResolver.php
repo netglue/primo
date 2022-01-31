@@ -14,6 +14,9 @@ use function count;
 use function is_string;
 use function sprintf;
 
+/**
+ * @psalm-suppress DeprecatedMethod
+ */
 class DocumentResolver
 {
     /** @var RouteParams */
@@ -47,7 +50,7 @@ class DocumentResolver
     }
 
     /**
-     * @psalm-suppress DeprecatedMethod
+     * @deprecated
      */
     private function resolveWithBookmark(RouteResult $routeResult): ?Document
     {

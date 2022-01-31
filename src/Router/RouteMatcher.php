@@ -16,6 +16,9 @@ use function is_array;
 use function is_string;
 use function uasort;
 
+/**
+ * @psalm-suppress DeprecatedMethod
+ */
 final class RouteMatcher
 {
     /** @var RouteParams */
@@ -81,6 +84,7 @@ final class RouteMatcher
         return $this->routeMatchingId($id);
     }
 
+    /** @deprecated */
     public function getBookmarkedRoute(string $bookmark): ?Route
     {
         foreach ($this->routes() as $route) {

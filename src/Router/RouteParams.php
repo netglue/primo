@@ -10,6 +10,9 @@ use function implode;
 use function in_array;
 use function sprintf;
 
+/**
+ * @psalm-suppress DeprecatedProperty
+ */
 final class RouteParams
 {
     /** @var string */
@@ -18,7 +21,11 @@ final class RouteParams
     private $uid = 'document-uid';
     /** @var string */
     private $type = 'document-type';
-    /** @var string */
+    /**
+     * @deprecated
+     *
+     * @var string
+     */
     private $bookmark = 'document-bookmark';
     /** @var string */
     private $lang = 'document-lang';
@@ -33,10 +40,10 @@ final class RouteParams
     {
     }
 
-    /** @param string[] $options */
+    /** @param array<string, string> $options */
     public static function fromArray(array $options): self
     {
-        $params = new static();
+        $params = new self();
         foreach ($options as $name => $value) {
             $params->setParameter($name, $value);
         }
@@ -72,6 +79,7 @@ final class RouteParams
         return $this->type;
     }
 
+    /** @deprecated */
     public function bookmark(): string
     {
         return $this->bookmark;

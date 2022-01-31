@@ -17,6 +17,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * @psalm-suppress DeprecatedMethod
+ */
 class RouteMatcherTest extends TestCase
 {
     /** @var RouteParams */
@@ -169,8 +172,8 @@ class RouteMatcherTest extends TestCase
         self::assertSame($route, $matcher->getUidRoute('a', 'bar'));
     }
 
-    /** @return mixed[] */
-    public function routeMatchingProvider(): array
+    /** @return array<string, array<string, mixed>> */
+    private function routeMatchingProvider(): array
     {
         return [
             'bookmark' => [$this->params->bookmark() => 'mark'],

@@ -12,7 +12,7 @@ final class ConfigProvider
     public const DEFAULT_PREVIEW_URL = '/preview';
     public const DEFAULT_WEBHOOK_URL = '/prismic-webhook';
 
-    /** @return mixed[] */
+    /** @return array<string, mixed[]> */
     public function __invoke(): array
     {
         return [
@@ -48,7 +48,7 @@ final class ConfigProvider
         ];
     }
 
-    /** @return mixed[] */
+    /** @return array{factories: array<class-string, class-string>, aliases: array<class-string, class-string>} */
     private function dependencies(): array
     {
         return [
@@ -78,7 +78,7 @@ final class ConfigProvider
         ];
     }
 
-    /** @return mixed[] */
+    /** @return array{params: array<string, string>} */
     private function routing(): array
     {
         return [

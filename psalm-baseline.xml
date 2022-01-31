@@ -1,36 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.8.1@f73f2299dbc59a3e6c4d66cff4605176e728ee69">
-  <file src="src/Container/ApiFactory.php">
-    <MixedArgument occurrences="7">
-      <code>$apiUrl</code>
-      <code>$config['prismic']['token'] ?? null</code>
-      <code>$container-&gt;has(PrismicApiCache::class) ? $container-&gt;get(PrismicApiCache::class) : null</code>
-      <code>$container-&gt;has(PrismicHttpClient::class) ? $container-&gt;get(PrismicHttpClient::class) : null</code>
-      <code>$container-&gt;has(RequestFactoryInterface::class) ? $container-&gt;get(RequestFactoryInterface::class) : null</code>
-      <code>$container-&gt;has(ResultSetFactory::class) ? $container-&gt;get(ResultSetFactory::class) : null</code>
-      <code>$container-&gt;has(UriFactoryInterface::class) ? $container-&gt;get(UriFactoryInterface::class) : null</code>
-    </MixedArgument>
-    <MixedArrayAccess occurrences="2">
-      <code>$config['prismic']</code>
-      <code>$config['prismic']</code>
-    </MixedArrayAccess>
-    <MixedAssignment occurrences="2">
-      <code>$apiUrl</code>
-      <code>$config</code>
-    </MixedAssignment>
-  </file>
-  <file src="src/Container/LinkResolverFactory.php">
-    <MixedArgument occurrences="4">
-      <code>$container-&gt;get(ApiClient::class)-&gt;data()-&gt;bookmarks()</code>
-      <code>$container-&gt;get(RouteMatcher::class)</code>
-      <code>$container-&gt;get(RouteParams::class)</code>
-      <code>$container-&gt;get(UrlHelper::class)</code>
-    </MixedArgument>
-    <MixedMethodCall occurrences="2">
-      <code>bookmarks</code>
-      <code>data</code>
-    </MixedMethodCall>
-  </file>
+<files psalm-version="4.19.0@a2ad69ae4f5ab1f7d225a8dc4e2ec2d9415ed599">
   <file src="src/Event/WebhookEvent.php">
     <FalsableReturnStatement occurrences="1">
       <code>DateTimeImmutable::createFromFormat('U', (string) $this-&gt;received, new DateTimeZone('UTC'))</code>
@@ -54,14 +23,6 @@
   <file src="src/Exception/RoutingError.php">
     <UnsafeInstantiation occurrences="2"/>
   </file>
-  <file src="src/Http/PrismicHttpClientFactory.php">
-    <MixedInferredReturnType occurrences="1">
-      <code>ClientInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$container-&gt;get(ClientInterface::class)</code>
-    </MixedReturnStatement>
-  </file>
   <file src="src/LinkResolver.php">
     <MixedArrayAccess occurrences="1">
       <code>$options['defaults'][$this-&gt;routeParams-&gt;reuseResultParams()]</code>
@@ -69,11 +30,6 @@
     <MixedAssignment occurrences="1">
       <code>$reuseResultParams</code>
     </MixedAssignment>
-  </file>
-  <file src="src/Middleware/Container/DocumentResolverFactory.php">
-    <MixedArgument occurrences="1">
-      <code>$container-&gt;get(Resolver::class)</code>
-    </MixedArgument>
   </file>
   <file src="src/Middleware/Container/ExpiredPreviewHandlerFactory.php">
     <MixedArgument occurrences="1">
@@ -86,20 +42,8 @@
       <code>$config</code>
     </MixedAssignment>
   </file>
-  <file src="src/Middleware/Container/InjectRequestCookiesFactory.php">
-    <MixedArgument occurrences="1">
-      <code>$container-&gt;get(ApiClient::class)</code>
-    </MixedArgument>
-  </file>
-  <file src="src/Middleware/Container/PreviewCacheHeadersFactory.php">
-    <MixedArgument occurrences="1">
-      <code>$container-&gt;get(ApiClient::class)</code>
-    </MixedArgument>
-  </file>
   <file src="src/Middleware/Container/PreviewHandlerFactory.php">
-    <MixedArgument occurrences="3">
-      <code>$container-&gt;get(ApiClient::class)</code>
-      <code>$container-&gt;get(LinkResolver::class)</code>
+    <MixedArgument occurrences="1">
       <code>$defaultUrl</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
@@ -111,8 +55,7 @@
     </MixedAssignment>
   </file>
   <file src="src/Middleware/Container/PrismicTemplateFactory.php">
-    <MixedArgument occurrences="2">
-      <code>$container-&gt;get(TemplateRendererInterface::class)</code>
+    <MixedArgument occurrences="1">
       <code>$templateAttribute</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
@@ -133,12 +76,6 @@
     <MixedAssignment occurrences="1">
       <code>$config</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>EventDispatcherInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$container-&gt;get(EventDispatcherInterface::class)</code>
-    </MixedReturnStatement>
   </file>
   <file src="src/Middleware/InjectRequestCookies.php">
     <MixedArgumentTypeCoercion occurrences="1">
@@ -157,11 +94,6 @@
     <MixedAssignment occurrences="1">
       <code>$template</code>
     </MixedAssignment>
-  </file>
-  <file src="src/ResultSet/Container/HydratingResultSetFactoryFactory.php">
-    <MixedArgument occurrences="1">
-      <code>$container-&gt;get(TypeMap::class)</code>
-    </MixedArgument>
   </file>
   <file src="src/ResultSet/Container/TypeMapFactory.php">
     <MixedArgument occurrences="2">
@@ -226,18 +158,6 @@
       <code>$url</code>
     </MixedAssignment>
   </file>
-  <file src="src/Router/Container/DocumentResolverFactory.php">
-    <MixedArgument occurrences="2">
-      <code>$container-&gt;get(ApiClient::class)</code>
-      <code>$container-&gt;get(RouteParams::class)</code>
-    </MixedArgument>
-  </file>
-  <file src="src/Router/Container/RouteMatcherFactory.php">
-    <MixedArgument occurrences="2">
-      <code>$container-&gt;get(RouteCollector::class)</code>
-      <code>$container-&gt;get(RouteParams::class)</code>
-    </MixedArgument>
-  </file>
   <file src="src/Router/Container/RouteParamsFactory.php">
     <MixedArgument occurrences="1">
       <code>$options</code>
@@ -291,11 +211,6 @@
       <code>string[]</code>
     </MixedReturnTypeCoercion>
   </file>
-  <file src="src/Router/RouteParams.php">
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$name</code>
-    </MixedArgumentTypeCoercion>
-  </file>
   <file src="test/Integration/IntegrationTestCase.php">
     <MixedArgument occurrences="1">
       <code>$dependencies</code>
@@ -309,27 +224,11 @@
     <MixedAssignment occurrences="1">
       <code>$dependencies</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>Mezzio\Application</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;getContainer()-&gt;get(Mezzio\Application::class)</code>
-    </MixedReturnStatement>
   </file>
   <file src="test/Integration/RouteProviderTest.php">
-    <MixedArgument occurrences="3">
-      <code>$application</code>
-      <code>$application</code>
-      <code>$application</code>
-    </MixedArgument>
     <MixedArrayAssignment occurrences="1">
       <code>$config['primo']['webhook']</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="3">
-      <code>$application</code>
-      <code>$application</code>
-      <code>$application</code>
-    </MixedAssignment>
   </file>
   <file src="test/Unit/Container/StandardResultSetFactoryFactoryTest.php">
     <InternalMethod occurrences="1">
@@ -453,91 +352,5 @@
   </file>
   <file src="test/Unit/ResultSet/TypeMapTest.php">
     <InvalidArgument occurrences="3"/>
-    <UndefinedClass occurrences="1">
-      <code>UnknownClass</code>
-    </UndefinedClass>
-  </file>
-  <file src="test/Unit/Router/Container/RouteParamsFactoryTest.php">
-    <MixedMethodCall occurrences="11">
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-    </MixedMethodCall>
-    <PossiblyInvalidArgument occurrences="2">
-      <code>$this-&gt;container</code>
-      <code>$this-&gt;container</code>
-    </PossiblyInvalidArgument>
-    <PossiblyUndefinedMethod occurrences="4">
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-    </PossiblyUndefinedMethod>
-  </file>
-  <file src="test/Unit/Router/DocumentResolverTest.php">
-    <MissingClosureParamType occurrences="2">
-      <code>$arg</code>
-      <code>$arg</code>
-    </MissingClosureParamType>
-    <MixedMethodCall occurrences="21">
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod occurrences="8">
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-    </PossiblyUndefinedMethod>
-  </file>
-  <file src="test/Unit/Router/RouteMatcherTest.php">
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$name</code>
-    </MixedArgumentTypeCoercion>
-    <MixedAssignment occurrences="1">
-      <code>$defaults</code>
-    </MixedAssignment>
-  </file>
-  <file src="test/Unit/Router/RouteParamsTest.php">
-    <InternalMethod occurrences="1">
-      <code>addToAssertionCount</code>
-    </InternalMethod>
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$options</code>
-    </MixedArgumentTypeCoercion>
-    <MixedInferredReturnType occurrences="1">
-      <code>mixed[]</code>
-    </MixedInferredReturnType>
   </file>
 </files>

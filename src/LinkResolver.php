@@ -15,20 +15,28 @@ use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
 
 /**
- * @psalm-suppress DeprecatedClass
+ * @psalm-suppress DeprecatedClass, DeprecatedMethod, DeprecatedProperty
  */
 final class LinkResolver implements PrismicLinkResolver
 {
     /** @var RouteParams */
     private $routeParams;
-    /** @var Bookmark[] */
+    /**
+     * @deprecated
+     *
+     * @var Bookmark[]
+     */
     private $bookmarks;
     /** @var RouteMatcher */
     private $routeMatcher;
     /** @var UrlHelper */
     private $urlHelper;
 
-    /** @param Bookmark[] $bookmarks */
+    /**
+     * @deprecated $bookmarks
+     *
+     * @param Bookmark[] $bookmarks
+     */
     public function __construct(RouteParams $routeParams, RouteMatcher $matcher, UrlHelper $urlHelper, iterable $bookmarks)
     {
         $this->routeParams = $routeParams;
@@ -86,6 +94,9 @@ final class LinkResolver implements PrismicLinkResolver
         ];
     }
 
+    /**
+     * @deprecated
+     */
     private function bookmarkNameByDocumentId(string $id): ?string
     {
         foreach ($this->bookmarks as $bookmark) {

@@ -50,6 +50,7 @@
         "helmich/phpunit-psr7-assert": "^4.3",
         "laminas/laminas-config-aggregator": "^1.6",
         "laminas/laminas-servicemanager": "^3.7",
+        "lctrs/psalm-psr-container-plugin": "^1.6",
         "mezzio/mezzio-fastroute": "^3.3.0",
         "php-http/curl-client": "^2.2",
         "php-http/mock-client": "^1.5",

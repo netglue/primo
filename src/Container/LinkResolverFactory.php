@@ -13,6 +13,7 @@ use Psr\Container\ContainerInterface;
 
 final class LinkResolverFactory
 {
+    /** @psalm-suppress DeprecatedClass, DeprecatedMethod */
     public function __invoke(ContainerInterface $container): LinkResolver
     {
         return new LinkResolver(

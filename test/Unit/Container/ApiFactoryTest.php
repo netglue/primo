@@ -7,10 +7,10 @@ namespace PrimoTest\Unit\Container;
 use Primo\Cache\PrismicApiCache;
 use Primo\Container\ApiFactory;
 use Primo\Exception\ConfigurationError;
+use Primo\Http\PrismicHttpClient;
 use PrimoTest\Unit\TestCase;
 use Prismic\ResultSet\ResultSetFactory;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
@@ -38,7 +38,7 @@ class ApiFactoryTest extends TestCase
             ->method('has')
             ->willReturnMap([
                 ['config', true],
-                [ClientInterface::class, false],
+                [PrismicHttpClient::class, false],
                 [RequestFactoryInterface::class, false],
                 [UriFactoryInterface::class, false],
                 [ResultSetFactory::class, false],

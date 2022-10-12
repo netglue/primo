@@ -3,4 +3,8 @@
 /composer.lock export-ignore
 /phpcs.xml export-ignore
 /phpunit.xml.dist export-ignore
+/psalm.xml export-ignore
+/psalm-baseline.xml export-ignore
 /test/ export-ignore
+/.laminas-ci/ export-ignore
+/.laminas-ci.json export-ignore

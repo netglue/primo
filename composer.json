@@ -52,7 +52,7 @@
         "doctrine/coding-standard": "^9.0.2",
         "helmich/phpunit-psr7-assert": "^4.3",
         "laminas/laminas-config-aggregator": "^1.11",
-        "laminas/laminas-servicemanager": "^3.15",
+        "laminas/laminas-servicemanager": "^3.19.0",
         "lctrs/psalm-psr-container-plugin": "^1.7",
         "mezzio/mezzio-fastroute": "^3.7",
         "php-http/curl-client": "^2.2.1",

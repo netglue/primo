@@ -2,6 +2,7 @@
     "extensions": [
         "pcov"
     ],
+    "stablePHP": "8.1",
     "ini": [],
     "additional_checks": [
         {

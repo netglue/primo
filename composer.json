@@ -12,7 +12,10 @@
     "keywords": ["prismic", "prismicio", "psr-11", "mezzio", "laminas"],
     "homepage": "https://github.com/netglue/primo",
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "autoload": {
         "psr-4": {

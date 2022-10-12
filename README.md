@@ -15,13 +15,13 @@ This library integrates the Prismic.io headless content management system with M
 
 If you're building websites in PHP and want a CMS without the hassle of managing databases, then this is worth considering as a solid alternative to the usual suspects.
 
-For more information, it's worth checking out the "[Primo Skeleton](https://github.com/netglue/primo-skeleton)" app on GitHub and its deployment at [primo.ngio.uk](https://primo.ngio.uk).
+For more information, it's worth checking out the "[Primo Skeleton](https://github.com/netglue/primo-skeleton)" app on GitHub.
 
 Also, this lib consumes [netglue/prismic-client](https://github.com/netglue/prismic-client) which is what you'll be interacting with most when it comes to actually making some content…
 
 ## Stability
 
-This library is mainly targeted at not re-inventing the wheel every time you want to build a CMS website using a Prismic content backend. As it's used in a number of production projects, I'm pretty careful with the releases and relatively dilligent with the [CHANGELOG](./CHANGELOG.md)
+This library is mainly targeted at not re-inventing the wheel every time you want to build a CMS website using a Prismic content backend. As it's used in a number of production projects, I'm pretty careful with the releases.
 
 ## License
 

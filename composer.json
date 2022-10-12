@@ -12,7 +12,10 @@
     "keywords": ["prismic", "prismicio", "psr-11", "mezzio", "laminas"],
     "homepage": "https://github.com/netglue/primo",
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -26,39 +29,39 @@
         }
     },
     "require": {
-        "php": "^7.3 || ~8.0 || ~8.1",
+        "php": "~8.0 || ~8.1",
         "ext-json": "*",
         "dflydev/fig-cookies": "^2.0||^3.0",
-        "laminas/laminas-diactoros": "^2.7.0",
-        "mezzio/mezzio": "^3.6",
-        "mezzio/mezzio-helpers": "^5.6",
-        "mezzio/mezzio-router": "^3.7",
-        "mezzio/mezzio-template": "^2.2.0",
-        "netglue/prismic-client": "^1.0",
-        "php-http/discovery": "^1.14.1",
-        "psr/cache": "^1.0",
-        "psr/container": "^1.0 || ^2.0",
+        "laminas/laminas-diactoros": "^2.19",
+        "mezzio/mezzio": "^3.13",
+        "mezzio/mezzio-helpers": "^5.10",
+        "mezzio/mezzio-router": "^3.9",
+        "mezzio/mezzio-template": "^2.7",
+        "netglue/prismic-client": "^1.4",
+        "php-http/discovery": "^1.14.3",
+        "psr/cache": "^1.0.1",
+        "psr/container": "^1.1.1 || ^2.0.2",
         "psr/event-dispatcher": "^1.0",
-        "psr/http-client": "^1.0",
-        "psr/http-factory": "^1.0",
-        "psr/http-message": "^1.0",
-        "psr/http-server-handler": "^1.0",
-        "psr/http-server-middleware": "^1.0"
+        "psr/http-client": "^1.0.1",
+        "psr/http-factory": "^1.0.1",
+        "psr/http-message": "^1.0.1",
+        "psr/http-server-handler": "^1.0.1",
+        "psr/http-server-middleware": "^1.0.1"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^9.0.0",
+        "doctrine/coding-standard": "^9.0.2",
         "helmich/phpunit-psr7-assert": "^4.3",
-        "laminas/laminas-config-aggregator": "^1.6",
-        "laminas/laminas-servicemanager": "^3.7",
-        "lctrs/psalm-psr-container-plugin": "^1.6",
-        "mezzio/mezzio-fastroute": "^3.3.0",
-        "php-http/curl-client": "^2.2",
+        "laminas/laminas-config-aggregator": "^1.11",
+        "laminas/laminas-servicemanager": "^3.19.0",
+        "lctrs/psalm-psr-container-plugin": "^1.7",
+        "mezzio/mezzio-fastroute": "^3.7",
+        "php-http/curl-client": "^2.2.1",
         "php-http/mock-client": "^1.5",
-        "phpunit/phpunit": "^9.5.10",
-        "psalm/plugin-phpunit": "^0.16.1 || ^0.17.0",
+        "phpunit/phpunit": "^9.5.25",
+        "psalm/plugin-phpunit": "^0.17 || ^0.17",
         "roave/security-advisories": "dev-latest",
-        "squizlabs/php_codesniffer": "^3.6.0",
-        "vimeo/psalm": "^4.10"
+        "squizlabs/php_codesniffer": "^3.7.1",
+        "vimeo/psalm": "^4.29"
     },
     "extra": {
         "laminas": {

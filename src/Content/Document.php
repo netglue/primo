@@ -18,14 +18,12 @@ class Document implements PrismicDocument
         $this->data = $data;
     }
 
-    /** @param string|int $name */
-    public function get($name): Fragment
+    public function get(string|int $name): Fragment
     {
         return $this->data->content()->get($name);
     }
 
-    /** @param string|int $name */
-    public function has($name): bool
+    public function has(int|string $name): bool
     {
         return $this->data->content()->has($name);
     }

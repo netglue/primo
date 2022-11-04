@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.19.0@a2ad69ae4f5ab1f7d225a8dc4e2ec2d9415ed599">
+<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
   <file src="src/Event/WebhookEvent.php">
     <MixedAssignment occurrences="2">
       <code>$this-&gt;payload</code>
@@ -162,25 +162,14 @@
     </MixedAssignment>
   </file>
   <file src="src/Router/DocumentResolver.php">
-    <MixedArgument occurrences="8">
+    <MixedArgument occurrences="2">
       <code>$bookmark</code>
-      <code>$id</code>
-      <code>$id</code>
-      <code>$lang</code>
       <code>$tags</code>
-      <code>$type</code>
-      <code>$type</code>
-      <code>$uid</code>
     </MixedArgument>
-    <MixedAssignment occurrences="8">
+    <MixedAssignment occurrences="3">
       <code>$bookmark</code>
-      <code>$id</code>
-      <code>$id</code>
-      <code>$lang</code>
       <code>$tags</code>
       <code>$tags</code>
-      <code>$type</code>
-      <code>$uid</code>
     </MixedAssignment>
   </file>
   <file src="src/Router/RouteMatcher.php">

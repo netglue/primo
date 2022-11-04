@@ -14,25 +14,6 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
-    <issueHandlers>
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::method"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::willReturn"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::with"/>
-            </errorLevel>
-        </InternalMethod>
-        <!-- Properties initialised in setUp always trigger this: -->
-        <MissingConstructor>
-            <errorLevel type="suppress">
-                <directory name="test"/>
-            </errorLevel>
-        </MissingConstructor>
-    </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Lctrs\PsalmPsrContainerPlugin\Plugin"/>

@@ -10,6 +10,7 @@ use Prismic\ApiClient;
 use Prismic\Document;
 use Prismic\Predicate;
 
+use function assert;
 use function count;
 use function is_string;
 use function sprintf;
@@ -72,6 +73,10 @@ class DocumentResolver
         $id = $params[$this->routeParams->id()] ?? null;
         $tags = $params[$this->routeParams->tag()] ?? null;
 
+        assert(is_string($type) || $type === null);
+        assert(is_string($uid) || $uid === null);
+        assert(is_string($id) || $id === null);
+
         // At least one of these must be present to attempt a match
         if (! $type && ! $uid && ! $tags) {
             return null;
@@ -101,6 +106,7 @@ class DocumentResolver
         }
 
         $lang = $params[$this->routeParams->lang()] ?? '*';
+        assert(is_string($lang));
 
         $query = $this->api->createQuery()
             ->query(...$predicates)
@@ -118,7 +124,7 @@ class DocumentResolver
     {
         $params = $routeResult->getMatchedParams();
         $id = $params[$this->routeParams->id()] ?? null;
-        if (! $id) {
+        if (! $id || ! is_string($id)) {
             return null;
         }
 

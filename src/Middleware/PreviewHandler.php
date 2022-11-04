@@ -18,20 +18,11 @@ use function urldecode;
 
 final class PreviewHandler implements MiddlewareInterface
 {
-    /** @var ApiClient */
-    private $api;
-
-    /** @var LinkResolver */
-    private $linkResolver;
-
-    /** @var string */
-    private $defaultUrl;
-
-    public function __construct(ApiClient $api, LinkResolver $linkResolver, string $defaultUrl = '/')
-    {
-        $this->api = $api;
-        $this->linkResolver = $linkResolver;
-        $this->defaultUrl = $defaultUrl;
+    public function __construct(
+        private ApiClient $api,
+        private LinkResolver $linkResolver,
+        private string $defaultUrl = '/',
+    ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -46,11 +37,11 @@ final class PreviewHandler implements MiddlewareInterface
 
         try {
             $link = $this->api->previewSession($token);
-        } catch (InvalidPreviewToken $error) {
+        } catch (InvalidPreviewToken) {
             return $handler->handle($request);
         } catch (PreviewTokenExpired $expired) {
             return $handler->handle(
-                $request->withAttribute(PreviewTokenExpired::class, $expired)
+                $request->withAttribute(PreviewTokenExpired::class, $expired),
             );
         }
 

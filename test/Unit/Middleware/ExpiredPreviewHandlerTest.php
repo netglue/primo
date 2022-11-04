@@ -16,20 +16,16 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ExpiredPreviewHandlerTest extends TestCase
 {
-    /** @var ExpiredPreviewHandler */
-    private $subject;
-    /** @var ServerRequestInterface */
-    private $request;
-    /** @var RequestHandlerInterface */
-    private $handler;
+    private ExpiredPreviewHandler $subject;
+    private ServerRequestInterface $request;
+    private RequestHandlerInterface $handler;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->handler = new class () implements RequestHandlerInterface {
-            /** @var ServerRequestInterface */
-            public $lastRequest;
+            public ServerRequestInterface $lastRequest;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
             {

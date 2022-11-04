@@ -18,7 +18,7 @@ final class PrismicTemplateFactory
 
         return new PrismicTemplate(
             $container->get(TemplateRendererInterface::class),
-            $templateAttribute
+            $templateAttribute,
         );
     }
 }

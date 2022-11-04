@@ -12,12 +12,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class PreviewCacheHeaders implements MiddlewareInterface
 {
-    /** @var ApiClient */
-    private $apiClient;
-
-    public function __construct(ApiClient $apiClient)
+    public function __construct(private ApiClient $apiClient)
     {
-        $this->apiClient = $apiClient;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

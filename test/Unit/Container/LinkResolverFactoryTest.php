@@ -21,7 +21,7 @@ class LinkResolverFactoryTest extends TestCase
     {
         return new RouteMatcher(
             RouteParams::fromArray([]),
-            $this->createMock(RouteCollector::class)
+            $this->createMock(RouteCollector::class),
         );
     }
 

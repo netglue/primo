@@ -15,15 +15,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class WebhookHandler implements RequestHandlerInterface
 {
-    /** @var EventDispatcherInterface */
-    private $eventDispatcher;
-    /** @var string|null */
-    private $expectedSecret;
-
-    public function __construct(EventDispatcherInterface $eventDispatcher, ?string $expectedSecret = null)
-    {
-        $this->eventDispatcher = $eventDispatcher;
-        $this->expectedSecret = $expectedSecret;
+    public function __construct(
+        private EventDispatcherInterface $eventDispatcher,
+        private string|null $expectedSecret = null,
+    ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -36,7 +31,7 @@ final class WebhookHandler implements RequestHandlerInterface
 
         try {
             $payload = Json::decodeObject($body);
-        } catch (JsonError $error) {
+        } catch (JsonError) {
             return $this->jsonError('Invalid payload', 400);
         }
 

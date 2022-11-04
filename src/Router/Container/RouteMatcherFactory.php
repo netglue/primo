@@ -15,7 +15,7 @@ final class RouteMatcherFactory
     {
         return new RouteMatcher(
             $container->get(RouteParams::class),
-            $container->get(RouteCollector::class)
+            $container->get(RouteCollector::class),
         );
     }
 }

@@ -13,7 +13,7 @@ final class DocumentResolverFactory
     public function __invoke(ContainerInterface $container): DocumentResolver
     {
         return new DocumentResolver(
-            $container->get(Resolver::class)
+            $container->get(Resolver::class),
         );
     }
 }

@@ -20,7 +20,7 @@ final class LinkResolverFactory
             $container->get(RouteParams::class),
             $container->get(RouteMatcher::class),
             $container->get(UrlHelper::class),
-            $container->get(ApiClient::class)->data()->bookmarks()
+            $container->get(ApiClient::class)->data()->bookmarks(),
         );
     }
 }

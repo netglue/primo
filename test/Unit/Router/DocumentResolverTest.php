@@ -22,19 +22,14 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-/**
- * @psalm-suppress DeprecatedMethod
- */
+/** @psalm-suppress DeprecatedMethod */
 class DocumentResolverTest extends TestCase
 {
     /** @var MockObject&ApiClient */
     private $api;
-    /** @var DocumentResolver */
-    private $resolver;
-    /** @var MiddlewareInterface */
-    private $middleware;
-    /** @var RouteParams */
-    private $params;
+    private DocumentResolver $resolver;
+    private MiddlewareInterface $middleware;
+    private RouteParams $params;
 
     protected function setUp(): void
     {
@@ -66,7 +61,7 @@ class DocumentResolverTest extends TestCase
 
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET']),
-            [$this->params->bookmark() => 'bookmark-name']
+            [$this->params->bookmark() => 'bookmark-name'],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));
@@ -82,7 +77,7 @@ class DocumentResolverTest extends TestCase
 
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET']),
-            [$this->params->id() => 'doc-id']
+            [$this->params->id() => 'doc-id'],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));
@@ -131,7 +126,7 @@ class DocumentResolverTest extends TestCase
             [
                 $this->params->uid() => 'uid',
                 $this->params->type() => 'type',
-            ]
+            ],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));
@@ -147,7 +142,7 @@ class DocumentResolverTest extends TestCase
                 $this->params->uid() => 'uid',
                 $this->params->type() => 'type',
                 $this->params->lang() => 'en-gb',
-            ]
+            ],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));
@@ -157,7 +152,7 @@ class DocumentResolverTest extends TestCase
     {
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
-            [$this->params->uid() => 'uid']
+            [$this->params->uid() => 'uid'],
         );
 
         $this->expectException(RoutingError::class);
@@ -171,7 +166,7 @@ class DocumentResolverTest extends TestCase
 
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
-            [$this->params->type() => 'type']
+            [$this->params->type() => 'type'],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));
@@ -183,7 +178,7 @@ class DocumentResolverTest extends TestCase
 
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
-            [$this->params->tag() => 'my-tag']
+            [$this->params->tag() => 'my-tag'],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));
@@ -218,7 +213,7 @@ class DocumentResolverTest extends TestCase
         $this->expectExceptionMessage('The route named "myRoute" matched 2 documents when transformed into a query');
         $result = RouteResult::fromRoute(
             new Route('/foo', $this->middleware, ['GET'], 'myRoute'),
-            [$this->params->tag() => 'my-tag']
+            [$this->params->tag() => 'my-tag'],
         );
         $this->resolver->resolve($result);
     }
@@ -274,7 +269,7 @@ class DocumentResolverTest extends TestCase
             [
                 $this->params->id() => 'my-id',
                 $this->params->type() => 'type',
-            ]
+            ],
         );
 
         self::assertSame($document, $this->resolver->resolve($result));

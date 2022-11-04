@@ -11,8 +11,7 @@ use function sprintf;
 
 class RequestError extends RuntimeException implements PrimoError
 {
-    /** @var RequestInterface|null */
-    private $request;
+    private RequestInterface|null $request = null;
 
     public static function withRequest(RequestInterface $request, string $message, int $code): self
     {
@@ -27,7 +26,7 @@ class RequestError extends RuntimeException implements PrimoError
         $message = sprintf(
             'The request for %s failed because the route result was not available. This means that routing has ' .
             'either not yet occurred or a route could not be matched.',
-            (string) $request->getUri()
+            (string) $request->getUri(),
         );
 
         return self::withRequest($request, $message, 500);
@@ -39,13 +38,13 @@ class RequestError extends RuntimeException implements PrimoError
             'The request for "%s" failed because there was no template attribute found in the request. I was ' .
             'expecting to find a template attribute named "%s"',
             (string) $request->getUri(),
-            $expectedTemplateAttribute
+            $expectedTemplateAttribute,
         );
 
         return self::withRequest($request, $message, 500);
     }
 
-    public function getRequest(): ?RequestInterface
+    public function getRequest(): RequestInterface|null
     {
         return $this->request;
     }

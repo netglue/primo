@@ -12,9 +12,7 @@ use function array_merge;
 use function count;
 use function max;
 
-/**
- * @template-implements ResultSet<Document>
- */
+/** @template-implements ResultSet<Document> */
 final class HydratingResultSet implements ResultSet
 {
     /** @use TypicalResultSetBehaviour<Document> */
@@ -26,9 +24,9 @@ final class HydratingResultSet implements ResultSet
         int $resultsPerPage,
         int $totalResults,
         int $pageCount,
-        ?string $nextPage,
-        ?string $previousPage,
-        array $results
+        string|null $nextPage,
+        string|null $previousPage,
+        array $results,
     ) {
         $this->page = $page;
         $this->perPage = $resultsPerPage;
@@ -55,7 +53,7 @@ final class HydratingResultSet implements ResultSet
             max($this->pageCount - 1, 1),
             $with->nextPage(),
             $this->prevPage,
-            $results
+            $results,
         );
     }
 }

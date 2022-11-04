@@ -9,13 +9,10 @@ use Primo\Router\Container\RouteParamsFactory;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-/**
- * @psalm-suppress DeprecatedMethod
- */
+/** @psalm-suppress DeprecatedMethod */
 class RouteParamsFactoryTest extends TestCase
 {
-    /** @var RouteParamsFactory */
-    private $factory;
+    private RouteParamsFactory $factory;
     /** @var MockObject&ContainerInterface */
     private $container;
 

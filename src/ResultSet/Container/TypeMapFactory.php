@@ -17,7 +17,7 @@ final class TypeMapFactory
 
         return new TypeMap(
             $options['map'] ?? [],
-            $options['default'] ?? Document::class
+            $options['default'] ?? Document::class,
         );
     }
 }

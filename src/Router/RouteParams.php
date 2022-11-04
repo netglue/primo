@@ -10,31 +10,19 @@ use function implode;
 use function in_array;
 use function sprintf;
 
-/**
- * @psalm-suppress DeprecatedProperty
- */
+/** @psalm-suppress DeprecatedProperty */
 final class RouteParams
 {
-    /** @var string */
-    private $id = 'document-id';
-    /** @var string */
-    private $uid = 'document-uid';
-    /** @var string */
-    private $type = 'document-type';
-    /**
-     * @deprecated
-     *
-     * @var string
-     */
-    private $bookmark = 'document-bookmark';
-    /** @var string */
-    private $lang = 'document-lang';
-    /** @var string */
-    private $tag = 'document-tag';
-    /** @var string */
-    private $reuseResultParams = 'reuse_result_params';
+    private string $id = 'document-id';
+    private string $uid = 'document-uid';
+    private string $type = 'document-type';
+    /** @deprecated */
+    private string $bookmark = 'document-bookmark';
+    private string $lang = 'document-lang';
+    private string $tag = 'document-tag';
+    private string $reuseResultParams = 'reuse_result_params';
     /** @var string[] */
-    private static $acceptable = ['key', 'id', 'uid', 'type', 'bookmark', 'lang', 'tag', 'reuseResultParams'];
+    private static array $acceptable = ['key', 'id', 'uid', 'type', 'bookmark', 'lang', 'tag', 'reuseResultParams'];
 
     private function __construct()
     {
@@ -57,7 +45,7 @@ final class RouteParams
             throw new InvalidArgument(sprintf(
                 '"%s" is not a valid option key. Valid options are: %s',
                 $name,
-                implode(', ', self::$acceptable)
+                implode(', ', self::$acceptable),
             ));
         }
 

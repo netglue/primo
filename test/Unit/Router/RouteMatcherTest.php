@@ -17,17 +17,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-/**
- * @psalm-suppress DeprecatedMethod
- */
+/** @psalm-suppress DeprecatedMethod */
 class RouteMatcherTest extends TestCase
 {
-    /** @var RouteParams */
-    private $params;
-    /** @var RouteCollector */
-    private $collector;
-    /** @var MiddlewareInterface */
-    private $middleware;
+    private RouteParams $params;
+    private RouteCollector $collector;
+    private MiddlewareInterface $middleware;
 
     protected function setUp(): void
     {
@@ -216,7 +211,7 @@ class RouteMatcherTest extends TestCase
         $this->assertBastMatch('two-tags', $matcher->bestMatch('id', 'type', 'no-match', null, ['a', 'b']));
     }
 
-    private function assertBastMatch(string $name, ?Route $match): void
+    private function assertBastMatch(string $name, Route|null $match): void
     {
         self::assertNotNull($match, 'A match was not found');
         self::assertSame($name, $match->getName());

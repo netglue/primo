@@ -19,7 +19,7 @@ final class WebhookHandlerFactory
 
         return new WebhookHandler(
             $this->assertEventDispatcher($container),
-            $config['primo']['webhook']['secret'] ?? null
+            $config['primo']['webhook']['secret'] ?? null,
         );
     }
 
@@ -34,7 +34,7 @@ final class WebhookHandlerFactory
             'the id "%s". If you already have an event dispatcher that implements PSR-14, alias it to the interface in ' .
             'the container, or install an event dispatcher from ' .
             'https://packagist.org/providers/psr/event-dispatcher-implementation',
-            EventDispatcherInterface::class
+            EventDispatcherInterface::class,
         ));
     }
 }

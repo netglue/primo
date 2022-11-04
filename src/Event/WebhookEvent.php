@@ -14,14 +14,10 @@ use function time;
 
 final class WebhookEvent implements Serializable
 {
-    /** @var int */
-    private $received;
-    /** @var object */
-    private $payload;
+    private int $received;
 
-    private function __construct(object $payload)
+    private function __construct(private object $payload)
     {
-        $this->payload = $payload;
         $this->received = time();
     }
 
@@ -45,9 +41,7 @@ final class WebhookEvent implements Serializable
         return $this->payload;
     }
 
-    /**
-     * @deprecated
-     */
+    /** @deprecated */
     public function serialize(): string
     {
         return Json::encode([
@@ -70,9 +64,7 @@ final class WebhookEvent implements Serializable
         $this->received = $object->received;
     }
 
-    /**
-     * @return array{received: int, payload: string}
-     */
+    /** @return array{received: int, payload: string} */
     public function __serialize(): array
     {
         return [
@@ -81,9 +73,7 @@ final class WebhookEvent implements Serializable
         ];
     }
 
-    /**
-     * @param array{received: int, payload: string} $data
-     */
+    /** @param array{received: int, payload: string} $data */
     public function __unserialize(array $data): void
     {
         $this->received = $data['received'];

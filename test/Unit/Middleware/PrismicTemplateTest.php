@@ -18,16 +18,13 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PrismicTemplateTest extends TestCase
 {
-    /** @var TemplateRendererInterface|MockObject */
-    private $templates;
-    /** @var PrismicTemplate */
-    private $subject;
-    /** @var ServerRequestInterface */
-    private $request;
-    /** @var MockObject|Document */
-    private $document;
-    /** @var RequestHandlerInterface */
-    private $handler;
+    /** @var TemplateRendererInterface&MockObject */
+    private TemplateRendererInterface|MockObject $templates;
+    private PrismicTemplate $subject;
+    private ServerRequestInterface $request;
+    /** @var Document&MockObject */
+    private MockObject|Document $document;
+    private RequestHandlerInterface $handler;
 
     protected function setUp(): void
     {
@@ -37,8 +34,7 @@ class PrismicTemplateTest extends TestCase
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->document = $this->createMock(Document::class);
         $this->handler = new class () implements RequestHandlerInterface {
-            /** @var ServerRequestInterface */
-            public $lastRequest;
+            public ServerRequestInterface|null $lastRequest = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
@@ -85,7 +81,7 @@ class PrismicTemplateTest extends TestCase
             ->with(
                 self::equalTo(TemplateRendererInterface::TEMPLATE_ALL),
                 self::equalTo('document'),
-                self::equalTo($this->document)
+                self::equalTo($this->document),
             );
 
         $this->templates->expects(self::once())

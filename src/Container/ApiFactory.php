@@ -29,7 +29,7 @@ final class ApiFactory
         if (empty($apiUrl) || ! is_string($apiUrl)) {
             throw new ConfigurationError(
                 'An api url cannot be determined. Your content repository url should be available in ' .
-                'configuration under [prismic][api] and should be a non-empty string.'
+                'configuration under [prismic][api] and should be a non-empty string.',
             );
         }
 
@@ -43,7 +43,7 @@ final class ApiFactory
             $container->has(RequestFactoryInterface::class) ? $container->get(RequestFactoryInterface::class) : null,
             $container->has(UriFactoryInterface::class) ? $container->get(UriFactoryInterface::class) : null,
             $container->has(ResultSetFactory::class) ? $container->get(ResultSetFactory::class) : null,
-            $container->has(PrismicApiCache::class) ? $container->get(PrismicApiCache::class) : null
+            $container->has(PrismicApiCache::class) ? $container->get(PrismicApiCache::class) : null,
         );
     }
 }

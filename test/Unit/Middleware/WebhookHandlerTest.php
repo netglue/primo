@@ -13,12 +13,9 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class WebhookHandlerTest extends TestCase
 {
-    /** @var MockObject|EventDispatcherInterface */
-    private $events;
-    /** @var ServerRequestInterface */
-    private $request;
-    /** @var WebhookHandler */
-    private $subject;
+    private MockObject|EventDispatcherInterface $events;
+    private ServerRequestInterface $request;
+    private WebhookHandler $subject;
 
     protected function setUp(): void
     {

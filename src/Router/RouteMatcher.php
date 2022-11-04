@@ -16,20 +16,13 @@ use function is_array;
 use function is_string;
 use function uasort;
 
-/**
- * @psalm-suppress DeprecatedMethod
- */
+/** @psalm-suppress DeprecatedMethod */
 final class RouteMatcher
 {
-    /** @var RouteParams */
-    private $params;
-    /** @var RouteCollector */
-    private $collector;
-
-    public function __construct(RouteParams $params, RouteCollector $collector)
-    {
-        $this->params = $params;
-        $this->collector = $collector;
+    public function __construct(
+        private RouteParams $params,
+        private RouteCollector $collector,
+    ) {
     }
 
     /**
@@ -37,7 +30,7 @@ final class RouteMatcher
      *
      * @param string[] $tags
      */
-    public function bestMatch(string $id, string $type, ?string $uid, ?string $bookmark, array $tags): ?Route
+    public function bestMatch(string $id, string $type, string|null $uid, string|null $bookmark, array $tags): Route|null
     {
         // A matching bookmark is nearly the most specific type of route and the easiest to reason about
         if ($bookmark) {
@@ -85,7 +78,7 @@ final class RouteMatcher
     }
 
     /** @deprecated */
-    public function getBookmarkedRoute(string $bookmark): ?Route
+    public function getBookmarkedRoute(string $bookmark): Route|null
     {
         foreach ($this->routes() as $route) {
             $options = $route->getOptions();
@@ -129,7 +122,7 @@ final class RouteMatcher
         return $routes;
     }
 
-    public function getTypedRoute(string $type): ?Route
+    public function getTypedRoute(string $type): Route|null
     {
         foreach ($this->routes() as $route) {
             if ($this->matchesType($route, $type)) {
@@ -140,7 +133,7 @@ final class RouteMatcher
         return null;
     }
 
-    public function getUidRoute(string $type, string $uid): ?Route
+    public function getUidRoute(string $type, string $uid): Route|null
     {
         foreach ($this->routesMatchingType($type) as $route) {
             if ($this->matchesUid($route, $uid)) {
@@ -182,7 +175,7 @@ final class RouteMatcher
 
         if (! is_array($tags)) {
             throw new ConfigurationError(
-                'Tags specified in routes must be either a string or an array of strings'
+                'Tags specified in routes must be either a string or an array of strings',
             );
         }
 
@@ -197,7 +190,7 @@ final class RouteMatcher
         return $option === $uid;
     }
 
-    private function routeMatchingId(string $id): ?Route
+    private function routeMatchingId(string $id): Route|null
     {
         foreach ($this->routes() as $route) {
             $options = $route->getOptions();

@@ -15,38 +15,34 @@ final class HydratingResultSetFactory implements ResultSetFactory
 {
     use DataAssertionBehaviour;
 
-    /** @var TypeMap */
-    private $map;
-
-    public function __construct(TypeMap $map)
+    public function __construct(private TypeMap $map)
     {
-        $this->map = $map;
     }
 
     public function withHttpResponse(ResponseInterface $response): ResultSet
     {
         return $this->withJsonObject(
-            Json::decodeObject((string) $response->getBody())
+            Json::decodeObject((string) $response->getBody()),
         );
     }
 
-    public function withJsonObject(object $data): ResultSet
+    public function withJsonObject(object $object): ResultSet
     {
         $results = [];
-        foreach ($data->results as $documentData) {
+        foreach ($object->results as $documentData) {
             $content = DocumentData::factory($documentData);
             $class = $this->map->className($content->type());
             $results[] = new $class($content);
         }
 
         return new HydratingResultSet(
-            self::assertObjectPropertyIsInteger($data, 'page'),
-            self::assertObjectPropertyIsInteger($data, 'results_per_page'),
-            self::assertObjectPropertyIsInteger($data, 'total_results_size'),
-            self::assertObjectPropertyIsInteger($data, 'total_pages'),
-            self::optionalStringProperty($data, 'next_page'),
-            self::optionalStringProperty($data, 'prev_page'),
-            $results
+            self::assertObjectPropertyIsInteger($object, 'page'),
+            self::assertObjectPropertyIsInteger($object, 'results_per_page'),
+            self::assertObjectPropertyIsInteger($object, 'total_results_size'),
+            self::assertObjectPropertyIsInteger($object, 'total_pages'),
+            self::optionalStringProperty($object, 'next_page'),
+            self::optionalStringProperty($object, 'prev_page'),
+            $results,
         );
     }
 }

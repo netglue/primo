@@ -21,16 +21,11 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class DocumentResolverTest extends TestCase
 {
-    /** @var MockObject|Resolver */
-    private $resolver;
-    /** @var RouteResult|MockObject */
-    private $routeResult;
-    /** @var RequestHandlerInterface */
-    private $handler;
-    /** @var ServerRequestInterface */
-    private $request;
-    /** @var MockObject|Document */
-    private $document;
+    private MockObject|Resolver $resolver;
+    private RouteResult|MockObject $routeResult;
+    private RequestHandlerInterface $handler;
+    private ServerRequestInterface $request;
+    private MockObject|Document $document;
 
     protected function setUp(): void
     {
@@ -39,8 +34,7 @@ class DocumentResolverTest extends TestCase
         $this->resolver = $this->createMock(Resolver::class);
         $this->routeResult = $this->createMock(RouteResult::class);
         $this->handler = new class () implements RequestHandlerInterface {
-            /** @var ServerRequestInterface */
-            public $lastRequest;
+            public ServerRequestInterface $lastRequest;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
@@ -66,7 +60,7 @@ class DocumentResolverTest extends TestCase
     public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes(): ResponseInterface
     {
         $this->resolver->method('resolve')->with($this->routeResult)->willReturn(
-            $this->document
+            $this->document,
         );
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
         self::assertNull($request->getAttribute(Document::class));

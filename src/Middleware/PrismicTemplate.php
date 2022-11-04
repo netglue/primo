@@ -17,15 +17,10 @@ final class PrismicTemplate implements MiddlewareInterface
 {
     public const DEFAULT_TEMPLATE_ATTRIBUTE = 'template';
 
-    /** @var TemplateRendererInterface */
-    private $renderer;
-    /** @var string */
-    private $templateAttribute;
-
-    public function __construct(TemplateRendererInterface $renderer, string $templateAttribute = self::DEFAULT_TEMPLATE_ATTRIBUTE)
-    {
-        $this->renderer = $renderer;
-        $this->templateAttribute = $templateAttribute;
+    public function __construct(
+        private TemplateRendererInterface $renderer,
+        private string $templateAttribute = self::DEFAULT_TEMPLATE_ATTRIBUTE,
+    ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -43,7 +38,7 @@ final class PrismicTemplate implements MiddlewareInterface
         $this->renderer->addDefaultParam(
             TemplateRendererInterface::TEMPLATE_ALL,
             'document',
-            $document
+            $document,
         );
 
         return new HtmlResponse($this->renderer->render($template), 200, [

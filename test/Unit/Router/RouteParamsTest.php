@@ -9,9 +9,7 @@ use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
 use TypeError;
 
-/**
- * @psalm-suppress DeprecatedMethod
- */
+/** @psalm-suppress DeprecatedMethod */
 class RouteParamsTest extends TestCase
 {
     public function testOptionsArray(): RouteParams

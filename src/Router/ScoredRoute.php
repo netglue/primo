@@ -8,16 +8,10 @@ use Mezzio\Router\Route;
 
 class ScoredRoute
 {
-    /** @var Route */
-    private $route;
-
-    /** @var int */
-    private $score;
-
-    public function __construct(Route $route, int $score)
-    {
-        $this->route = $route;
-        $this->score = $score;
+    public function __construct(
+        private Route $route,
+        private int $score,
+    ) {
     }
 
     public function route(): Route

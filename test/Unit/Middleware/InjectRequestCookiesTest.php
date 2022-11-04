@@ -16,12 +16,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class InjectRequestCookiesTest extends TestCase
 {
-    /** @var Api */
-    private $api;
-    /** @var InjectRequestCookies */
-    private $subject;
-    /** @var RequestHandlerInterface */
-    private $handler;
+    private Api $api;
+    private InjectRequestCookies $subject;
+    private RequestHandlerInterface $handler;
 
     protected function setUp(): void
     {

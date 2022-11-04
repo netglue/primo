@@ -15,12 +15,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class DocumentResolver implements MiddlewareInterface
 {
-    /** @var Resolver */
-    private $resolver;
-
-    public function __construct(Resolver $resolver)
+    public function __construct(private Resolver $resolver)
     {
-        $this->resolver = $resolver;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

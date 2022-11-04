@@ -15,12 +15,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class ExpiredPreviewHandler implements MiddlewareInterface
 {
-    /** @var string */
-    private $redirectUrl;
-
-    public function __construct(string $redirectUrl = '/')
+    public function __construct(private string $redirectUrl = '/')
     {
-        $this->redirectUrl = $redirectUrl;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

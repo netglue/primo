@@ -19,7 +19,7 @@ final class PreviewHandlerFactory
         return new PreviewHandler(
             $container->get(ApiClient::class),
             $container->get(LinkResolver::class),
-            $defaultUrl
+            $defaultUrl,
         );
     }
 }

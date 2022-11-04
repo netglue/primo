@@ -52,7 +52,7 @@
         "psr/http-server-middleware": "^1.0.1"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^9.0.2",
+        "doctrine/coding-standard": "^10.0.0",
         "helmich/phpunit-psr7-assert": "^4.3",
         "laminas/laminas-config-aggregator": "^1.11",
         "laminas/laminas-servicemanager": "^3.19.0",

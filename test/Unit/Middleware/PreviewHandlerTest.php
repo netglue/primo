@@ -20,24 +20,18 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PreviewHandlerTest extends TestCase
 {
-    /** @var ServerRequestInterface */
-    private $request;
-    /** @var RequestHandlerInterface */
-    private $handler;
-    /** @var MockObject|ApiClient */
-    private $api;
-    /** @var MockObject|LinkResolver */
-    private $linkResolver;
-    /** @var PreviewHandler */
-    private $subject;
+    private ServerRequestInterface $request;
+    private RequestHandlerInterface $handler;
+    private MockObject|ApiClient $api;
+    private MockObject|LinkResolver $linkResolver;
+    private PreviewHandler $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->handler = new class () implements RequestHandlerInterface {
-            /** @var ServerRequestInterface */
-            public $lastRequest;
+            public ServerRequestInterface $lastRequest;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
             {

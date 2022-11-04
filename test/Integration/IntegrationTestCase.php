@@ -42,7 +42,7 @@ abstract class IntegrationTestCase extends TestCase
      *
      * @param array<array-key, mixed>|null $withCustomConfiguration
      */
-    protected function getContainer(?array $withCustomConfiguration = null): ContainerInterface
+    protected function getContainer(array|null $withCustomConfiguration = null): ContainerInterface
     {
         $config = $withCustomConfiguration ?: $this->getApplicationConfig();
         assert(isset($config['dependencies']));

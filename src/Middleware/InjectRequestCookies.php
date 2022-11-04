@@ -12,12 +12,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class InjectRequestCookies implements MiddlewareInterface
 {
-    /** @var ApiClient */
-    private $api;
-
-    public function __construct(ApiClient $api)
+    public function __construct(private ApiClient $api)
     {
-        $this->api = $api;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

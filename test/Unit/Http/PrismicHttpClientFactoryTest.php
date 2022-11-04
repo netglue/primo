@@ -12,8 +12,7 @@ use Psr\Http\Client\ClientInterface;
 
 class PrismicHttpClientFactoryTest extends TestCase
 {
-    /** @var MockObject|ClientInterface */
-    private $container;
+    private MockObject|ClientInterface $container;
 
     protected function setUp(): void
     {

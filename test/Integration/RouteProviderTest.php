@@ -59,7 +59,7 @@ class RouteProviderTest extends IntegrationTestCase
 
         self::assertNotContains($routeName, $names, sprintf(
             'The route name "%s" should not be present in the configured routes but it was found',
-            $routeName
+            $routeName,
         ));
     }
 
@@ -71,7 +71,7 @@ class RouteProviderTest extends IntegrationTestCase
 
         self::assertContains($routeName, $names, sprintf(
             'The route name "%s" was not present in the configured routes',
-            $routeName
+            $routeName,
         ));
     }
 }

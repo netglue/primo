@@ -15,10 +15,7 @@ use function sprintf;
 final class TypeMap
 {
     /** @var string[] */
-    private $map;
-
-    /** @var string */
-    private $default;
+    private array $map;
 
     /**
      * Map Prismic Types to Classes
@@ -28,11 +25,10 @@ final class TypeMap
      *
      * @param string[] $map
      */
-    public function __construct(iterable $map, string $defaultDocumentType = Document::class)
+    public function __construct(iterable $map, private string $defaultDocumentType = Document::class)
     {
         $this->map = [];
         $this->classHierarchyCheck($defaultDocumentType);
-        $this->default = $defaultDocumentType;
 
         foreach ($map as $class => $type) {
             $target = is_array($type) ? $type : [$type];
@@ -42,7 +38,7 @@ final class TypeMap
 
     public function className(string $type): string
     {
-        return $this->map[$type] ?? $this->default;
+        return $this->map[$type] ?? $this->defaultDocumentType;
     }
 
     /** @param string[] $types */
@@ -64,7 +60,7 @@ final class TypeMap
         if (! class_exists($className)) {
             throw new InvalidArgument(sprintf(
                 'The target class "%s" does not exist. Please create it or check your document type mapping configuration.',
-                $className
+                $className,
             ));
         }
 
@@ -73,7 +69,7 @@ final class TypeMap
                 'All target classes to hydrate to must descend from %s because I can guarantee the constructor accepts ' .
                 'a DocumentData value object. If you want to opt out of this hierarchy, you need to make your own hydrating ' .
                 'result set',
-                Document::class
+                Document::class,
             ));
         }
     }

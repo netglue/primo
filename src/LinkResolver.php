@@ -14,38 +14,23 @@ use Prismic\LinkResolver as PrismicLinkResolver;
 use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
 
-/**
- * @psalm-suppress DeprecatedClass, DeprecatedMethod, DeprecatedProperty
- */
+/** @psalm-suppress DeprecatedClass, DeprecatedMethod, DeprecatedProperty */
 final class LinkResolver implements PrismicLinkResolver
 {
-    /** @var RouteParams */
-    private $routeParams;
-    /**
-     * @deprecated
-     *
-     * @var Bookmark[]
-     */
-    private $bookmarks;
-    /** @var RouteMatcher */
-    private $routeMatcher;
-    /** @var UrlHelper */
-    private $urlHelper;
-
     /**
      * @deprecated $bookmarks
      *
      * @param Bookmark[] $bookmarks
      */
-    public function __construct(RouteParams $routeParams, RouteMatcher $matcher, UrlHelper $urlHelper, iterable $bookmarks)
-    {
-        $this->routeParams = $routeParams;
-        $this->bookmarks = $bookmarks;
-        $this->routeMatcher = $matcher;
-        $this->urlHelper = $urlHelper;
+    public function __construct(
+        private RouteParams $routeParams,
+        private RouteMatcher $routeMatcher,
+        private UrlHelper $urlHelper,
+        private iterable $bookmarks,
+    ) {
     }
 
-    public function resolve(Link $link): ?string
+    public function resolve(Link $link): string|null
     {
         if ($link instanceof UrlLink) {
             return $link->url();
@@ -58,7 +43,7 @@ final class LinkResolver implements PrismicLinkResolver
         return null;
     }
 
-    private function resolveDocumentLink(DocumentLink $link): ?string
+    private function resolveDocumentLink(DocumentLink $link): string|null
     {
         if ($link->isBroken()) {
             return null;
@@ -69,7 +54,7 @@ final class LinkResolver implements PrismicLinkResolver
             $link->type(),
             $link->uid(),
             $this->bookmarkNameByDocumentId($link->id()),
-            $link->tags()
+            $link->tags(),
         );
         if ($route) {
             return $this->url($link, $route);
@@ -94,10 +79,8 @@ final class LinkResolver implements PrismicLinkResolver
         ];
     }
 
-    /**
-     * @deprecated
-     */
-    private function bookmarkNameByDocumentId(string $id): ?string
+    /** @deprecated */
+    private function bookmarkNameByDocumentId(string $id): string|null
     {
         foreach ($this->bookmarks as $bookmark) {
             if ($bookmark->documentId() === $id) {
@@ -118,7 +101,7 @@ final class LinkResolver implements PrismicLinkResolver
             $this->routeParams($link),
             [],
             null,
-            ['reuse_result_params' => $reuseResultParams]
+            ['reuse_result_params' => $reuseResultParams],
         );
     }
 }

@@ -13,6 +13,7 @@ use function sprintf;
 
 use const JSON_THROW_ON_ERROR;
 
+/** @final */
 class RoutingError extends RuntimeError
 {
     public static function uidMatchedWithoutType(RouteResult $routeResult): self
@@ -21,7 +22,7 @@ class RoutingError extends RuntimeError
             'The route named "%s" matches a Prismic UID, but the type cannot be resolved. You cannot resolve documents '
             . 'by UID when the type is not known. Matched parameters: %s',
             self::routeName($routeResult),
-            self::matchedParams($routeResult)
+            self::matchedParams($routeResult),
         ), 400);
     }
 
@@ -31,7 +32,7 @@ class RoutingError extends RuntimeError
             'The route named "%s" matched %d documents when transformed into a query. Route parameters were: %s',
             self::routeName($routeResult),
             count($resultSet),
-            self::matchedParams($routeResult)
+            self::matchedParams($routeResult),
         ), 400);
     }
 

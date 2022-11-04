@@ -27,11 +27,11 @@ class WebhookEventTest extends TestCase
 
         self::assertEquals(
             $event->received(),
-            $copy->received()
+            $copy->received(),
         );
         self::assertSame(
             $event->payload()->foo,
-            $copy->payload()->foo
+            $copy->payload()->foo,
         );
     }
 }

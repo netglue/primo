@@ -16,14 +16,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PreviewCacheHeadersTest extends TestCase
 {
-    /** @var ServerRequestInterface */
-    private $request;
-    /** @var RequestHandlerInterface */
-    private $handler;
-    /** @var MockObject|ApiClient */
-    private $api;
-    /** @var PreviewCacheHeaders */
-    private $subject;
+    private ServerRequestInterface $request;
+    private RequestHandlerInterface $handler;
+    private MockObject|ApiClient $api;
+    private PreviewCacheHeaders $subject;
 
     protected function setUp(): void
     {

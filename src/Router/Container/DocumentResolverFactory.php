@@ -15,7 +15,7 @@ final class DocumentResolverFactory
     {
         return new DocumentResolver(
             $container->get(ApiClient::class),
-            $container->get(RouteParams::class)
+            $container->get(RouteParams::class),
         );
     }
 }

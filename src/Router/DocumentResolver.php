@@ -15,27 +15,20 @@ use function count;
 use function is_string;
 use function sprintf;
 
-/**
- * @psalm-suppress DeprecatedMethod
- */
+/** @psalm-suppress DeprecatedMethod */
 class DocumentResolver
 {
-    /** @var RouteParams */
-    private $routeParams;
-    /** @var ApiClient */
-    private $api;
-
-    public function __construct(ApiClient $api, RouteParams $routeParams)
-    {
-        $this->api = $api;
-        $this->routeParams = $routeParams;
+    public function __construct(
+        private ApiClient $api,
+        private RouteParams $routeParams,
+    ) {
     }
 
     /**
      * @throws RoutingError if the uid is required by the route, but no document type is defined.
      * @throws RoutingError if the matched route will yield more than one document.
      */
-    public function resolve(RouteResult $routeResult): ?Document
+    public function resolve(RouteResult $routeResult): Document|null
     {
         $document = $this->resolveWithBookmark($routeResult);
 
@@ -50,10 +43,8 @@ class DocumentResolver
         return $document;
     }
 
-    /**
-     * @deprecated
-     */
-    private function resolveWithBookmark(RouteResult $routeResult): ?Document
+    /** @deprecated */
+    private function resolveWithBookmark(RouteResult $routeResult): Document|null
     {
         $params = $routeResult->getMatchedParams();
         $bookmark = $params[$this->routeParams->bookmark()] ?? null;
@@ -65,7 +56,7 @@ class DocumentResolver
     }
 
     /** @throws RoutingError */
-    private function resolveWithParams(RouteResult $routeResult): ?Document
+    private function resolveWithParams(RouteResult $routeResult): Document|null
     {
         $params = $routeResult->getMatchedParams();
         $type = $params[$this->routeParams->type()] ?? null;
@@ -120,7 +111,7 @@ class DocumentResolver
         return $resultSet->first();
     }
 
-    private function resolveWithId(RouteResult $routeResult): ?Document
+    private function resolveWithId(RouteResult $routeResult): Document|null
     {
         $params = $routeResult->getMatchedParams();
         $id = $params[$this->routeParams->id()] ?? null;

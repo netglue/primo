@@ -9,3 +9,37 @@ on:
 jobs:
   ci:
     uses: laminas/workflow-continuous-integration/.github/workflows/continuous-integration.yml@1.x
+
+  coverage:
+    name: Test Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: pcov
+          coverage: pcov
+          ini-values: pcov.enabled=1
+      - uses: "ramsey/composer-install@2"
+      - run: php ./vendor/bin/phpunit --coverage-clover=coverage.xml
+      - uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          fail_ci_if_error: false
+
+  composer-require-checker:
+    name: "Composer Require Checker"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "8.1"
+          ini-values: memory_limit=-1
+      - uses: "ramsey/composer-install@v2"
+      - run: composer global config bin-dir /usr/local/bin
+      - run: "composer global require -W maglnet/composer-require-checker"
+      - run: "/usr/local/bin/composer-require-checker check"

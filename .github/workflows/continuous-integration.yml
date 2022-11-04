@@ -22,7 +22,7 @@ jobs:
           extensions: pcov
           coverage: pcov
           ini-values: pcov.enabled=1
-      - uses: "ramsey/composer-install@2"
+      - uses: "ramsey/composer-install@v2"
       - run: php ./vendor/bin/phpunit --coverage-clover=coverage.xml
       - uses: codecov/codecov-action@v3
         with:

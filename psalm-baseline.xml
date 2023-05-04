@@ -88,7 +88,7 @@
   </file>
   <file src="src/Middleware/PreviewHandler.php">
     <MixedArgument>
-      <code>$query['token']</code>
+      <code><![CDATA[$query['token']]]></code>
     </MixedArgument>
   </file>
   <file src="src/Middleware/PrismicTemplate.php">
@@ -106,8 +106,8 @@
   </file>
   <file src="src/ResultSet/Container/TypeMapFactory.php">
     <MixedArgument>
-      <code>$options['default'] ?? Document::class</code>
-      <code>$options['map'] ?? []</code>
+      <code><![CDATA[$options['default'] ?? Document::class]]></code>
+      <code><![CDATA[$options['map'] ?? []]]></code>
     </MixedArgument>
   </file>
   <file src="src/ResultSet/HydratingResultSetFactory.php">
@@ -163,11 +163,11 @@
       <code>$dependencies</code>
     </MixedArgument>
     <MixedArrayAccess>
-      <code>$dependencies['services']</code>
+      <code><![CDATA[$dependencies['services']]]></code>
     </MixedArrayAccess>
     <MixedArrayAssignment>
-      <code>$dependencies['services']</code>
-      <code>$dependencies['services']['config']</code>
+      <code><![CDATA[$dependencies['services']]]></code>
+      <code><![CDATA[$dependencies['services']['config']]]></code>
     </MixedArrayAssignment>
     <MixedAssignment>
       <code>$dependencies</code>
@@ -175,8 +175,8 @@
   </file>
   <file src="test/Integration/RouteProviderTest.php">
     <MixedArrayAssignment>
-      <code>$config['primo']['webhook']</code>
-      <code>$config['primo']['webhook']['enabled']</code>
+      <code><![CDATA[$config['primo']['webhook']]]></code>
+      <code><![CDATA[$config['primo']['webhook']['enabled']]]></code>
     </MixedArrayAssignment>
   </file>
   <file src="test/Unit/Container/StandardResultSetFactoryFactoryTest.php">
@@ -278,11 +278,16 @@
     </NoInterfaceProperties>
   </file>
   <file src="test/Unit/Middleware/WebhookHandlerTest.php">
-    <MixedInferredReturnType>
-      <code>mixed[]</code>
-    </MixedInferredReturnType>
     <PossiblyInvalidArgument>
       <code><![CDATA[$this->events]]></code>
     </PossiblyInvalidArgument>
+    <PossiblyUnusedMethod>
+      <code>theWrongSecret</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="test/Unit/Router/RouteParamsTest.php">
+    <PossiblyUnusedMethod>
+      <code>typeErrorProvider</code>
+    </PossiblyUnusedMethod>
   </file>
 </files>

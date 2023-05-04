@@ -55,7 +55,7 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^10.0.0",
+        "doctrine/coding-standard": "^12.0.0",
         "helmich/phpunit-psr7-assert": "^4.4",
         "laminas/laminas-config-aggregator": "^1.13",
         "laminas/laminas-servicemanager": "^3.20",

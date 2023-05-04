@@ -29,6 +29,7 @@ class RouteMatcherTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->params = RouteParams::fromArray([]);
         $router = new FastRouteRouter();
         $this->collector = new RouteCollector($router);

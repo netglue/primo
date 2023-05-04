@@ -19,6 +19,7 @@ class RouteParamsFactoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->container = $this->createMock(ContainerInterface::class);
         $this->factory = new RouteParamsFactory();
     }

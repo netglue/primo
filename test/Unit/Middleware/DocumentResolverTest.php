@@ -30,6 +30,7 @@ class DocumentResolverTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->resolver = $this->createMock(Resolver::class);
         $this->routeResult = $this->createMock(RouteResult::class);

@@ -53,7 +53,7 @@ class DocumentResolverTest extends TestCase
     {
         $subject = new DocumentResolver($this->resolver);
         $this->expectException(RequestError::class);
-        $this->expectDeprecationMessage('The request for /foo failed because the route result was not available.');
+        $this->expectExceptionMessage('The request for /foo failed because the route result was not available.');
         $subject->process($this->request, $this->handler);
     }
 

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Primo;
 
+use GSteel\Dot;
 use Mezzio\Application;
 use Primo\Middleware\ExpiredPreviewHandler;
 use Primo\Middleware\PreviewHandler;
 use Primo\Middleware\WebhookHandler;
 use Psr\Container\ContainerInterface;
+use Webmozart\Assert\Assert;
 
 final class RouteProvider
 {
@@ -24,7 +26,15 @@ final class RouteProvider
     private function configurePreviews(ContainerInterface $container, Application $app): void
     {
         $config = $container->has('config') ? $container->get('config') : [];
-        $previewUrl = $config['primo']['previews']['previewUrl'] ?? ConfigProvider::DEFAULT_PREVIEW_URL;
+        Assert::isArray($config);
+
+        $previewUrl = Dot::stringDefault(
+            'primo.previews.previewUrl',
+            $config,
+            ConfigProvider::DEFAULT_PREVIEW_URL,
+        );
+        Assert::stringNotEmpty($previewUrl);
+
         $app->get($previewUrl, [
             PreviewHandler::class,
             ExpiredPreviewHandler::class,
@@ -34,13 +44,15 @@ final class RouteProvider
     private function configureWebhooks(ContainerInterface $container, Application $app): void
     {
         $config = $container->has('config') ? $container->get('config') : [];
-        $options = $config['primo']['webhook'];
-        $enabled = $options['enabled'] ?? false;
+        Assert::isArray($config);
+
+        $enabled = Dot::boolDefault('primo.webhook.enabled', $config, false);
         if (! $enabled) {
             return;
         }
 
-        $url = $options['url'] ?? ConfigProvider::DEFAULT_WEBHOOK_URL;
+        $url = Dot::stringDefault('primo.webhook.url', $config, ConfigProvider::DEFAULT_WEBHOOK_URL);
+        Assert::stringNotEmpty($url);
         $app->post($url, WebhookHandler::class, self::WEBHOOK_ROUTE_NAME);
     }
 }

@@ -12,9 +12,10 @@ use function is_a;
 use function is_array;
 use function sprintf;
 
+/** @psalm-type Map = array<class-string, list<non-empty-string>|non-empty-string> */
 final class TypeMap
 {
-    /** @var string[] */
+    /** @var array<non-empty-string, class-string<Document>> */
     private array $map;
 
     /**
@@ -23,7 +24,8 @@ final class TypeMap
      * The array of mapping information should use the FQCN as the key and either a string, or an array of strings referring
      * to a document type in your repository.
      *
-     * @param string[] $map
+     * @param Map                    $map
+     * @param class-string<Document> $defaultDocumentType
      */
     public function __construct(iterable $map, private string $defaultDocumentType = Document::class)
     {
@@ -36,12 +38,20 @@ final class TypeMap
         }
     }
 
+    /**
+     * @param non-empty-string $type
+     *
+     * @return class-string<Document>
+     */
     public function className(string $type): string
     {
         return $this->map[$type] ?? $this->defaultDocumentType;
     }
 
-    /** @param string[] $types */
+    /**
+     * @param class-string           $className
+     * @param list<non-empty-string> $types
+     */
     private function addTypes(string $className, array $types): void
     {
         foreach ($types as $type) {
@@ -49,18 +59,27 @@ final class TypeMap
         }
     }
 
+    /**
+     * @param non-empty-string $type
+     * @param class-string     $class
+     */
     private function addType(string $type, string $class): void
     {
         $this->classHierarchyCheck($class);
         $this->map[$type] = $class;
     }
 
+    /**
+     * @param class-string $className
+     *
+     * @psalm-assert class-string<Document> $className
+     */
     private function classHierarchyCheck(string $className): void
     {
         if (! class_exists($className)) {
             throw new InvalidArgument(sprintf(
                 'The target class "%s" does not exist. Please create it or check your document type mapping configuration.',
-                $className,
+                (string) $className,
             ));
         }
 

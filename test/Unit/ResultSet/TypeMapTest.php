@@ -40,6 +40,7 @@ class TypeMapTest extends TestCase
         $this->expectException(InvalidArgument::class);
         $this->expectExceptionMessage('The target class "Primo\UnknownClass" does not exist. Please create it or check your document type mapping configuration.');
 
+        /** @psalm-suppress ArgumentTypeCoercion */
         new TypeMap([
             'Primo\UnknownClass' => ['a', 'b'],
         ]);

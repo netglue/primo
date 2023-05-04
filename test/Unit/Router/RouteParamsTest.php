@@ -81,7 +81,7 @@ class RouteParamsTest extends TestCase
     public function testOptionTypeError(array $options): void
     {
         $this->expectException(TypeError::class);
-        /** @psalm-suppress MixedArgumentTypeCoercion, PossiblyInvalidArgument */
+        /** @psalm-suppress MixedArgumentTypeCoercion */
         RouteParams::fromArray($options);
     }
 

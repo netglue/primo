@@ -11,6 +11,9 @@ use Prismic\Value\DataAssertionBehaviour;
 use Prismic\Value\DocumentData;
 use Psr\Http\Message\ResponseInterface;
 
+use function assert;
+use function is_object;
+
 final class HydratingResultSetFactory implements ResultSetFactory
 {
     use DataAssertionBehaviour;
@@ -30,6 +33,7 @@ final class HydratingResultSetFactory implements ResultSetFactory
     {
         $results = [];
         foreach ($object->results as $documentData) {
+            assert(is_object($documentData));
             $content = DocumentData::factory($documentData);
             $class = $this->map->className($content->type());
             $results[] = new $class($content);

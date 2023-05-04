@@ -42,7 +42,7 @@
         "mezzio/mezzio-helpers": "^5.10",
         "mezzio/mezzio-router": "^3.9",
         "mezzio/mezzio-template": "^2.7",
-        "netglue/prismic-client": "^1.4",
+        "netglue/prismic-client": "^1.7",
         "php-http/discovery": "^1.14.3",
         "psr/cache": "^1 || ^2 || ^3",
         "psr/container": "^1.1.1 || ^2.0.2",

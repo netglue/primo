@@ -13,8 +13,7 @@ use Psr\Container\ContainerInterface;
 class RouteParamsFactoryTest extends TestCase
 {
     private RouteParamsFactory $factory;
-    /** @var MockObject&ContainerInterface */
-    private $container;
+    private MockObject&ContainerInterface $container;
 
     protected function setUp(): void
     {

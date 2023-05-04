@@ -25,8 +25,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /** @psalm-suppress DeprecatedMethod */
 class DocumentResolverTest extends TestCase
 {
-    /** @var MockObject&ApiClient */
-    private $api;
+    private MockObject&ApiClient $api;
     private DocumentResolver $resolver;
     private MiddlewareInterface $middleware;
     private RouteParams $params;

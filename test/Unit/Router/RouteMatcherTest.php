@@ -17,6 +17,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function assert;
+
 /** @psalm-suppress DeprecatedMethod */
 class RouteMatcherTest extends TestCase
 {
@@ -192,6 +194,7 @@ class RouteMatcherTest extends TestCase
     private function loadRoutes(): void
     {
         foreach ($this->routeMatchingProvider() as $name => $defaults) {
+            assert($name !== '');
             $route = $this->collector->get('/' . $name, $this->middleware, $name);
             $route->setOptions(['defaults' => $defaults]);
         }

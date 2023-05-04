@@ -14,6 +14,9 @@ use Prismic\LinkResolver as PrismicLinkResolver;
 use Prismic\UrlLink;
 use Prismic\Value\Bookmark;
 
+use function assert;
+use function is_bool;
+
 /** @psalm-suppress DeprecatedClass, DeprecatedMethod, DeprecatedProperty */
 final class LinkResolver implements PrismicLinkResolver
 {
@@ -95,6 +98,7 @@ final class LinkResolver implements PrismicLinkResolver
     {
         $options = $route->getOptions();
         $reuseResultParams = $options['defaults'][$this->routeParams->reuseResultParams()] ?? true;
+        assert(is_bool($reuseResultParams));
 
         return $this->urlHelper->generate(
             $route->getName(),

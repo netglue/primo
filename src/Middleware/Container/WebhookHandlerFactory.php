@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Primo\Middleware\Container;
 
+use GSteel\Dot;
 use Primo\Exception\ConfigurationError;
 use Primo\Middleware\WebhookHandler;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Webmozart\Assert\Assert;
 
 use function sprintf;
 
@@ -16,10 +18,12 @@ final class WebhookHandlerFactory
     public function __invoke(ContainerInterface $container): WebhookHandler
     {
         $config = $container->has('config') ? $container->get('config') : [];
+        Assert::isArray($config);
+        $secret = Dot::stringOrNull('primo.webhook.secret', $config);
 
         return new WebhookHandler(
             $this->assertEventDispatcher($container),
-            $config['primo']['webhook']['secret'] ?? null,
+            $secret,
         );
     }
 

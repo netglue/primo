@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PrimoTest\Unit\Middleware;
 
 use Http\Discovery\Psr17FactoryDiscovery;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Middleware\WebhookHandler;
 use PrimoTest\Unit\TestCase;
@@ -40,8 +41,8 @@ class WebhookHandlerTest extends TestCase
         self::assertResponseHasStatus($response, 400);
     }
 
-    /** @return mixed[] */
-    public function theWrongSecret(): iterable
+    /** @return array<string, array{0: string}> */
+    public static function theWrongSecret(): array
     {
         return [
             'Missing Secret' => ['{"not-defined":"foo"}'],
@@ -49,7 +50,7 @@ class WebhookHandlerTest extends TestCase
         ];
     }
 
-    /** @dataProvider theWrongSecret */
+    #[DataProvider('theWrongSecret')]
     public function testUnsuccessfulSecrets(string $body): void
     {
         $stream = Psr17FactoryDiscovery::findStreamFactory()->createStream($body);
@@ -67,7 +68,7 @@ class WebhookHandlerTest extends TestCase
         self::assertResponseIsSuccess($response);
     }
 
-    /** @dataProvider theWrongSecret */
+    #[DataProvider('theWrongSecret')]
     public function testPayloadIsSuccessfulWhenSecretIsNotRequired(string $body): void
     {
         $subject = new WebhookHandler($this->events, null);

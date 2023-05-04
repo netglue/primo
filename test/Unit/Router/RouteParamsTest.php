@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PrimoTest\Unit\Router;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
 use Primo\Exception\InvalidArgument;
 use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
@@ -28,44 +30,44 @@ class RouteParamsTest extends TestCase
         return $params;
     }
 
-    /** @depends testOptionsArray */
+    #[Depends('testOptionsArray')]
     public function testId(RouteParams $params): void
     {
         self::assertSame('id', $params->id());
     }
 
-    /** @depends testOptionsArray */
+    #[Depends('testOptionsArray')]
     public function testUid(RouteParams $params): void
     {
         self::assertSame('uid', $params->uid());
     }
 
-    /** @depends testOptionsArray */
+    #[Depends('testOptionsArray')]
     public function testType(RouteParams $params): void
     {
         self::assertSame('type', $params->type());
     }
 
-    /** @depends testOptionsArray */
+    #[Depends('testOptionsArray')]
     public function testBookmark(RouteParams $params): void
     {
         self::assertSame('bookmark', $params->bookmark());
     }
 
-    /** @depends testOptionsArray */
+    #[Depends('testOptionsArray')]
     public function testLang(RouteParams $params): void
     {
         self::assertSame('lang', $params->lang());
     }
 
-    /** @depends testOptionsArray */
+    #[Depends('testOptionsArray')]
     public function testReuseParams(RouteParams $params): void
     {
         self::assertSame('reuse', $params->reuseResultParams());
     }
 
     /** @return array<string, array{0: array<array-key, mixed>}> */
-    public function typeErrorProvider(): array
+    public static function typeErrorProvider(): array
     {
         return [
             'Non string option key' => [[0 => 'value']],
@@ -73,11 +75,8 @@ class RouteParamsTest extends TestCase
         ];
     }
 
-    /**
-     * @param array<array-key, mixed> $options
-     *
-     * @dataProvider typeErrorProvider
-     */
+    /** @param array<array-key, mixed> $options */
+    #[DataProvider('typeErrorProvider')]
     public function testOptionTypeError(array $options): void
     {
         $this->expectException(TypeError::class);

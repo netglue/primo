@@ -34,6 +34,7 @@ class DocumentResolverTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->api = $this->createMock(ApiClient::class);
         $this->params = RouteParams::fromArray([]);
         $this->resolver = new DocumentResolver($this->api, $this->params);

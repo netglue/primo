@@ -23,6 +23,7 @@ class ExpiredPreviewHandlerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->handler = new class () implements RequestHandlerInterface {
             public ServerRequestInterface $lastRequest;

@@ -23,6 +23,7 @@ class InjectRequestCookiesTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->api = Api::get('https://www.example.com', null, new Client());
         $this->subject = new InjectRequestCookies($this->api);
         $this->handler = new class () implements RequestHandlerInterface {

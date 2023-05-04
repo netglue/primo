@@ -20,6 +20,7 @@ class WebhookHandlerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->events = $this->createMock(EventDispatcherInterface::class);
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->subject = new WebhookHandler($this->events, 'secret');

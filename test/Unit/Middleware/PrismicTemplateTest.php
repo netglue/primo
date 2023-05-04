@@ -29,6 +29,7 @@ class PrismicTemplateTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->templates = $this->createMock(TemplateRendererInterface::class);
         $this->subject = new PrismicTemplate($this->templates);
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Primo\Middleware;
 
 use Dflydev\FigCookies\FigResponseCookies;
+use Dflydev\FigCookies\SetCookie;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Prismic\ApiClient;
 use Prismic\Exception\PreviewTokenExpired;
@@ -27,6 +28,6 @@ final class ExpiredPreviewHandler implements MiddlewareInterface
 
         $response = new RedirectResponse($this->redirectUrl);
 
-        return FigResponseCookies::expire($response, ApiClient::PREVIEW_COOKIE);
+        return FigResponseCookies::set($response, SetCookie::create(ApiClient::PREVIEW_COOKIE, '')->expire());
     }
 }

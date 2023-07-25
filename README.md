@@ -10,7 +10,6 @@ A silly contraction on [Prismic](https://prismic.io) and [Mezzio](https://docs.m
 [![Latest Stable Version](https://poser.pugx.org/netglue/primo/v/stable)](https://packagist.org/packages/netglue/primo)
 [![Total Downloads](https://poser.pugx.org/netglue/primo/downloads)](https://packagist.org/packages/netglue/primo)
 
-
 This library integrates the Prismic.io headless content management system with Mezzio.
 
 If you're building websites in PHP and want a CMS without the hassle of managing databases, then this is worth considering as a solid alternative to the usual suspects.

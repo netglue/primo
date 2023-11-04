@@ -475,16 +475,16 @@
         },
         {
             "name": "mezzio/mezzio",
-            "version": "3.17.0",
+            "version": "3.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mezzio/mezzio.git",
-                "reference": "d0173b73fd6da085779b32db92a207a3e70e108f"
+                "reference": "450512a378967d23243f784808a8436bc7a125a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mezzio/mezzio/zipball/d0173b73fd6da085779b32db92a207a3e70e108f",
-                "reference": "d0173b73fd6da085779b32db92a207a3e70e108f",
+                "url": "https://api.github.com/repos/mezzio/mezzio/zipball/450512a378967d23243f784808a8436bc7a125a7",
+                "reference": "450512a378967d23243f784808a8436bc7a125a7",
                 "shasum": ""
             },
             "require": {
@@ -493,7 +493,7 @@
                 "laminas/laminas-stratigility": "^3.5",
                 "mezzio/mezzio-router": "^3.7",
                 "mezzio/mezzio-template": "^2.2",
-                "php": "~8.1.0 || ~8.2.0",
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
                 "psr/container": "^1.0||^2.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0.1 || ^2.0.0",
@@ -510,16 +510,16 @@
                 "zendframework/zend-expressive": "*"
             },
             "require-dev": {
-                "filp/whoops": "^2.14.6",
+                "filp/whoops": "^2.15.4",
                 "laminas/laminas-coding-standard": "~2.5.0",
-                "laminas/laminas-diactoros": "^3.0",
-                "laminas/laminas-servicemanager": "^3.20",
+                "laminas/laminas-diactoros": "^3.3.0",
+                "laminas/laminas-servicemanager": "^3.22.1",
                 "mezzio/mezzio-aurarouter": "^3.6",
-                "mezzio/mezzio-fastroute": "^3.8",
-                "mezzio/mezzio-laminasrouter": "^3.7",
-                "phpunit/phpunit": "^10.1",
+                "mezzio/mezzio-fastroute": "^3.11",
+                "mezzio/mezzio-laminasrouter": "^3.8",
+                "phpunit/phpunit": "^10.4.2",
                 "psalm/plugin-phpunit": "^0.18.4",
-                "vimeo/psalm": "^5.7.7"
+                "vimeo/psalm": "^5.15.0"
             },
             "suggest": {
                 "filp/whoops": "^2.1 to use the Whoops error handler",
@@ -578,7 +578,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2023-05-09T14:54:58+00:00"
+            "time": "2023-11-03T13:17:33+00:00"
         },
         {
             "name": "mezzio/mezzio-helpers",
@@ -3345,16 +3345,16 @@
         },
         {
             "name": "php-http/curl-client",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/curl-client.git",
-                "reference": "f7352c0796549949900d28fe991e19c90572386a"
+                "reference": "085570be588f7cbdc4601e78886eea5b7051ad71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/curl-client/zipball/f7352c0796549949900d28fe991e19c90572386a",
-                "reference": "f7352c0796549949900d28fe991e19c90572386a",
+                "url": "https://api.github.com/repos/php-http/curl-client/zipball/085570be588f7cbdc4601e78886eea5b7051ad71",
+                "reference": "085570be588f7cbdc4601e78886eea5b7051ad71",
                 "shasum": ""
             },
             "require": {
@@ -3365,7 +3365,7 @@
                 "php-http/message": "^1.2",
                 "psr/http-client": "^1.0",
                 "psr/http-factory-implementation": "^1.0",
-                "symfony/options-resolver": "^3.4 || ^4.0 || ^5.0 || ^6.0"
+                "symfony/options-resolver": "^3.4 || ^4.0 || ^5.0 || ^6.0 || ^7.0"
             },
             "provide": {
                 "php-http/async-client-implementation": "1.0",
@@ -3376,6 +3376,7 @@
                 "guzzlehttp/psr7": "^1.0",
                 "laminas/laminas-diactoros": "^2.0",
                 "php-http/client-integration-tests": "^3.0",
+                "php-http/message-factory": "^1.1",
                 "phpunit/phpunit": "^7.5 || ^9.4"
             },
             "type": "library",
@@ -3403,9 +3404,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/curl-client/issues",
-                "source": "https://github.com/php-http/curl-client/tree/2.3.0"
+                "source": "https://github.com/php-http/curl-client/tree/2.3.1"
             },
-            "time": "2023-04-28T14:56:41+00:00"
+            "time": "2023-11-03T15:32:00+00:00"
         },
         {
             "name": "php-http/httplug",
@@ -4400,12 +4401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "01d84c303adf879aeb278a3dd1dd166db945ee55"
+                "reference": "705b497810d1620aaac8779e6b82ef3d266fc6c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/01d84c303adf879aeb278a3dd1dd166db945ee55",
-                "reference": "01d84c303adf879aeb278a3dd1dd166db945ee55",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/705b497810d1620aaac8779e6b82ef3d266fc6c1",
+                "reference": "705b497810d1620aaac8779e6b82ef3d266fc6c1",
                 "shasum": ""
             },
             "conflict": {
@@ -4542,11 +4543,12 @@
                 "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6|>=1.5,<1.5.29|>=2.3,<2.3.26",
                 "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2.1|>=5,<5.0.1|>=5.1,<5.1.1",
                 "ezsystems/ezplatform-graphql": ">=1.0.0.0-RC1-dev,<1.0.13|>=2.0.0.0-beta1,<2.3.12",
-                "ezsystems/ezplatform-kernel": "<1.2.5.1-dev|>=1.3,<1.3.26",
+                "ezsystems/ezplatform-kernel": "<1.2.5.1-dev|>=1.3,<1.3.34",
                 "ezsystems/ezplatform-rest": ">=1.2,<=1.2.2|>=1.3,<1.3.8",
                 "ezsystems/ezplatform-richtext": ">=2.3,<2.3.7.1-dev",
+                "ezsystems/ezplatform-solr-search-engine": ">=1.7,<1.7.12|>=2,<2.0.2|>=3.3,<3.3.15",
                 "ezsystems/ezplatform-user": ">=1,<1.0.1",
-                "ezsystems/ezpublish-kernel": "<6.13.8.2-dev|>=7,<7.5.30",
+                "ezsystems/ezpublish-kernel": "<6.13.8.2-dev|>=7,<7.5.31",
                 "ezsystems/ezpublish-legacy": "<=2017.12.7.3|>=2018.6,<=2019.03.5.1",
                 "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1-dev|>=2.5,<2.5.15",
@@ -4568,6 +4570,7 @@
                 "fluidtypo3/vhs": "<5.1.1",
                 "fof/byobu": ">=0.3.0.0-beta2,<1.1.7",
                 "fof/upload": "<1.2.3",
+                "foodcoopshop/foodcoopshop": "<3.6.1",
                 "fooman/tcpdf": "<6.2.22",
                 "forkcms/forkcms": "<5.11.1",
                 "fossar/tcpdf-parser": "<6.2.22",
@@ -4612,9 +4615,10 @@
                 "httpsoft/http-message": "<1.0.12",
                 "hyn/multi-tenant": ">=5.6,<5.7.2",
                 "ibexa/admin-ui": ">=4.2,<4.2.3",
-                "ibexa/core": ">=4,<4.0.7|>=4.1,<4.1.4|>=4.2,<4.2.3",
+                "ibexa/core": ">=4,<4.0.7|>=4.1,<4.1.4|>=4.2,<4.2.3|>=4.5,<4.5.4",
                 "ibexa/graphql": ">=2.5,<2.5.31|>=3.3,<3.3.28|>=4.2,<4.2.3",
                 "ibexa/post-install": "<=1.0.4",
+                "ibexa/solr": ">=4.5,<4.5.4",
                 "ibexa/user": ">=4,<4.4.3",
                 "icecoder/icecoder": "<=8.1",
                 "idno/known": "<=1.3.1",
@@ -5078,7 +5082,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-02T01:25:45+00:00"
+            "time": "2023-11-03T20:04:24+00:00"
         },
         {
             "name": "sebastian/cli-parser",

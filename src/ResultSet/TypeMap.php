@@ -79,7 +79,7 @@ final class TypeMap
         if (! class_exists($className)) {
             throw new InvalidArgument(sprintf(
                 'The target class "%s" does not exist. Please create it or check your document type mapping configuration.',
-                (string) $className,
+                $className,
             ));
         }
 

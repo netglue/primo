@@ -8,3 +8,4 @@
 /test/ export-ignore
 /.laminas-ci/ export-ignore
 /.laminas-ci.json export-ignore
+/.psr-container.php.stub export-ignore

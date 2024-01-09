@@ -740,16 +740,16 @@
         },
         {
             "name": "mezzio/mezzio-template",
-            "version": "2.9.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mezzio/mezzio-template.git",
-                "reference": "16060229d23cd5b715d92f28d9779c574b1d8385"
+                "reference": "2cc943c996b8a63f1f945a2b891346ecbc8f7a33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mezzio/mezzio-template/zipball/16060229d23cd5b715d92f28d9779c574b1d8385",
-                "reference": "16060229d23cd5b715d92f28d9779c574b1d8385",
+                "url": "https://api.github.com/repos/mezzio/mezzio-template/zipball/2cc943c996b8a63f1f945a2b891346ecbc8f7a33",
+                "reference": "2cc943c996b8a63f1f945a2b891346ecbc8f7a33",
                 "shasum": ""
             },
             "require": {
@@ -800,7 +800,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2023-11-01T09:29:30+00:00"
+            "time": "2024-01-08T15:20:45+00:00"
         },
         {
             "name": "netglue/prismic-client",

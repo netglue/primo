@@ -8,6 +8,7 @@ use Mezzio\Router\RouteResult;
 use Prismic\ResultSet;
 
 use function count;
+use function is_string;
 use function json_encode;
 use function sprintf;
 
@@ -40,7 +41,7 @@ class RoutingError extends RuntimeError
     {
         $routeName = $routeResult->getMatchedRouteName();
 
-        return $routeName ?: '[Unnamed Route]';
+        return is_string($routeName) ? $routeName : '[Unnamed Route]';
     }
 
     protected static function matchedParams(RouteResult $routeResult): string

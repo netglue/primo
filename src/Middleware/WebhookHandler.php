@@ -35,7 +35,7 @@ final class WebhookHandler implements RequestHandlerInterface
             return $this->jsonError('Invalid payload', 400);
         }
 
-        if ($this->expectedSecret && ($payload->secret ?? null) !== $this->expectedSecret) {
+        if ($this->expectedSecret !== null && ($payload->secret ?? null) !== $this->expectedSecret) {
             return $this->jsonError('Invalid payload', 400);
         }
 

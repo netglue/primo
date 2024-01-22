@@ -47,6 +47,6 @@ final class PreviewHandler implements MiddlewareInterface
 
         $resolved = $link ? $this->linkResolver->resolve($link) : null;
 
-        return new RedirectResponse($resolved ?: $this->defaultUrl, 302);
+        return new RedirectResponse($resolved ?? $this->defaultUrl, 302);
     }
 }

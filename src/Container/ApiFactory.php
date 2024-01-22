@@ -25,8 +25,8 @@ final class ApiFactory
         assert(is_array($config));
         $config = isset($config['prismic']) && is_array($config['prismic']) ? $config['prismic'] : [];
 
-        $apiUrl = $config['api'] ?? null;
-        if (empty($apiUrl) || ! is_string($apiUrl)) {
+        $apiUrl = $config['api'] ?? '';
+        if (! is_string($apiUrl) || $apiUrl === '') {
             throw new ConfigurationError(
                 'An api url cannot be determined. Your content repository url should be available in ' .
                 'configuration under [prismic][api] and should be a non-empty string.',

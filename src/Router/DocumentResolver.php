@@ -48,7 +48,7 @@ class DocumentResolver
     {
         $params = $routeResult->getMatchedParams();
         $bookmark = $params[$this->routeParams->bookmark()] ?? null;
-        if (! $bookmark) {
+        if ($bookmark === null) {
             return null;
         }
 
@@ -69,29 +69,29 @@ class DocumentResolver
         assert(is_string($id) || $id === null);
 
         // At least one of these must be present to attempt a match
-        if (! $type && ! $uid && ! $tags) {
+        if ($type === null && $uid === null && $tags === null) {
             return null;
         }
 
         // If the uid is present, the type must be present
-        if ($uid && ! $type) {
+        if ($uid !== null && $type === null) {
             throw RoutingError::uidMatchedWithoutType($routeResult);
         }
 
         $predicates = [];
-        if ($type) {
+        if ($type !== null) {
             $predicates[] = Predicate::at('document.type', $type);
         }
 
-        if ($uid) {
+        if ($uid !== null) {
             $predicates[] = Predicate::at(sprintf('my.%s.uid', $type), $uid);
         }
 
-        if ($id) {
+        if ($id !== null) {
             $predicates[] = Predicate::at('document.id', $id);
         }
 
-        if (! empty($tags)) {
+        if ($tags !== null && $tags !== [] && $tags !== '') {
             $tags = is_string($tags) ? [$tags] : $tags;
             $predicates[] = Predicate::at('document.tags', $tags);
         }
@@ -115,7 +115,7 @@ class DocumentResolver
     {
         $params = $routeResult->getMatchedParams();
         $id = $params[$this->routeParams->id()] ?? null;
-        if (! $id || ! is_string($id)) {
+        if (! is_string($id) || $id === '') {
             return null;
         }
 

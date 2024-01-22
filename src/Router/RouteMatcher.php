@@ -33,7 +33,7 @@ final class RouteMatcher
     public function bestMatch(string $id, string $type, string|null $uid, string|null $bookmark, array $tags): Route|null
     {
         // A matching bookmark is nearly the most specific type of route and the easiest to reason about
-        if ($bookmark) {
+        if ($bookmark !== null) {
             $route = $this->getBookmarkedRoute($bookmark);
             if ($route) {
                 return $route;
@@ -41,7 +41,7 @@ final class RouteMatcher
         }
 
         // See if there's a route with a hard-coded UID that matches the argument
-        if ($uid) {
+        if ($uid !== null) {
             $route = $this->getUidRoute($type, $uid);
             if ($route) {
                 return $route;
@@ -165,7 +165,7 @@ final class RouteMatcher
     {
         $options = $route->getOptions();
         $tags = $options['defaults'][$this->params->tag()] ?? null;
-        if (! $tags) {
+        if ($tags === null) {
             return [];
         }
 

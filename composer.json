@@ -58,7 +58,7 @@
         "doctrine/coding-standard": "^13.0.1",
         "helmich/phpunit-psr7-assert": "^4.4.1",
         "laminas/laminas-config-aggregator": "^1.18",
-        "laminas/laminas-servicemanager": "^3.23.0",
+        "laminas/laminas-servicemanager": "^3.23.0 || ^4",
         "mezzio/mezzio-fastroute": "^3.13",
         "php-http/curl-client": "^2.3.3",
         "php-http/mock-client": "^1.6.1",

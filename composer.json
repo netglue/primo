@@ -40,7 +40,7 @@
         "laminas/laminas-diactoros": "^2.25.2 || ^3.0",
         "mezzio/mezzio": "^3.13",
         "mezzio/mezzio-helpers": "^5.10",
-        "mezzio/mezzio-router": "^3.9",
+        "mezzio/mezzio-router": "^3.9 || ^4.0",
         "mezzio/mezzio-template": "^2.7",
         "netglue/prismic-client": "^1.7",
         "php-http/discovery": "^1.14.3",

@@ -10,7 +10,7 @@ use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Client\ClientInterface;
 
-class PrismicHttpClientFactoryTest extends TestCase
+final class PrismicHttpClientFactoryTest extends TestCase
 {
     private MockObject|ClientInterface $container;
 

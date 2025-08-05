@@ -12,9 +12,9 @@ use PrimoTest\Unit\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class WebhookHandlerTest extends TestCase
+final class WebhookHandlerTest extends TestCase
 {
-    private MockObject|EventDispatcherInterface $events;
+    private MockObject&EventDispatcherInterface $events;
     private ServerRequestInterface $request;
     private WebhookHandler $subject;
 

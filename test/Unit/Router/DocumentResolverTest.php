@@ -23,7 +23,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /** @psalm-suppress DeprecatedMethod */
-class DocumentResolverTest extends TestCase
+final class DocumentResolverTest extends TestCase
 {
     private MockObject&ApiClient $api;
     private DocumentResolver $resolver;

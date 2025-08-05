@@ -10,7 +10,7 @@ use PrimoTest\Unit\Asset\SimpleDocument;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class TypeMapFactoryTest extends TestCase
+final class TypeMapFactoryTest extends TestCase
 {
     public function testFactoryWithConfig(): void
     {

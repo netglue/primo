@@ -9,7 +9,7 @@ use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Psr\Container\ContainerInterface;
 
-class InjectRequestCookiesFactoryTest extends TestCase
+final class InjectRequestCookiesFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

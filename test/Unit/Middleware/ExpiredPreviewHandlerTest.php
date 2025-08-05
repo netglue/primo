@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class ExpiredPreviewHandlerTest extends TestCase
+final class ExpiredPreviewHandlerTest extends TestCase
 {
     private ExpiredPreviewHandler $subject;
     private ServerRequestInterface $request;

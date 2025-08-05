@@ -12,7 +12,7 @@ use function assert;
 use function serialize;
 use function unserialize;
 
-class WebhookEventTest extends TestCase
+final class WebhookEventTest extends TestCase
 {
     public function testThatEventsCanBeSerialised(): void
     {

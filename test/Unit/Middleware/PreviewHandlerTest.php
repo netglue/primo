@@ -18,7 +18,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PreviewHandlerTest extends TestCase
+final class PreviewHandlerTest extends TestCase
 {
     private ServerRequestInterface $request;
     private RequestHandlerInterface $handler;

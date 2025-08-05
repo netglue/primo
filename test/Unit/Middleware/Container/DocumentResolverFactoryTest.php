@@ -9,7 +9,7 @@ use Primo\Router\DocumentResolver;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class DocumentResolverFactoryTest extends TestCase
+final class DocumentResolverFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

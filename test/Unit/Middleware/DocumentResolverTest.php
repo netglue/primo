@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class DocumentResolverTest extends TestCase
+final class DocumentResolverTest extends TestCase
 {
     private MockObject|Resolver $resolver;
     private RouteResult|MockObject $routeResult;

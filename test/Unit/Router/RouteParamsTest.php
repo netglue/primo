@@ -12,7 +12,7 @@ use PrimoTest\Unit\TestCase;
 use TypeError;
 
 /** @psalm-suppress DeprecatedMethod */
-class RouteParamsTest extends TestCase
+final class RouteParamsTest extends TestCase
 {
     public function testOptionsArray(): RouteParams
     {

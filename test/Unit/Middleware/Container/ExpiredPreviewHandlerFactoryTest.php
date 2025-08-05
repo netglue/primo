@@ -8,7 +8,7 @@ use Primo\Middleware\Container\ExpiredPreviewHandlerFactory;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class ExpiredPreviewHandlerFactoryTest extends TestCase
+final class ExpiredPreviewHandlerFactoryTest extends TestCase
 {
     public function testFactoryWhenNoConfigIsAvailable(): void
     {

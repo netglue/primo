@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PreviewCacheHeadersTest extends TestCase
+final class PreviewCacheHeadersTest extends TestCase
 {
     private ServerRequestInterface $request;
     private RequestHandlerInterface $handler;

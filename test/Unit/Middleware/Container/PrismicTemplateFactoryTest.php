@@ -9,7 +9,7 @@ use Primo\Middleware\Container\PrismicTemplateFactory;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class PrismicTemplateFactoryTest extends TestCase
+final class PrismicTemplateFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

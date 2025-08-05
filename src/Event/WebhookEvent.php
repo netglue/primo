@@ -53,13 +53,13 @@ final class WebhookEvent implements Serializable
     /**
      * @deprecated
      *
-     * @param string $serialized
+     * @param string $data
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($data): void
     {
-        $object = Json::decodeObject($serialized);
+        $object = Json::decodeObject($data);
         $this->payload = $object->payload;
         $this->received = $object->received;
     }

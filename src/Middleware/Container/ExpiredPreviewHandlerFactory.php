@@ -9,6 +9,7 @@ use Primo\Middleware\ExpiredPreviewHandler;
 use Psr\Container\ContainerInterface;
 use Webmozart\Assert\Assert;
 
+/** @final */
 class ExpiredPreviewHandlerFactory
 {
     public function __invoke(ContainerInterface $container): ExpiredPreviewHandler

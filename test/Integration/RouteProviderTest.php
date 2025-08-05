@@ -11,7 +11,7 @@ use Primo\RouteProvider;
 use function array_map;
 use function sprintf;
 
-class RouteProviderTest extends IntegrationTestCase
+final class RouteProviderTest extends IntegrationTestCase
 {
     public function testThatTheApplicationDoesNotHaveTheWebhookRouteByDefault(): void
     {

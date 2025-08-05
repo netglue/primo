@@ -11,7 +11,7 @@ use PrimoTest\Unit\Asset\BadHierarchy;
 use PrimoTest\Unit\Asset\SimpleDocument;
 use PrimoTest\Unit\TestCase;
 
-class TypeMapTest extends TestCase
+final class TypeMapTest extends TestCase
 {
     public function testGivenAnyTypeTheDefaultWillBeReturned(): void
     {

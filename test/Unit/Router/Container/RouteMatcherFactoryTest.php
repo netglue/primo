@@ -10,7 +10,7 @@ use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class RouteMatcherFactoryTest extends TestCase
+final class RouteMatcherFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

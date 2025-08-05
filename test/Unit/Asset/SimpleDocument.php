@@ -6,6 +6,6 @@ namespace PrimoTest\Unit\Asset;
 
 use Primo\Content\Document;
 
-class SimpleDocument extends Document
+final class SimpleDocument extends Document
 {
 }

@@ -9,7 +9,7 @@ use Primo\ResultSet\TypeMap;
 use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
-class HydratingResultSetFactoryFactoryTest extends TestCase
+final class HydratingResultSetFactoryFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

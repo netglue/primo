@@ -10,7 +10,7 @@ use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Psr\Container\ContainerInterface;
 
-class DocumentResolverFactoryTest extends TestCase
+final class DocumentResolverFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

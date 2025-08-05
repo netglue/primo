@@ -10,7 +10,7 @@ use Prismic\ApiClient;
 use Prismic\LinkResolver;
 use Psr\Container\ContainerInterface;
 
-class PreviewHandlerFactoryTest extends TestCase
+final class PreviewHandlerFactoryTest extends TestCase
 {
     public function testFactoryExecutesWhenConfigIsNotAvailable(): void
     {

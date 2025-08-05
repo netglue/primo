@@ -10,7 +10,7 @@ use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
-class WebhookHandlerFactoryTest extends TestCase
+final class WebhookHandlerFactoryTest extends TestCase
 {
     public function testThatAnExceptionIsThrownWhenNoEventDispatcherIsAvailable(): void
     {

@@ -15,7 +15,7 @@ use Prismic\Json;
 use Prismic\Value\ApiData;
 use Psr\Container\ContainerInterface;
 
-class LinkResolverFactoryTest extends TestCase
+final class LinkResolverFactoryTest extends TestCase
 {
     private function routeMatcher(): RouteMatcher
     {

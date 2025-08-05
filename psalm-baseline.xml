@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.18.0@b113f3ed0259fd6e212d87c3df80eec95a6abf19">
+<files psalm-version="6.13.0@70cdf647255a1362b426bb0f522a85817b8c791c">
   <file src="src/Container/ApiFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>Api</code>
+      <code><![CDATA[Api]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Container/LinkResolverFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>LinkResolver</code>
+      <code><![CDATA[LinkResolver]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Container/StandardResultSetFactoryFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>ResultSetFactory</code>
+      <code><![CDATA[ResultSetFactory]]></code>
     </PossiblyUnusedReturnValue>
     <UnusedParam>
-      <code>$container</code>
+      <code><![CDATA[$container]]></code>
     </UnusedParam>
   </file>
   <file src="src/Content/Document.php">
     <PossiblyUnusedMethod>
-      <code>get</code>
-      <code>has</code>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[has]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Event/WebhookEvent.php">
@@ -32,11 +32,8 @@
   </file>
   <file src="src/Exception/RequestError.php">
     <PossiblyUnusedMethod>
-      <code>getRequest</code>
+      <code><![CDATA[getRequest]]></code>
     </PossiblyUnusedMethod>
-    <UnsafeInstantiation>
-      <code>new static($message, $code)</code>
-    </UnsafeInstantiation>
   </file>
   <file src="src/LinkResolver.php">
     <MixedArrayAccess>
@@ -45,37 +42,37 @@
   </file>
   <file src="src/Middleware/Container/DocumentResolverFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>DocumentResolver</code>
+      <code><![CDATA[DocumentResolver]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/Container/ExpiredPreviewHandlerFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>ExpiredPreviewHandler</code>
+      <code><![CDATA[ExpiredPreviewHandler]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/Container/InjectRequestCookiesFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>InjectRequestCookies</code>
+      <code><![CDATA[InjectRequestCookies]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/Container/PreviewCacheHeadersFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>PreviewCacheHeaders</code>
+      <code><![CDATA[PreviewCacheHeaders]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/Container/PreviewHandlerFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>PreviewHandler</code>
+      <code><![CDATA[PreviewHandler]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/Container/PrismicTemplateFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>PrismicTemplate</code>
+      <code><![CDATA[PrismicTemplate]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/Container/WebhookHandlerFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>WebhookHandler</code>
+      <code><![CDATA[WebhookHandler]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/InjectRequestCookies.php">
@@ -83,7 +80,7 @@
       <code><![CDATA[$request->getCookieParams()]]></code>
     </MixedArgumentTypeCoercion>
     <PossiblyUnusedReturnValue>
-      <code>ResponseInterface</code>
+      <code><![CDATA[ResponseInterface]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Middleware/PreviewHandler.php">
@@ -93,15 +90,15 @@
   </file>
   <file src="src/Middleware/PrismicTemplate.php">
     <MixedArgument>
-      <code>$template</code>
+      <code><![CDATA[$template]]></code>
     </MixedArgument>
     <MixedAssignment>
-      <code>$template</code>
+      <code><![CDATA[$template]]></code>
     </MixedAssignment>
   </file>
   <file src="src/ResultSet/Container/HydratingResultSetFactoryFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>HydratingResultSetFactory</code>
+      <code><![CDATA[HydratingResultSetFactory]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/ResultSet/Container/TypeMapFactory.php">
@@ -115,28 +112,28 @@
       <code><![CDATA[$content->type()]]></code>
     </ArgumentTypeCoercion>
     <UnsafeInstantiation>
-      <code>new $class($content)</code>
+      <code><![CDATA[new $class($content)]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="src/Router/Container/DocumentResolverFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>DocumentResolver</code>
+      <code><![CDATA[DocumentResolver]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Router/Container/RouteMatcherFactory.php">
     <PossiblyUnusedReturnValue>
-      <code>RouteMatcher</code>
+      <code><![CDATA[RouteMatcher]]></code>
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Router/DocumentResolver.php">
     <MixedArgument>
-      <code>$bookmark</code>
-      <code>$tags</code>
+      <code><![CDATA[$bookmark]]></code>
+      <code><![CDATA[$tags]]></code>
     </MixedArgument>
     <MixedAssignment>
-      <code>$bookmark</code>
-      <code>$tags</code>
-      <code>$tags</code>
+      <code><![CDATA[$bookmark]]></code>
+      <code><![CDATA[$tags]]></code>
+      <code><![CDATA[$tags]]></code>
     </MixedAssignment>
   </file>
   <file src="src/Router/RouteMatcher.php">
@@ -148,19 +145,19 @@
       <code><![CDATA[$options['defaults'][$this->params->uid()]]]></code>
     </MixedArrayAccess>
     <MixedAssignment>
-      <code>$option</code>
-      <code>$option</code>
-      <code>$option</code>
-      <code>$option</code>
+      <code><![CDATA[$option]]></code>
+      <code><![CDATA[$option]]></code>
+      <code><![CDATA[$option]]></code>
+      <code><![CDATA[$option]]></code>
     </MixedAssignment>
     <MixedReturnTypeCoercion>
-      <code>$tags</code>
-      <code>string[]</code>
+      <code><![CDATA[$tags]]></code>
+      <code><![CDATA[string[]]]></code>
     </MixedReturnTypeCoercion>
   </file>
   <file src="test/Integration/IntegrationTestCase.php">
     <MixedArgument>
-      <code>$dependencies</code>
+      <code><![CDATA[$dependencies]]></code>
     </MixedArgument>
     <MixedArrayAccess>
       <code><![CDATA[$dependencies['services']]]></code>
@@ -170,7 +167,7 @@
       <code><![CDATA[$dependencies['services']['config']]]></code>
     </MixedArrayAssignment>
     <MixedAssignment>
-      <code>$dependencies</code>
+      <code><![CDATA[$dependencies]]></code>
     </MixedAssignment>
   </file>
   <file src="test/Integration/RouteProviderTest.php">
@@ -181,45 +178,45 @@
   </file>
   <file src="test/Unit/Container/StandardResultSetFactoryFactoryTest.php">
     <InternalMethod>
-      <code>addToAssertionCount</code>
+      <code><![CDATA[addToAssertionCount]]></code>
     </InternalMethod>
   </file>
   <file src="test/Unit/Http/PrismicHttpClientFactoryTest.php">
     <InternalMethod>
-      <code>addToAssertionCount</code>
+      <code><![CDATA[addToAssertionCount]]></code>
     </InternalMethod>
     <InvalidArgument>
       <code><![CDATA[$this->container]]></code>
       <code><![CDATA[$this->container]]></code>
     </InvalidArgument>
     <MixedMethodCall>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>with</code>
-      <code>with</code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <PossiblyUndefinedMethod>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Unit/Middleware/Container/PreviewCacheHeadersFactoryTest.php">
     <InternalMethod>
-      <code>addToAssertionCount</code>
+      <code><![CDATA[addToAssertionCount]]></code>
     </InternalMethod>
   </file>
   <file src="test/Unit/Middleware/DocumentResolverTest.php">
     <MixedMethodCall>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>with</code>
-      <code>with</code>
+      <code><![CDATA[getAttribute]]></code>
+      <code><![CDATA[getAttribute]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <NoInterfaceProperties>
       <code><![CDATA[$this->handler->lastRequest]]></code>
@@ -231,63 +228,50 @@
       <code><![CDATA[$this->resolver]]></code>
     </PossiblyInvalidArgument>
     <PossiblyUndefinedMethod>
-      <code>method</code>
-      <code>method</code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Unit/Middleware/PreviewCacheHeadersTest.php">
     <MixedMethodCall>
-      <code>willReturn</code>
-      <code>willReturn</code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willReturn]]></code>
     </MixedMethodCall>
     <PossiblyUndefinedMethod>
-      <code>method</code>
-      <code>method</code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Unit/Middleware/PreviewHandlerTest.php">
     <MixedMethodCall>
-      <code>getAttribute</code>
-      <code>method</code>
-      <code>method</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willThrowException</code>
-      <code>willThrowException</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
-      <code>with</code>
+      <code><![CDATA[getAttribute]]></code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willReturn]]></code>
+      <code><![CDATA[willThrowException]]></code>
+      <code><![CDATA[willThrowException]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <NoInterfaceProperties>
       <code><![CDATA[$this->handler->lastRequest]]></code>
     </NoInterfaceProperties>
     <PossiblyUndefinedMethod>
-      <code>expects</code>
-      <code>expects</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
+      <code><![CDATA[method]]></code>
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Unit/Middleware/PrismicTemplateTest.php">
     <NoInterfaceProperties>
       <code><![CDATA[$this->handler->lastRequest]]></code>
     </NoInterfaceProperties>
-  </file>
-  <file src="test/Unit/Middleware/WebhookHandlerTest.php">
-    <PossiblyInvalidArgument>
-      <code><![CDATA[$this->events]]></code>
-    </PossiblyInvalidArgument>
-    <PossiblyUnusedMethod>
-      <code>theWrongSecret</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="test/Unit/Router/RouteParamsTest.php">
-    <PossiblyUnusedMethod>
-      <code>typeErrorProvider</code>
-    </PossiblyUnusedMethod>
   </file>
 </files>

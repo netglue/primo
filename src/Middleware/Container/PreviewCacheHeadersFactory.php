@@ -8,6 +8,7 @@ use Primo\Middleware\PreviewCacheHeaders;
 use Prismic\ApiClient;
 use Psr\Container\ContainerInterface;
 
+/** @final */
 class PreviewCacheHeadersFactory
 {
     public function __invoke(ContainerInterface $container): PreviewCacheHeaders

@@ -9,7 +9,7 @@ use PrimoTest\Unit\TestCase;
 use Prismic\ApiClient;
 use Psr\Container\ContainerInterface;
 
-class PreviewCacheHeadersFactoryTest extends TestCase
+final class PreviewCacheHeadersFactoryTest extends TestCase
 {
     public function testFactory(): void
     {

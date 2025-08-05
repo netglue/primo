@@ -8,6 +8,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Client\ClientInterface;
 
+/** @final */
 class PrismicHttpClientFactory
 {
     public function __invoke(ContainerInterface $container): ClientInterface

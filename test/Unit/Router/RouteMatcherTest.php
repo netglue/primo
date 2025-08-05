@@ -20,7 +20,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use function assert;
 
 /** @psalm-suppress DeprecatedMethod */
-class RouteMatcherTest extends TestCase
+final class RouteMatcherTest extends TestCase
 {
     private RouteParams $params;
     private RouteCollector $collector;

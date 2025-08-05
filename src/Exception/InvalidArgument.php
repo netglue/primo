@@ -6,6 +6,7 @@ namespace Primo\Exception;
 
 use InvalidArgumentException;
 
+/** @final */
 class InvalidArgument extends InvalidArgumentException implements PrimoError
 {
 }

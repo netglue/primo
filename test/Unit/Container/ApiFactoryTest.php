@@ -14,7 +14,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
-class ApiFactoryTest extends TestCase
+final class ApiFactoryTest extends TestCase
 {
     public function testAnExceptionIsThrownWhenAnApiUrlHasNotBeenConfigured(): void
     {

@@ -10,7 +10,7 @@ use PrimoTest\Unit\TestCase;
 use Psr\Container\ContainerInterface;
 
 /** @psalm-suppress DeprecatedMethod */
-class RouteParamsFactoryTest extends TestCase
+final class RouteParamsFactoryTest extends TestCase
 {
     private RouteParamsFactory $factory;
     private MockObject&ContainerInterface $container;

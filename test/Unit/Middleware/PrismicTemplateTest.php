@@ -16,7 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PrismicTemplateTest extends TestCase
+final class PrismicTemplateTest extends TestCase
 {
     /** @var TemplateRendererInterface&MockObject */
     private TemplateRendererInterface|MockObject $templates;

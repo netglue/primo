@@ -9,6 +9,7 @@ use RuntimeException;
 
 use function sprintf;
 
+/** @final */
 class RequestError extends RuntimeException implements PrimoError
 {
     private RequestInterface|null $request = null;

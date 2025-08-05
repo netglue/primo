@@ -6,11 +6,12 @@ namespace Primo\Router;
 
 use Mezzio\Router\Route;
 
+/** @final */
 class ScoredRoute
 {
     public function __construct(
-        private Route $route,
-        private int $score,
+        private readonly Route $route,
+        private readonly int $score,
     ) {
     }
 

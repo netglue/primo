@@ -4,15 +4,12 @@
          bootstrap="vendor/autoload.php"
          colors="true"
          cacheDirectory=".phpunit.cache"
-         displayDetailsOnTestsThatTriggerWarnings="true"
-         displayDetailsOnTestsThatTriggerNotices="true"
-         displayDetailsOnTestsThatTriggerErrors="true"
-         displayDetailsOnTestsThatTriggerDeprecations="true"
-         displayDetailsOnSkippedTests="true"
-         displayDetailsOnIncompleteTests="true"
+         displayDetailsOnAllIssues="true"
          failOnWarning="true"
          failOnNotice="true"
          failOnDeprecation="true"
+         failOnPhpunitDeprecation="true"
+         failOnPhpunitWarning="true"
 >
     <testsuites>
         <testsuite name="Unit Tests">
@@ -22,7 +19,7 @@
             <directory>./test/Integration</directory>
         </testsuite>
     </testsuites>
-    <source>
+    <source ignoreIndirectDeprecations="true">
         <include>
             <directory suffix=".php">./src</directory>
         </include>

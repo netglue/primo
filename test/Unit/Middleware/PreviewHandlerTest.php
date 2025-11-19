@@ -91,7 +91,7 @@ final class PreviewHandlerTest extends TestCase
         $this->api->method('previewSession')->with($token)->willReturn(null);
         $response = $this->subject->process($request, $this->handler);
         self::assertResponseHasStatus($response, 302);
-        self::assertMessageHasHeader($response, 'location', '/go-here');
+        self::assertMessageHasHeader($response, 'location', self::equalTo('/go-here'));
     }
 
     public function testThatTheRedirectWillBeDeterminedByLinkResolver(): void
@@ -104,6 +104,6 @@ final class PreviewHandlerTest extends TestCase
         $this->linkResolver->method('resolve')->with($link)->willReturn('/go-there');
         $response = $this->subject->process($request, $this->handler);
         self::assertResponseHasStatus($response, 302);
-        self::assertMessageHasHeader($response, 'location', '/go-there');
+        self::assertMessageHasHeader($response, 'location', self::equalTo('/go-there'));
     }
 }

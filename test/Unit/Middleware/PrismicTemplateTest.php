@@ -97,6 +97,6 @@ final class PrismicTemplateTest extends TestCase
         $response = $this->subject->process($this->requestHasDocument(), $this->handler);
         self::assertResponseIsSuccess($response);
         self::assertMessageBodyMatches($response, self::equalTo('Some Markup'));
-        self::assertMessageHasHeader($response, 'content-language', 'en-gb');
+        self::assertMessageHasHeader($response, 'content-language', self::equalTo('en-gb'));
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Primo\Router;
 
 use Mezzio\Router\Route;
-use Mezzio\Router\RouteCollector;
+use Mezzio\Router\RouteCollectorInterface;
 use Primo\Exception\ConfigurationError;
 
 use function array_diff;
@@ -21,7 +21,7 @@ final class RouteMatcher
 {
     public function __construct(
         private RouteParams $params,
-        private RouteCollector $collector,
+        private RouteCollectorInterface $collector,
     ) {
     }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PrimoTest\Unit\Router\Container;
 
 use Mezzio\Router\RouteCollector;
+use Mezzio\Router\RouteCollectorInterface;
 use Primo\Router\Container\RouteMatcherFactory;
 use Primo\Router\RouteParams;
 use PrimoTest\Unit\TestCase;
@@ -19,7 +20,7 @@ final class RouteMatcherFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 [RouteParams::class, RouteParams::fromArray([])],
-                [RouteCollector::class, $this->createMock(RouteCollector::class)],
+                [RouteCollector::class, $this->createMock(RouteCollectorInterface::class)],
             ]);
         $factory = new RouteMatcherFactory();
         $factory->__invoke($container);

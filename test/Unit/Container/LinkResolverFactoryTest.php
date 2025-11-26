@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PrimoTest\Unit\Container;
 
 use Mezzio\Helper\UrlHelper;
-use Mezzio\Router\RouteCollector;
+use Mezzio\Router\RouteCollectorInterface;
 use Primo\Container\LinkResolverFactory;
 use Primo\Router\RouteMatcher;
 use Primo\Router\RouteParams;
@@ -21,7 +21,7 @@ final class LinkResolverFactoryTest extends TestCase
     {
         return new RouteMatcher(
             RouteParams::fromArray([]),
-            $this->createMock(RouteCollector::class),
+            $this->createMock(RouteCollectorInterface::class),
         );
     }
 

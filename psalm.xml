@@ -9,6 +9,7 @@
     findUnusedCode="true"
     findUnusedPsalmSuppress="true"
     findUnusedBaselineEntry="true"
+    ensureOverrideAttribute="false"
 >
     <projectFiles>
         <directory name="src" />
@@ -23,12 +24,4 @@
     <stubs>
         <file name=".psr-container.php.stub"/>
     </stubs>
-    <issueHandlers>
-        <MissingOverrideAttribute>
-            <errorLevel type="suppress">
-                <directory name="src" />
-                <directory name="test" />
-            </errorLevel>
-        </MissingOverrideAttribute>
-    </issueHandlers>
 </psalm>

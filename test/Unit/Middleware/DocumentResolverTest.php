@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Laminas\Diactoros\Response\TextResponse;
+use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Exception\RequestError;
@@ -17,15 +18,16 @@ use PrimoTest\Unit\TestCase;
 use Prismic\Document;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 final class DocumentResolverTest extends TestCase
 {
-    private MockObject|Resolver $resolver;
-    private RouteResult|MockObject $routeResult;
+    private MockObject&Resolver $resolver;
+    private RouteResult $routeResult;
     private RequestHandlerInterface $handler;
     private ServerRequestInterface $request;
-    private MockObject|Document $document;
+    private MockObject&Document $document;
 
     protected function setUp(): void
     {
@@ -33,7 +35,9 @@ final class DocumentResolverTest extends TestCase
 
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->resolver = $this->createMock(Resolver::class);
-        $this->routeResult = $this->createMock(RouteResult::class);
+        $this->routeResult = RouteResult::fromRoute(
+            new Route('/foo', $this->createMock(MiddlewareInterface::class)),
+        );
         $this->handler = new class () implements RequestHandlerInterface {
             public ServerRequestInterface $lastRequest;
 

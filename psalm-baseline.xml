@@ -123,6 +123,9 @@
     </PossiblyUnusedReturnValue>
   </file>
   <file src="src/Router/DocumentResolver.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DocumentResolver]]></code>
+    </ClassMustBeFinal>
     <MixedArgument>
       <code><![CDATA[$bookmark]]></code>
       <code><![CDATA[$tags]]></code>
@@ -210,24 +213,11 @@
     <MixedMethodCall>
       <code><![CDATA[getAttribute]]></code>
       <code><![CDATA[getAttribute]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <NoInterfaceProperties>
       <code><![CDATA[$this->handler->lastRequest]]></code>
       <code><![CDATA[$this->handler->lastRequest]]></code>
     </NoInterfaceProperties>
-    <PossiblyInvalidArgument>
-      <code><![CDATA[$this->resolver]]></code>
-      <code><![CDATA[$this->resolver]]></code>
-      <code><![CDATA[$this->resolver]]></code>
-    </PossiblyInvalidArgument>
-    <PossiblyUndefinedMethod>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-    </PossiblyUndefinedMethod>
   </file>
   <file src="test/Unit/Middleware/PreviewCacheHeadersTest.php">
     <MixedMethodCall>

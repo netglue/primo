@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09a9332dca42958e9bebadd93b8802d8",
+    "content-hash": "dc3bcfec8b6f93a2954791f3ff9c733b",
     "packages": [
         {
             "name": "dflydev/fig-cookies",
@@ -476,23 +476,23 @@
         },
         {
             "name": "mezzio/mezzio",
-            "version": "3.25.0",
+            "version": "3.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mezzio/mezzio.git",
-                "reference": "5b4a6bf3917659b8483e340499710d2f25d1788c"
+                "reference": "1b3b1014677884db284f2a5c45888f0427a910e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mezzio/mezzio/zipball/5b4a6bf3917659b8483e340499710d2f25d1788c",
-                "reference": "5b4a6bf3917659b8483e340499710d2f25d1788c",
+                "url": "https://api.github.com/repos/mezzio/mezzio/zipball/1b3b1014677884db284f2a5c45888f0427a910e8",
+                "reference": "1b3b1014677884db284f2a5c45888f0427a910e8",
                 "shasum": ""
             },
             "require": {
                 "fig/http-message-util": "^1.1.5",
                 "laminas/laminas-httphandlerrunner": "^2.1",
                 "laminas/laminas-stratigility": "^4.3",
-                "mezzio/mezzio-router": "^3.15.0",
+                "mezzio/mezzio-router": "^3.15.0 || ^4.0.0",
                 "mezzio/mezzio-template": "^2.2 || ^3.0",
                 "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
                 "psr/container": "^1.0||^2.0",
@@ -517,7 +517,7 @@
                 "laminas/laminas-servicemanager": "^3.24.0",
                 "mezzio/mezzio-fastroute": "^3.14",
                 "mezzio/mezzio-laminasrouter": "^3.12",
-                "phpunit/phpunit": "^11.5.43",
+                "phpunit/phpunit": "^11.5.44",
                 "psalm/plugin-phpunit": "^0.19.5",
                 "vimeo/psalm": "^6.13.1"
             },
@@ -578,7 +578,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2025-11-01T10:06:18+00:00"
+            "time": "2025-11-26T12:40:07+00:00"
         },
         {
             "name": "mezzio/mezzio-helpers",
@@ -661,16 +661,16 @@
         },
         {
             "name": "mezzio/mezzio-router",
-            "version": "3.19.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mezzio/mezzio-router.git",
-                "reference": "3df4363e70611ddf096db95c62df6aa98817872c"
+                "reference": "82846ece61e2c7f903baf734de9fcb47f89f999c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mezzio/mezzio-router/zipball/3df4363e70611ddf096db95c62df6aa98817872c",
-                "reference": "3df4363e70611ddf096db95c62df6aa98817872c",
+                "url": "https://api.github.com/repos/mezzio/mezzio-router/zipball/82846ece61e2c7f903baf734de9fcb47f89f999c",
+                "reference": "82846ece61e2c7f903baf734de9fcb47f89f999c",
                 "shasum": ""
             },
             "require": {
@@ -692,11 +692,10 @@
                 "laminas/laminas-servicemanager": "^4.4.0",
                 "laminas/laminas-stratigility": "^4.2.0",
                 "phpunit/phpunit": "^11.5.42",
-                "psalm/plugin-phpunit": "^0.19.0",
+                "psalm/plugin-phpunit": "^0.19.5",
                 "vimeo/psalm": "^6.13.1"
             },
             "suggest": {
-                "mezzio/mezzio-aurarouter": "^3.0 to use the Aura.Router routing adapter",
                 "mezzio/mezzio-fastroute": "^3.0 to use the FastRoute routing adapter",
                 "mezzio/mezzio-laminasrouter": "^3.0 to use the laminas-router routing adapter"
             },
@@ -739,20 +738,20 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2025-10-11T08:41:44+00:00"
+            "time": "2025-10-11T09:16:49+00:00"
         },
         {
             "name": "mezzio/mezzio-template",
-            "version": "2.13.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mezzio/mezzio-template.git",
-                "reference": "ad72bb31036d0639a5c5a502af234217faf6932f"
+                "reference": "49a797e19b167b208327854c81eb079937f0b161"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mezzio/mezzio-template/zipball/ad72bb31036d0639a5c5a502af234217faf6932f",
-                "reference": "ad72bb31036d0639a5c5a502af234217faf6932f",
+                "url": "https://api.github.com/repos/mezzio/mezzio-template/zipball/49a797e19b167b208327854c81eb079937f0b161",
+                "reference": "49a797e19b167b208327854c81eb079937f0b161",
                 "shasum": ""
             },
             "require": {
@@ -803,7 +802,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2025-10-11T08:45:28+00:00"
+            "time": "2025-10-11T09:18:27+00:00"
         },
         {
             "name": "netglue/prismic-client",
@@ -4398,16 +4397,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.10.1",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "431c02da15e566adb0ad9c5030fa6f6204d9de9e"
+                "reference": "92a98ada2b93d9b201a613cb5a33584dde25f195"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/431c02da15e566adb0ad9c5030fa6f6204d9de9e",
-                "reference": "431c02da15e566adb0ad9c5030fa6f6204d9de9e",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/92a98ada2b93d9b201a613cb5a33584dde25f195",
+                "reference": "92a98ada2b93d9b201a613cb5a33584dde25f195",
                 "shasum": ""
             },
             "require": {
@@ -4450,9 +4449,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.10.1"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.12.0"
             },
-            "time": "2025-11-18T07:51:16+00:00"
+            "time": "2025-11-21T15:09:14+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -5131,12 +5130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "21c88ad5fc888c04d095a662e92ed8fed5dfc888"
+                "reference": "3f393e137e490ecb2ac77989a692129c31192de7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/21c88ad5fc888c04d095a662e92ed8fed5dfc888",
-                "reference": "21c88ad5fc888c04d095a662e92ed8fed5dfc888",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/3f393e137e490ecb2ac77989a692129c31192de7",
+                "reference": "3f393e137e490ecb2ac77989a692129c31192de7",
                 "shasum": ""
             },
             "conflict": {
@@ -5262,7 +5261,7 @@
                 "contao/comments-bundle": ">=2,<4.13.40|>=5.0.0.0-RC1-dev,<5.3.4",
                 "contao/contao": ">=3,<3.5.37|>=4,<4.4.56|>=4.5,<4.13.56|>=5,<5.3.38|>=5.4.0.0-RC1-dev,<5.6.1",
                 "contao/core": "<3.5.39",
-                "contao/core-bundle": "<4.13.56|>=5,<5.3.38|>=5.4,<5.6.1",
+                "contao/core-bundle": "<4.13.57|>=5,<5.3.42|>=5.4,<5.6.5",
                 "contao/listing-bundle": ">=3,<=3.5.30|>=4,<4.4.8",
                 "contao/managed-edition": "<=1.5",
                 "corveda/phpsandbox": "<1.3.5",
@@ -5767,7 +5766,7 @@
                 "rap2hpoutre/laravel-log-viewer": "<0.13",
                 "react/http": ">=0.7,<1.9",
                 "really-simple-plugins/complianz-gdpr": "<6.4.2",
-                "redaxo/source": "<5.18.3",
+                "redaxo/source": "<5.20.1",
                 "remdex/livehelperchat": "<4.29",
                 "renolit/reint-downloadmanager": "<4.0.2|>=5,<5.0.1",
                 "reportico-web/reportico": "<=8.1",
@@ -6119,7 +6118,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-24T23:05:38+00:00"
+            "time": "2025-11-26T00:22:38+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -7109,32 +7108,32 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "8.24.0",
+            "version": "8.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "08e7989c0351f3f38b82172838195c35d9819efa"
+                "reference": "4caa5ec5a30b84b2305e80159c710d437f40cc40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/08e7989c0351f3f38b82172838195c35d9819efa",
-                "reference": "08e7989c0351f3f38b82172838195c35d9819efa",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/4caa5ec5a30b84b2305e80159c710d437f40cc40",
+                "reference": "4caa5ec5a30b84b2305e80159c710d437f40cc40",
                 "shasum": ""
             },
             "require": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7 || ^1.1.2",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7 || ^1.2.0",
                 "php": "^7.4 || ^8.0",
                 "phpstan/phpdoc-parser": "^2.3.0",
-                "squizlabs/php_codesniffer": "^4.0.0"
+                "squizlabs/php_codesniffer": "^4.0.1"
             },
             "require-dev": {
                 "phing/phing": "3.0.1|3.1.0",
                 "php-parallel-lint/php-parallel-lint": "1.4.0",
-                "phpstan/phpstan": "2.1.29",
+                "phpstan/phpstan": "2.1.32",
                 "phpstan/phpstan-deprecation-rules": "2.0.3",
-                "phpstan/phpstan-phpunit": "2.0.7",
-                "phpstan/phpstan-strict-rules": "2.0.6",
-                "phpunit/phpunit": "9.6.8|10.5.48|11.4.4|11.5.36|12.3.14"
+                "phpstan/phpstan-phpunit": "2.0.8",
+                "phpstan/phpstan-strict-rules": "2.0.7",
+                "phpunit/phpunit": "9.6.8|10.5.48|11.4.4|11.5.36|12.4.4"
             },
             "type": "phpcodesniffer-standard",
             "extra": {
@@ -7158,7 +7157,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/8.24.0"
+                "source": "https://github.com/slevomat/coding-standard/tree/8.25.1"
             },
             "funding": [
                 {
@@ -7170,7 +7169,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-25T21:37:40+00:00"
+            "time": "2025-11-25T18:01:43+00:00"
         },
         {
             "name": "spatie/array-to-xml",

@@ -6,7 +6,6 @@ namespace PrimoTest\Unit\Middleware;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use Primo\Middleware\WebhookHandler;
 use PrimoTest\Unit\TestCase;

@@ -9,8 +9,8 @@ use Prismic;
 
 final class ConfigProvider
 {
-    public const DEFAULT_PREVIEW_URL = '/preview';
-    public const DEFAULT_WEBHOOK_URL = '/prismic-webhook';
+    public const string DEFAULT_PREVIEW_URL = '/preview';
+    public const string DEFAULT_WEBHOOK_URL = '/prismic-webhook';
 
     /** @return array<string, mixed[]> */
     public function __invoke(): array

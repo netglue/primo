@@ -14,8 +14,8 @@ use Webmozart\Assert\Assert;
 
 final class RouteProvider
 {
-    public const PREVIEW_ROUTE_NAME = 'prismic-preview-route';
-    public const WEBHOOK_ROUTE_NAME = 'prismic-webhook-route';
+    public const string PREVIEW_ROUTE_NAME = 'prismic-preview-route';
+    public const string WEBHOOK_ROUTE_NAME = 'prismic-webhook-route';
 
     public function __invoke(Application $application, ContainerInterface $container): void
     {

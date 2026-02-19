@@ -15,7 +15,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class PrismicTemplate implements MiddlewareInterface
 {
-    public const DEFAULT_TEMPLATE_ATTRIBUTE = 'template';
+    public const string DEFAULT_TEMPLATE_ATTRIBUTE = 'template';
 
     public function __construct(
         private TemplateRendererInterface $renderer,

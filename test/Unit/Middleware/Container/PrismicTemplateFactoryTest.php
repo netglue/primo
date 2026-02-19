@@ -21,7 +21,7 @@ final class PrismicTemplateFactoryTest extends TestCase
         $container->expects(self::once())
             ->method('get')
             ->with(TemplateRendererInterface::class)
-            ->willReturn($this->createMock(TemplateRendererInterface::class));
+            ->willReturn($this->createStub(TemplateRendererInterface::class));
 
         $factory = new PrismicTemplateFactory();
         $factory->__invoke($container);

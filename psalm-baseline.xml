@@ -216,42 +216,13 @@
       <code><![CDATA[$this->handler->lastRequest]]></code>
     </NoInterfaceProperties>
   </file>
-  <file src="test/Unit/Middleware/PreviewCacheHeadersTest.php">
-    <MixedMethodCall>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-    </PossiblyUndefinedMethod>
-  </file>
   <file src="test/Unit/Middleware/PreviewHandlerTest.php">
     <MixedMethodCall>
       <code><![CDATA[getAttribute]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willThrowException]]></code>
-      <code><![CDATA[willThrowException]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <NoInterfaceProperties>
       <code><![CDATA[$this->handler->lastRequest]]></code>
     </NoInterfaceProperties>
-    <PossiblyUndefinedMethod>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-    </PossiblyUndefinedMethod>
   </file>
   <file src="test/Unit/Middleware/PrismicTemplateTest.php">
     <NoInterfaceProperties>

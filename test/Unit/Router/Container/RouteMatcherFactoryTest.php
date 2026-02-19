@@ -20,7 +20,7 @@ final class RouteMatcherFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 [RouteParams::class, RouteParams::fromArray([])],
-                [RouteCollector::class, $this->createMock(RouteCollectorInterface::class)],
+                [RouteCollector::class, $this->createStub(RouteCollectorInterface::class)],
             ]);
         $factory = new RouteMatcherFactory();
         $factory->__invoke($container);

@@ -13,7 +13,7 @@ final class InjectRequestCookiesFactoryTest extends TestCase
 {
     public function testFactory(): void
     {
-        $api = $this->createMock(ApiClient::class);
+        $api = $this->createStub(ApiClient::class);
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::once())
             ->method('get')

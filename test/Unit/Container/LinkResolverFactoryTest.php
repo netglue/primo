@@ -21,7 +21,7 @@ final class LinkResolverFactoryTest extends TestCase
     {
         return new RouteMatcher(
             RouteParams::fromArray([]),
-            $this->createMock(RouteCollectorInterface::class),
+            $this->createStub(RouteCollectorInterface::class),
         );
     }
 
@@ -113,7 +113,7 @@ final class LinkResolverFactoryTest extends TestCase
             ->willReturnMap([
                 [RouteParams::class, RouteParams::fromArray([])],
                 [RouteMatcher::class, $this->routeMatcher()],
-                [UrlHelper::class, $this->createMock(UrlHelper::class)],
+                [UrlHelper::class, $this->createStub(UrlHelper::class)],
                 [ApiClient::class, $api],
             ]);
 

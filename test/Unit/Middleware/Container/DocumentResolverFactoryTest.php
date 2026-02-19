@@ -13,7 +13,7 @@ final class DocumentResolverFactoryTest extends TestCase
 {
     public function testFactory(): void
     {
-        $resolver = $this->createMock(RoutingDocumentResolver::class);
+        $resolver = $this->createStub(RoutingDocumentResolver::class);
         $container = $this->createMock(ContainerInterface::class);
         $container->expects(self::once())
             ->method('get')

@@ -10,6 +10,7 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Laminas\Diactoros\Response\TextResponse;
 use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Exception\RequestError;
 use Primo\Middleware\DocumentResolver;
@@ -54,6 +55,7 @@ final class DocumentResolverTest extends TestCase
             ->willReturn(DateTimeImmutable::createFromFormat('!Y-m-d', '2020-01-01', new DateTimeZone('UTC')));
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testAnExceptionIsThrownWhenThereIsNoRouteResultAvailable(): void
     {
         $subject = new DocumentResolver($this->resolver);
@@ -62,11 +64,14 @@ final class DocumentResolverTest extends TestCase
         $subject->process($this->request, $this->handler);
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes(): ResponseInterface
     {
-        $this->resolver->method('resolve')->with($this->routeResult)->willReturn(
-            $this->document,
-        );
+        $this->resolver->expects($this->once())
+            ->method('resolve')
+            ->with($this->routeResult)
+            ->willReturn($this->document);
+
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
         self::assertNull($request->getAttribute(Document::class));
 
@@ -77,9 +82,13 @@ final class DocumentResolverTest extends TestCase
         return $response;
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testThatRequestAttributeIsNotPresentWhenADocumentCannotBeResolved(): void
     {
-        $this->resolver->method('resolve')->with($this->routeResult)->willReturn(null);
+        $this->resolver->expects($this->once())
+            ->method('resolve')
+            ->with($this->routeResult)
+            ->willReturn(null);
 
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
         self::assertNull($request->getAttribute(Document::class));

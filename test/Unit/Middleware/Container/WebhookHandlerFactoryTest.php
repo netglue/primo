@@ -41,7 +41,7 @@ final class WebhookHandlerFactoryTest extends TestCase
 
         $container->expects(self::once())
             ->method('get')
-            ->willReturn($this->createMock(EventDispatcherInterface::class));
+            ->willReturn($this->createStub(EventDispatcherInterface::class));
 
         $factory = new WebhookHandlerFactory();
         $factory->__invoke($container);

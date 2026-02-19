@@ -23,11 +23,11 @@ final class PreviewHandlerFactoryTest extends TestCase
         $map = [
             [
                 ApiClient::class,
-                $this->createMock(ApiClient::class),
+                $this->createStub(ApiClient::class),
             ],
             [
                 LinkResolver::class,
-                $this->createMock(LinkResolver::class),
+                $this->createStub(LinkResolver::class),
             ],
         ];
 

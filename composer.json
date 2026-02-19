@@ -65,7 +65,7 @@
         "psalm/plugin-phpunit": "^0.19.5",
         "roave/security-advisories": "dev-latest",
         "squizlabs/php_codesniffer": "^4.0.1",
-        "symfony/options-resolver": "^6.4.25 || ^7.4.0",
+        "symfony/options-resolver": "^8.0.0",
         "vimeo/psalm": "^6.15.1"
     },
     "extra": {

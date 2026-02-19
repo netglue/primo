@@ -6,16 +6,16 @@ namespace Primo\Middleware;
 
 use Mezzio\Router\RouteResult;
 use Primo\Exception\RequestError;
-use Primo\Router\DocumentResolver as Resolver;
+use Primo\Router\RoutingDocumentResolver;
 use Prismic\Document;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class DocumentResolver implements MiddlewareInterface
+final readonly class DocumentResolver implements MiddlewareInterface
 {
-    public function __construct(private Resolver $resolver)
+    public function __construct(private RoutingDocumentResolver $resolver)
     {
     }
 

@@ -17,7 +17,7 @@ use function is_string;
 use function uasort;
 
 /** @psalm-suppress DeprecatedMethod */
-final class RouteMatcher
+final readonly class RouteMatcher
 {
     public function __construct(
         private RouteParams $params,

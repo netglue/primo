@@ -90,7 +90,11 @@ final class PreviewHandlerTest extends TestCase
         $token = 'expected-token';
         $request = $this->request->withQueryParams(['token' => $token]);
 
-        $this->api->method('previewSession')->with($token)->willReturn(null);
+        $this->api->expects($this->once())
+            ->method('previewSession')
+            ->with($token)
+            ->willReturn(null);
+
         $response = $this->subject->process($request, $this->handler);
         self::assertResponseHasStatus($response, 302);
         self::assertMessageHasHeader($response, 'location', self::equalTo('/go-here'));
@@ -102,7 +106,11 @@ final class PreviewHandlerTest extends TestCase
         $request = $this->request->withQueryParams(['token' => $token]);
 
         $link = DocumentLink::new('a', 'b', 'c', 'd', false);
-        $this->api->method('previewSession')->with($token)->willReturn($link);
+        $this->api->expects($this->once())
+            ->method('previewSession')
+            ->with($token)
+            ->willReturn($link);
+
         $this->linkResolver
             ->expects($this->once())
             ->method('resolve')

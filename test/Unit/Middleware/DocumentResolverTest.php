@@ -67,9 +67,11 @@ final class DocumentResolverTest extends TestCase
     #[AllowMockObjectsWithoutExpectations]
     public function testThatGivenADocumentCanBeResolvedTheDocumentIsInjectedToRequestAttributes(): ResponseInterface
     {
-        $this->resolver->method('resolve')->with($this->routeResult)->willReturn(
-            $this->document,
-        );
+        $this->resolver->expects($this->once())
+            ->method('resolve')
+            ->with($this->routeResult)
+            ->willReturn($this->document);
+
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
         self::assertNull($request->getAttribute(Document::class));
 
@@ -83,7 +85,10 @@ final class DocumentResolverTest extends TestCase
     #[AllowMockObjectsWithoutExpectations]
     public function testThatRequestAttributeIsNotPresentWhenADocumentCannotBeResolved(): void
     {
-        $this->resolver->expects($this->once())->method('resolve')->with($this->routeResult)->willReturn(null);
+        $this->resolver->expects($this->once())
+            ->method('resolve')
+            ->with($this->routeResult)
+            ->willReturn(null);
 
         $request = $this->request->withAttribute(RouteResult::class, $this->routeResult);
         self::assertNull($request->getAttribute(Document::class));

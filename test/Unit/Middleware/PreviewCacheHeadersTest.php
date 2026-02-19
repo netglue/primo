@@ -18,7 +18,7 @@ final class PreviewCacheHeadersTest extends TestCase
 {
     private ServerRequestInterface $request;
     private RequestHandlerInterface $handler;
-    private MockObject|ApiClient $api;
+    private MockObject&ApiClient $api;
     private PreviewCacheHeaders $subject;
 
     protected function setUp(): void
@@ -38,7 +38,7 @@ final class PreviewCacheHeadersTest extends TestCase
 
     public function testThatNoCacheControlHeaderIsSetWhenPreviewIsNotActive(): void
     {
-        $this->api->method('inPreview')->willReturn(false);
+        $this->api->expects($this->once())->method('inPreview')->willReturn(false);
         $response = $this->subject->process($this->request, $this->handler);
 
         self::assertEmpty($response->getHeader('Cache-Control'));
@@ -46,7 +46,7 @@ final class PreviewCacheHeadersTest extends TestCase
 
     public function testThatCacheControlHeaderIsSetWhenPreviewIsActive(): void
     {
-        $this->api->method('inPreview')->willReturn(true);
+        $this->api->expects($this->once())->method('inPreview')->willReturn(true);
         $response = $this->subject->process($this->request, $this->handler);
 
         self::assertMessageHasHeader($response, 'Cache-Control');

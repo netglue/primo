@@ -7,6 +7,7 @@ namespace PrimoTest\Unit\Middleware;
 use Http\Discovery\Psr17FactoryDiscovery;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use Primo\Middleware\WebhookHandler;
 use PrimoTest\Unit\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -14,7 +15,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class WebhookHandlerTest extends TestCase
 {
-    private MockObject&EventDispatcherInterface $events;
+    private Stub&EventDispatcherInterface $events;
     private ServerRequestInterface $request;
     private WebhookHandler $subject;
 
@@ -22,7 +23,7 @@ final class WebhookHandlerTest extends TestCase
     {
         parent::setUp();
 
-        $this->events = $this->createMock(EventDispatcherInterface::class);
+        $this->events = $this->createStub(EventDispatcherInterface::class);
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
         $this->subject = new WebhookHandler($this->events, 'secret');
     }

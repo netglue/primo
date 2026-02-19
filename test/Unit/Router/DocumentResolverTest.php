@@ -7,6 +7,7 @@ namespace PrimoTest\Unit\Router;
 use Laminas\Diactoros\Response\TextResponse;
 use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Exception\RoutingError;
 use Primo\Router\DocumentResolver;
@@ -23,6 +24,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /** @psalm-suppress DeprecatedMethod */
+#[AllowMockObjectsWithoutExpectations]
 final class DocumentResolverTest extends TestCase
 {
     private MockObject&ApiClient $api;

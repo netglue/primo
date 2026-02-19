@@ -13,7 +13,7 @@ final class StandardResultSetFactoryFactoryTest extends TestCase
     public function testFactory(): void
     {
         $factory = new StandardResultSetFactoryFactory();
-        $factory->__invoke($this->createMock(ContainerInterface::class));
+        $factory->__invoke($this->createStub(ContainerInterface::class));
         $this->addToAssertionCount(1);
     }
 }

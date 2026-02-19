@@ -31,7 +31,7 @@ final class PrismicHttpClientFactoryTest extends TestCase
 
     public function testThatClientInContainerWillBeReturnedWhenAvailable(): void
     {
-        $client = $this->createMock(ClientInterface::class);
+        $client = $this->createStub(ClientInterface::class);
         $this->clientInContainer(true);
 
         $this->container->expects(self::once())

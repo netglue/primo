@@ -17,7 +17,7 @@ final class PreviewCacheHeadersFactoryTest extends TestCase
         $container->expects(self::once())
             ->method('get')
             ->with(ApiClient::class)
-            ->willReturn($this->createMock(ApiClient::class));
+            ->willReturn($this->createStub(ApiClient::class));
 
         $factory = new PreviewCacheHeadersFactory();
         $factory($container);

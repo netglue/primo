@@ -6,6 +6,7 @@ namespace PrimoTest\Unit\Middleware;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Laminas\Diactoros\Response\TextResponse;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Middleware\PreviewHandler;
 use PrimoTest\Unit\TestCase;
@@ -18,12 +19,13 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+#[AllowMockObjectsWithoutExpectations]
 final class PreviewHandlerTest extends TestCase
 {
     private ServerRequestInterface $request;
     private RequestHandlerInterface $handler;
-    private MockObject|ApiClient $api;
-    private MockObject|LinkResolver $linkResolver;
+    private MockObject&ApiClient $api;
+    private MockObject&LinkResolver $linkResolver;
     private PreviewHandler $subject;
 
     protected function setUp(): void
@@ -101,7 +103,11 @@ final class PreviewHandlerTest extends TestCase
 
         $link = DocumentLink::new('a', 'b', 'c', 'd', false);
         $this->api->method('previewSession')->with($token)->willReturn($link);
-        $this->linkResolver->method('resolve')->with($link)->willReturn('/go-there');
+        $this->linkResolver
+            ->expects($this->once())
+            ->method('resolve')
+            ->with($link)
+            ->willReturn('/go-there');
         $response = $this->subject->process($request, $this->handler);
         self::assertResponseHasStatus($response, 302);
         self::assertMessageHasHeader($response, 'location', self::equalTo('/go-there'));

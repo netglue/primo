@@ -7,6 +7,7 @@ namespace PrimoTest\Unit\Middleware;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Laminas\Diactoros\Response\TextResponse;
 use Mezzio\Template\TemplateRendererInterface;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Exception\RequestError;
 use Primo\Middleware\PrismicTemplate;
@@ -16,14 +17,12 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+#[AllowMockObjectsWithoutExpectations]
 final class PrismicTemplateTest extends TestCase
 {
-    /** @var TemplateRendererInterface&MockObject */
-    private TemplateRendererInterface|MockObject $templates;
+    private TemplateRendererInterface&MockObject $templates;
     private PrismicTemplate $subject;
     private ServerRequestInterface $request;
-    /** @var Document&MockObject */
-    private MockObject|Document $document;
     private RequestHandlerInterface $handler;
 
     protected function setUp(): void
@@ -33,7 +32,6 @@ final class PrismicTemplateTest extends TestCase
         $this->templates = $this->createMock(TemplateRendererInterface::class);
         $this->subject = new PrismicTemplate($this->templates);
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
-        $this->document = $this->createMock(Document::class);
         $this->handler = new class () implements RequestHandlerInterface {
             public ServerRequestInterface|null $lastRequest = null;
 
@@ -68,21 +66,26 @@ final class PrismicTemplateTest extends TestCase
         self::assertSame($request, $this->handler->lastRequest);
     }
 
-    private function requestHasDocument(): ServerRequestInterface
+    private function requestHasDocument(Document $document): ServerRequestInterface
     {
         $request = $this->requestHasTemplate();
 
-        return $request->withAttribute(Document::class, $this->document);
+        return $request->withAttribute(Document::class, $document);
     }
 
     public function testThatTheTemplateWillBeRenderedWhenRequestCriteriaAreMet(): void
     {
+        $document = $this->createMock(Document::class);
+        $document->expects(self::once())
+            ->method('lang')
+            ->willReturn('en-gb');
+
         $this->templates->expects(self::once())
             ->method('addDefaultParam')
             ->with(
                 self::equalTo(TemplateRendererInterface::TEMPLATE_ALL),
                 self::equalTo('document'),
-                self::equalTo($this->document),
+                self::equalTo($document),
             );
 
         $this->templates->expects(self::once())
@@ -90,11 +93,7 @@ final class PrismicTemplateTest extends TestCase
             ->with(self::equalTo('template::foo'))
             ->willReturn('Some Markup');
 
-        $this->document->expects(self::once())
-            ->method('lang')
-            ->willReturn('en-gb');
-
-        $response = $this->subject->process($this->requestHasDocument(), $this->handler);
+        $response = $this->subject->process($this->requestHasDocument($document), $this->handler);
         self::assertResponseIsSuccess($response);
         self::assertMessageBodyMatches($response, self::equalTo('Some Markup'));
         self::assertMessageHasHeader($response, 'content-language', self::equalTo('en-gb'));

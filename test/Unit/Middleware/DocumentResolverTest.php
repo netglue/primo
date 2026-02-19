@@ -13,7 +13,7 @@ use Mezzio\Router\RouteResult;
 use PHPUnit\Framework\MockObject\MockObject;
 use Primo\Exception\RequestError;
 use Primo\Middleware\DocumentResolver;
-use Primo\Router\DocumentResolver as Resolver;
+use Primo\Router\RoutingDocumentResolver;
 use PrimoTest\Unit\TestCase;
 use Prismic\Document;
 use Psr\Http\Message\ResponseInterface;
@@ -23,7 +23,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class DocumentResolverTest extends TestCase
 {
-    private MockObject&Resolver $resolver;
+    private MockObject&RoutingDocumentResolver $resolver;
     private RouteResult $routeResult;
     private RequestHandlerInterface $handler;
     private ServerRequestInterface $request;
@@ -34,7 +34,7 @@ final class DocumentResolverTest extends TestCase
         parent::setUp();
 
         $this->request = Psr17FactoryDiscovery::findServerRequestFactory()->createServerRequest('GET', '/foo');
-        $this->resolver = $this->createMock(Resolver::class);
+        $this->resolver = $this->createMock(RoutingDocumentResolver::class);
         $this->routeResult = RouteResult::fromRoute(
             new Route('/foo', $this->createMock(MiddlewareInterface::class)),
         );

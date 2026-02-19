@@ -15,12 +15,15 @@ use function count;
 use function is_string;
 use function sprintf;
 
-/** @psalm-suppress DeprecatedMethod */
-class DocumentResolver
+/**
+ * @psalm-suppress DeprecatedMethod
+ * @final
+ */
+readonly class DocumentResolver implements RoutingDocumentResolver
 {
     public function __construct(
-        private readonly ApiClient $api,
-        private readonly RouteParams $routeParams,
+        private ApiClient $api,
+        private RouteParams $routeParams,
     ) {
     }
 

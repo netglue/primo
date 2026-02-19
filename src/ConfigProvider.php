@@ -74,6 +74,8 @@ final class ConfigProvider
                 Prismic\ResultSet\ResultSetFactory::class => Prismic\ResultSet\StandardResultSetFactory::class,
                 // To Opt-In to Hydrating Result Sets, alias the Prismic ResultSetFactory to the Hydrating Result Set FQCN
                 //Prismic\ResultSet\ResultSetFactory::class => ResultSet\HydratingResultSetFactory::class,
+
+                Router\RoutingDocumentResolver::class => Router\DocumentResolver::class,
             ],
         ];
     }

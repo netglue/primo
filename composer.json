@@ -59,14 +59,14 @@
         "laminas/laminas-config-aggregator": "^1.19",
         "laminas/laminas-servicemanager": "^3.23.0 || ^4.5",
         "mezzio/mezzio-fastroute": "^3.14",
-        "php-http/curl-client": "^2.3.3",
+        "php-http/curl-client": "^2.4.0",
         "php-http/mock-client": "^1.6.1",
-        "phpunit/phpunit": "^11.5.44",
+        "phpunit/phpunit": "^11.5.55 || ^12",
         "psalm/plugin-phpunit": "^0.19.5",
         "roave/security-advisories": "dev-latest",
         "squizlabs/php_codesniffer": "^4.0.1",
-        "symfony/options-resolver": "^6.4.25 || ^7.3.3",
-        "vimeo/psalm": "^6.13.1"
+        "symfony/options-resolver": "^6.4.25 || ^7.4.0",
+        "vimeo/psalm": "^6.15.1"
     },
     "extra": {
         "laminas": {

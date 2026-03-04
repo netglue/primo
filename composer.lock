@@ -5141,12 +5141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "89525190c449738e468ee27e77f9fdc1bc160e08"
+                "reference": "5a17df9a478a03dff7428a3172cf7204d4d017a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/89525190c449738e468ee27e77f9fdc1bc160e08",
-                "reference": "89525190c449738e468ee27e77f9fdc1bc160e08",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5a17df9a478a03dff7428a3172cf7204d4d017a8",
+                "reference": "5a17df9a478a03dff7428a3172cf7204d4d017a8",
                 "shasum": ""
             },
             "conflict": {
@@ -5447,7 +5447,7 @@
                 "friendsoftypo3/openid": ">=4.5,<4.5.31|>=4.7,<4.7.16|>=6,<6.0.11|>=6.1,<6.1.6",
                 "froala/wysiwyg-editor": "<=4.3",
                 "frosh/adminer-platform": "<2.2.1",
-                "froxlor/froxlor": "<=2.2.5",
+                "froxlor/froxlor": "<=2.3.3",
                 "frozennode/administrator": "<=5.0.12",
                 "fuel/core": "<1.8.1",
                 "funadmin/funadmin": "<=7.1.0.0-RC4",
@@ -5497,7 +5497,7 @@
                 "ibexa/solr": ">=4.5,<4.5.4",
                 "ibexa/user": ">=4,<4.4.3|>=5,<5.0.4",
                 "icecoder/icecoder": "<=8.1",
-                "idno/known": "<=1.6.2",
+                "idno/known": "<1.6.4",
                 "ilicmiljan/secure-props": ">=1.2,<1.2.2",
                 "illuminate/auth": "<5.5.10",
                 "illuminate/cookie": ">=4,<=4.0.11|>=4.1,<6.18.31|>=7,<7.22.4",
@@ -6160,7 +6160,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-01T01:36:02+00:00"
+            "time": "2026-03-03T18:18:18+00:00"
         },
         {
             "name": "sebastian/cli-parser",

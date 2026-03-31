@@ -24,7 +24,7 @@ jobs:
           ini-values: pcov.enabled=1
       - uses: "ramsey/composer-install@4.0.0"
       - run: php ./vendor/bin/phpunit --coverage-clover=coverage.xml
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false

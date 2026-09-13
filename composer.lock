@@ -5133,12 +5133,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "55a9238f51c5449fdaa650fb03322dfca498a2e5"
+                "reference": "320c728c28346390c380a9876d6572a6c80cdd87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/55a9238f51c5449fdaa650fb03322dfca498a2e5",
-                "reference": "55a9238f51c5449fdaa650fb03322dfca498a2e5",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/320c728c28346390c380a9876d6572a6c80cdd87",
+                "reference": "320c728c28346390c380a9876d6572a6c80cdd87",
                 "shasum": ""
             },
             "conflict": {
@@ -5898,7 +5898,7 @@
                 "sheng/yiicms": "<1.2.1",
                 "shlinkio/shlink": "<=5.0.1",
                 "shopper/cart": "<2.8",
-                "shopper/framework": "<2.8",
+                "shopper/framework": "<2.9.2",
                 "shopware/core": "<6.6.10.18-dev|>=6.7,<6.7.10.1-dev",
                 "shopware/platform": "<6.6.10.18-dev|>=6.7,<6.7.10.1-dev",
                 "shopware/production": "<=6.3.5.2",
@@ -6271,7 +6271,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-09T20:29:53+00:00"
+            "time": "2026-09-11T23:00:23+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -8502,16 +8502,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "6.17.0",
+            "version": "6.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "056992a902704e2b691d33f9bfe4a063e43c79f2"
+                "reference": "ecdb39e1d470a661f423d08ec8d2db8bdc043ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/056992a902704e2b691d33f9bfe4a063e43c79f2",
-                "reference": "056992a902704e2b691d33f9bfe4a063e43c79f2",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/ecdb39e1d470a661f423d08ec8d2db8bdc043ba7",
+                "reference": "ecdb39e1d470a661f423d08ec8d2db8bdc043ba7",
                 "shasum": ""
             },
             "require": {
@@ -8616,7 +8616,7 @@
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm"
             },
-            "time": "2026-09-10T11:14:46+00:00"
+            "time": "2026-09-12T13:51:46+00:00"
         },
         {
             "name": "webimpress/safe-writer",
